@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/m4domain/!svn/ver/76/trunk/vendors/Symfony/Component/ClassLoader
+END
+ApcUniversalClassLoader.php
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/m4domain/!svn/ver/76/trunk/vendors/Symfony/Component/ClassLoader/ApcUniversalClassLoader.php
+END
+MapFileClassLoader.php
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/m4domain/!svn/ver/76/trunk/vendors/Symfony/Component/ClassLoader/MapFileClassLoader.php
+END
+LICENSE
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/m4domain/!svn/ver/76/trunk/vendors/Symfony/Component/ClassLoader/LICENSE
+END
+UniversalClassLoader.php
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/m4domain/!svn/ver/76/trunk/vendors/Symfony/Component/ClassLoader/UniversalClassLoader.php
+END
+ClassCollectionLoader.php
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/m4domain/!svn/ver/76/trunk/vendors/Symfony/Component/ClassLoader/ClassCollectionLoader.php
+END

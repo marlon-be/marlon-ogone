@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/m4domain/!svn/ver/76/trunk/vendors/Symfony/Component/Console
+END
+LICENSE
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/m4domain/!svn/ver/76/trunk/vendors/Symfony/Component/Console/LICENSE
+END
+Application.php
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/m4domain/!svn/ver/76/trunk/vendors/Symfony/Component/Console/Application.php
+END
+Shell.php
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/m4domain/!svn/ver/76/trunk/vendors/Symfony/Component/Console/Shell.php
+END
