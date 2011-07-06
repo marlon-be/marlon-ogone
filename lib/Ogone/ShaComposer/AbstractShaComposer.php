@@ -1,22 +1,24 @@
 <?php
 namespace Ogone\ShaComposer;
 
+use Ogone\Passphrase;
+
 /**
  * Base class for SHA Composers
  */
 abstract class AbstractShaComposer
 {
 	/**
-	 * @var string
+	 * @var Passphrase
 	 */
 	protected $passphrase;
 	
 	/**
 	 * @param string $passphrase
 	 */
-	public function __construct($passphrase)
+	public function __construct(Passphrase $passphrase)
 	{
-		$this->passphrase = (string) $passphrase;
+		$this->passphrase = $passphrase;
 	}
 
 	/**

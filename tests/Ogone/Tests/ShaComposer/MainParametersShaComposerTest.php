@@ -1,6 +1,7 @@
 <?php
 namespace Ogone\Tests\ShaComposer;
 
+use Ogone\Passphrase;
 use Ogone\ShaComposer\MainParametersShaComposer;
 
 class MainParametersShaComposerTest extends \TestCase
@@ -13,7 +14,7 @@ class MainParametersShaComposerTest extends \TestCase
 	{
 		$request = $this->setupRequest();
 		
-		$composer = new MainParametersShaComposer(self::PASSPHRASE);
+		$composer = new MainParametersShaComposer(new Passphrase(self::PASSPHRASE));
 		$shaString = $composer->compose($request);
 		
 		$this->assertEquals(self::SHASTRING, $shaString);

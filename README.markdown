@@ -4,7 +4,7 @@
 
   	<?php
  	
-	use Ogone\OgoneConfirmationRequest;
+	use Ogone\ConfirmationRequest as OgoneConfirmationRequest;
 	use Ogone\ShaComposer\MainParametersShaComposer;
 	
 	// ...
@@ -26,7 +26,7 @@
 
   	<?php
  	
-	use Ogone\OgoneConfirmationRequest;
+	use Ogone\ConfirmationRequest as OgoneConfirmationRequest;
 	use Ogone\ShaComposer\AllParametersShaComposer;
 	
 	// ...
