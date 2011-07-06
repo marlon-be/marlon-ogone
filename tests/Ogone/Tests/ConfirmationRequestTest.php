@@ -1,8 +1,7 @@
 <?php
 namespace Ogone\Tests;
 
-use Ogone\ShaComposer\AbstractShaComposer;
-
+use Ogone\ShaComposer\ShaComposer;
 use Ogone\ShaComposer\MainParametersShaComposer;
 use Ogone\ShaComposer\AllParametersShaComposer;
 use Ogone\ConfirmationRequest;
@@ -71,10 +70,8 @@ class ConfirmationRequestTest extends \TestCase
 /**
  * Fake SHA Composer to decouple test from actual SHA composers
  */
-class FakeShaComposer extends AbstractShaComposer
+class FakeShaComposer implements ShaComposer
 {
-	public function __construct(){}
-	
 	public function compose($requestParameters)
 	{
 		return ConfirmationRequestTest::SHASTRING;

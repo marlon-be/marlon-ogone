@@ -6,7 +6,7 @@ use Ogone\Passphrase;
 /**
  * Base class for SHA Composers
  */
-abstract class AbstractShaComposer
+abstract class AbstractShaComposer implements ShaComposer
 {
 	/**
 	 * @var Passphrase
@@ -21,9 +21,4 @@ abstract class AbstractShaComposer
 		$this->passphrase = $passphrase;
 	}
 
-	/**
-	 * Compose SHA string based on Ogone request parameters
-	 * @param array $requestParameters
-	 */
-	public abstract function compose($requestParameters);
 }

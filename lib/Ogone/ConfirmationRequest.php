@@ -1,7 +1,7 @@
 <?php
 namespace Ogone;
 
-use Ogone\ShaComposer\AbstractShaComposer;
+use Ogone\ShaComposer\ShaComposer;
 
 class ConfirmationRequest
 {
@@ -35,10 +35,10 @@ class ConfirmationRequest
 	
 	/**
 	 * @param array $request Typically $_REQUEST
-	 * @param AbstractShaComposer $shaComposer
+	 * @param ShaComposer $shaComposer
 	 * @throws \InvalidArgumentException 
 	 */
-	public function __construct($request, AbstractShaComposer $shaComposer)
+	public function __construct($request, ShaComposer $shaComposer)
 	{
 		if(!is_array($request)) {
 			throw new \InvalidArgumentException('Request parameter array expected.');
