@@ -1,0 +1,5 @@
+.settings
+.buildpath
+.project
+build
+phpunit.xml
