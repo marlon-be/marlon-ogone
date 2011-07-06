@@ -1,7 +1,16 @@
-# Ogone Confirmation Request wrapper
+Ogone Confirmation Request wrapper
+==================================
 
-Usage example:
+Usage example
+-------------
 
+	<?php
+	
+	use Ogone\OgoneConfirmationRequest;
+	use Ogone\ShaComposer\AllParametersShaComposer;
+	
+	// ...
+	
 	$passphrase = 'my-sha-out-passphrase-defined-in-ogone-interface';
 	$shaComposer = new AllParametersShaComposer($passphrase);
 	$ogoneConfirmationRequest = new OgoneConfirmationRequest($_REQUEST, $shaComposer);
