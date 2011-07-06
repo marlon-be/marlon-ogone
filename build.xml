@@ -1,0 +1,34 @@
+<project name="Ogone" default="build" basedir=".">
+    <target name="clean">
+        <delete dir="build"/>
+    </target>
+
+    <target name="prepare">
+        <mkdir dir="build/logs"/>
+        <mkdir dir="build/logs/testdox"/>
+        <mkdir dir="build/coverage"/>
+    </target>
+
+    <target name="unittest" depends="clean, prepare" description="Run unit tests" >
+        <exec executable="phpunit" failonerror="true">
+        </exec>
+    </target>
+
+    <target name="phpcs">
+        <exec executable="phpcs">
+            <arg value="--standard=ZEND"/>
+            <arg value="--report=checkstyle"/>
+            <arg value="--report-file=${basedir}/build/logs/checkstyle.xml"/>
+            <arg value="lib"/>
+        </exec>
+    </target>
+    
+    <!-- <target name="documentation">
+        <exec dir="doc/" executable="make" failonerror="true">
+            <arg value="html"/>
+        </exec>
+    </target> -->
+
+    <target name="build" depends="unittest, phpcs">
+    </target>
+</project>
