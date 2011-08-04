@@ -101,4 +101,10 @@ class ConfirmationResponse
 
 		return $this->parameters[$key];
 	}
+
+	public function isSuccessful()
+	{
+		// @todo use constants
+		return in_array($this->getParam('status'), array(5, 9));
+	}
 }
