@@ -6,22 +6,22 @@ namespace Ogone\ShaComposer;
  */
 class MainParametersShaComposer extends AbstractShaComposer
 {
-	public function compose($requestParameters)
+	public function compose(array $responseParameters)
 	{
 		// use lowercase internally
-		$requestParameters = array_change_key_case($requestParameters, CASE_LOWER);
-		
+		$responseParameters = array_change_key_case($responseParameters, CASE_LOWER);
+
 		return strtoupper(sha1(implode('', array(
-			$requestParameters['orderid'],
-			$requestParameters['currency'],
-			$requestParameters['amount'],
-			$requestParameters['pm'],
-			$requestParameters['acceptance'],
-			$requestParameters['status'],
-			$requestParameters['cardno'],
-			$requestParameters['payid'],
-			$requestParameters['ncerror'],
-			$requestParameters['brand'],
+			$responseParameters['orderid'],
+			$responseParameters['currency'],
+			$responseParameters['amount'],
+			$responseParameters['pm'],
+			$responseParameters['acceptance'],
+			$responseParameters['status'],
+			$responseParameters['cardno'],
+			$responseParameters['payid'],
+			$responseParameters['ncerror'],
+			$responseParameters['brand'],
 			$this->passphrase
 		))));
 	}

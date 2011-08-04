@@ -9,8 +9,8 @@ use Ogone\Passphrase;
 interface ShaComposer
 {
 	/**
-	 * Compose SHA string based on Ogone request parameters
-	 * @param array $requestParameters
+	 * Compose SHA string based on Ogone response parameters
+	 * @param array $responseParameters
 	 */
-	public function compose($requestParameters);
+	public function compose(array $responseParameters);
 }
