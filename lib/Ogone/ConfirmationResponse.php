@@ -29,25 +29,16 @@ class ConfirmationResponse
 	private $shaSign;
 
 	/**
-	 * @var ShaComposer
-	 */
-	private $shaComposer;
-
-	/**
 	 * @param array $httpRequest Typically $_REQUEST
-	 * @param ShaComposer $shaComposer
 	 * @throws \InvalidArgumentException
 	 */
-	public function __construct(array $httpRequest, ShaComposer $shaComposer)
+	public function __construct(array $httpRequest)
 	{
-		// set SHA composer
-		$this->shaComposer = $shaComposer;
-
 		// use lowercase internally
 		$httpRequest = array_change_key_case($httpRequest, CASE_LOWER);
 
 		// set sha sign
-		$this->shaSign = $this->setShaSign($httpRequest);
+		$this->shaSign = $this->extractShaSign($httpRequest);
 
 		// filter request for Ogone parameters
 		$this->parameters = $this->filterRequestParameters($httpRequest);
@@ -68,7 +59,7 @@ class ConfirmationResponse
 	 * @param array $request
 	 * @throws \InvalidArgumentException
 	 */
-	protected function setShaSign($parameters)
+	protected function extractShaSign($parameters)
 	{
 		if(!array_key_exists(self::SHASIGN_FIELD, $parameters) || $parameters[self::SHASIGN_FIELD] == '') {
 			throw new \InvalidArgumentException('SHASIGN parameter not present in parameters.');
@@ -80,9 +71,9 @@ class ConfirmationResponse
 	 * Checks if the response is valid
 	 * @return bool
 	 */
-	public function isValid()
+	public function isValid(ShaComposer $shaComposer)
 	{
-		return $this->shaComposer->compose($this->parameters) == $this->shaSign;
+		return $shaComposer->compose($this->parameters) == $this->shaSign;
 	}
 
 	/**

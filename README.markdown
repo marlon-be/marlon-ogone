@@ -8,11 +8,12 @@
 
 	// ...
 
+	$confirmationResponse = new ConfirmationResponse($_REQUEST);
+
 	$passphrase = 'my-sha-out-passphrase-defined-in-ogone-interface';
 	$shaComposer = new AllParametersShaComposer($passphrase);
-	$confirmationResponse = new ConfirmationResponse($_REQUEST, $shaComposer);
-
-	if($confirmationResponse->isValid() && $confirmationResponse->isSuccessful())
+	
+	if($confirmationResponse->isValid($shaComposer) && $confirmationResponse->isSuccessful())
 	{
 		// handle payment confirmation
 	}

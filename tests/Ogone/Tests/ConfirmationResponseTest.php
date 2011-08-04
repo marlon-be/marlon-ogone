@@ -15,8 +15,8 @@ class ConfirmationResponseTest extends \TestCase
 	{
 		$aRequest = $this->provideRequest();
 
-		$confirmationResponse = new ConfirmationResponse($aRequest, new FakeShaComposer());
-		$this->assertTrue($confirmationResponse->isValid());
+		$confirmationResponse = new ConfirmationResponse($aRequest);
+		$this->assertTrue($confirmationResponse->isValid(new FakeShaComposer()));
 	}
 
 	/**
@@ -25,7 +25,7 @@ class ConfirmationResponseTest extends \TestCase
 	*/
 	public function CannotExistWithoutShaSign()
 	{
-		$confirmationResponse = new ConfirmationResponse(array(), new FakeShaComposer());
+		$confirmationResponse = new ConfirmationResponse(array());
 	}
 
 	/** @test */
@@ -33,7 +33,7 @@ class ConfirmationResponseTest extends \TestCase
 	{
 		$aRequest = $this->provideRequest();
 
-		$confirmationResponse = new ConfirmationResponse($aRequest, new FakeShaComposer());
+		$confirmationResponse = new ConfirmationResponse($aRequest);
 		$this->assertEquals($aRequest['orderID'], $confirmationResponse->getParam('orderid'));
 	}
 
@@ -45,7 +45,7 @@ class ConfirmationResponseTest extends \TestCase
 	{
 		$aRequest = $this->provideRequest();
 
-		$confirmationResponse = new ConfirmationResponse($aRequest, new FakeShaComposer());
+		$confirmationResponse = new ConfirmationResponse($aRequest);
 		$confirmationResponse->getParam('unknown_param');
 	}
 
