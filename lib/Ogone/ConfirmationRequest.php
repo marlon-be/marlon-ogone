@@ -105,4 +105,9 @@ class ConfirmationRequest
 		
 		return $this->requestParameters[$param];
 	}
+
+	public function isSuccessful()
+	{
+		return in_array($this->getParam('status'), array(5, 9));
+	}
 }
