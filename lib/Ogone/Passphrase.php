@@ -4,7 +4,7 @@ namespace Ogone;
 /**
  * Ogone Passphrase Value Object
  */
-class Passphrase
+final class Passphrase
 {
 	/**
 	 * @var string

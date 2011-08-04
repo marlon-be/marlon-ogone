@@ -3,7 +3,7 @@ namespace Ogone;
 
 use Ogone\ShaComposer\ShaComposer;
 
-class ConfirmationResponse
+final class ConfirmationResponse
 {
 	/** @var string */
 	const SHASIGN_FIELD = 'shasign';
@@ -48,7 +48,7 @@ class ConfirmationResponse
 	 * Filter http request parameters
 	 * @param array $requestParameters
 	 */
-	protected function filterRequestParameters(array $httpRequest)
+	private function filterRequestParameters(array $httpRequest)
 	{
 		// filter request for Ogone parameters
 		return array_intersect_key($httpRequest, array_flip($this->ogoneParameters));
@@ -56,10 +56,10 @@ class ConfirmationResponse
 
 	/**
 	 * Set Ogone SHA sign
-	 * @param array $request
+	 * @param array $parameters
 	 * @throws \InvalidArgumentException
 	 */
-	protected function extractShaSign($parameters)
+	private function extractShaSign(array $parameters)
 	{
 		if(!array_key_exists(self::SHASIGN_FIELD, $parameters) || $parameters[self::SHASIGN_FIELD] == '') {
 			throw new \InvalidArgumentException('SHASIGN parameter not present in parameters.');
