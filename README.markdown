@@ -1,41 +1,18 @@
-# Ogone Confirmation Request wrapper #
+# Ogone Confirmation Response wrapper #
 
-## Usage SHA-OUT with "old" hashing algorithm ##
-
-  	<?php
- 	
-	use Ogone\ConfirmationRequest as OgoneConfirmationRequest;
-	use Ogone\ShaComposer\MainParametersShaComposer;
-	
-	// ...
-	
-	$passphrase = 'my-sha-out-passphrase-defined-in-ogone-interface';
-	$shaComposer = new MainParametersShaComposer($passphrase);
-	$ogoneConfirmationRequest = new OgoneConfirmationRequest($_REQUEST, $shaComposer);
-	
-	if($ogoneConfirmationRequest->isValid())
-	{
-		// handle payment confirmation
-	}
-	else
-	{
-		// perform logic when the validation fails
-	}
-	
-## Usage SHA-OUT with "new" hashing algorithm ##
+## Usage ##
 
   	<?php
- 	
-	use Ogone\ConfirmationRequest as OgoneConfirmationRequest;
+	use Ogone\ConfirmationResponse;
 	use Ogone\ShaComposer\AllParametersShaComposer;
-	
+
 	// ...
-	
+
 	$passphrase = 'my-sha-out-passphrase-defined-in-ogone-interface';
 	$shaComposer = new AllParametersShaComposer($passphrase);
-	$ogoneConfirmationRequest = new OgoneConfirmationRequest($_REQUEST, $shaComposer);
-	
-	if($ogoneConfirmationRequest->isValid())
+	$confirmationResponse = new ConfirmationResponse($_REQUEST, $shaComposer);
+
+	if($confirmationResponse->isValid() && $confirmationResponse->isSuccessful())
 	{
 		// handle payment confirmation
 	}
@@ -43,3 +20,15 @@
 	{
 		// perform logic when the validation fails
 	}
+
+## SHA-OUT with "old" hashing algorithm ##
+
+Alternatively, you can use the old style SHA composer: 
+
+ 	<?php
+	use Ogone\ShaComposer\MainParametersShaComposer;
+	$shaComposer = new MainParametersShaComposer($passphrase);
+
+## TODO's ##
+
+- @todo Move webshop\documentation\payment_types\ogone.rst to this project
