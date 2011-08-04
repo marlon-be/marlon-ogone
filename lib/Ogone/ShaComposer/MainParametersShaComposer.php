@@ -3,6 +3,7 @@ namespace Ogone\ShaComposer;
 
 /**
  * SHA string composition the "old way", using only the "main" parameters
+ * @deprecated Use AllParametersShaComposer wherever possible
  */
 class MainParametersShaComposer extends AbstractShaComposer
 {
