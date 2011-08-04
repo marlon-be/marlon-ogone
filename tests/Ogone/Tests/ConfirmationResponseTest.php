@@ -13,7 +13,9 @@ class ConfirmationResponseTest extends \TestCase
 	/** @test */
 	public function CanBeVerified()
 	{
-		$confirmationResponse = new ConfirmationResponse($this->setupRequest(), new FakeShaComposer());
+		$aRequest = $this->provideRequest();
+
+		$confirmationResponse = new ConfirmationResponse($aRequest, new FakeShaComposer());
 		$this->assertTrue($confirmationResponse->isValid());
 	}
 
@@ -29,10 +31,10 @@ class ConfirmationResponseTest extends \TestCase
 	/** @test */
 	public function ParametersCanBeRetrieved()
 	{
-		$request = $this->setupRequest();
+		$aRequest = $this->provideRequest();
 
-		$confirmationResponse = new ConfirmationResponse($request, new FakeShaComposer());
-		$this->assertEquals($request['orderID'], $confirmationResponse->getParam('orderid'));
+		$confirmationResponse = new ConfirmationResponse($aRequest, new FakeShaComposer());
+		$this->assertEquals($aRequest['orderID'], $confirmationResponse->getParam('orderid'));
 	}
 
 	/**
@@ -41,14 +43,16 @@ class ConfirmationResponseTest extends \TestCase
 	*/
 	public function RequestIsFilteredFromNonOgoneParameters()
 	{
-		$confirmationResponse = new ConfirmationResponse($this->setupRequest(), new FakeShaComposer());
+		$aRequest = $this->provideRequest();
+
+		$confirmationResponse = new ConfirmationResponse($aRequest, new FakeShaComposer());
 		$confirmationResponse->getParam('unknown_param');
 	}
 
 	/**
 	 * Helper method to setup a request array
 	 */
-	private function setupRequest()
+	private function provideRequest()
 	{
 		return array(
 			'orderID' => '123',

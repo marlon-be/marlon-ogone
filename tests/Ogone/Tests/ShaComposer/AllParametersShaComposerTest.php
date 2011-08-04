@@ -8,19 +8,19 @@ class AllParametersShaComposerTest extends \TestCase
 {
 	const PASSPHRASE = 'Mysecretsig1875!?';
 	const SHASTRING = 'B209960D5703DD1047F95A0F97655FFE5AC8BD52';
-	
+
 	/** @test */
 	public function ShaStringCanBeComposed()
 	{
-		$request = $this->setupRequest();
-		
+		$aRequest = $this->provideRequest();
+
 		$composer = new AllParametersShaComposer(new Passphrase(self::PASSPHRASE));
-		$shaString = $composer->compose($request);
-		
+		$shaString = $composer->compose($aRequest);
+
 		$this->assertEquals(self::SHASTRING, $shaString);
 	}
-		
-	private function setupRequest()
+
+	private function provideRequest()
 	{
 		return array(
 			'currency' => 'EUR',

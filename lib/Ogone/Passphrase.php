@@ -11,6 +11,7 @@ class Passphrase
 	 */
 	private $passphrase;
 
+	/** @@codeCoverageIgnore */
 	public function __construct($passphrase)
 	{
 		if(!is_string($passphrase)) {
