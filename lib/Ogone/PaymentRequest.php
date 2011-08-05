@@ -192,7 +192,7 @@ class PaymentRequest
 	 */
 	public function setOwnercty($ownercty)
 	{
-		if(!preg_match('/[A-Z]{2}$/', strtoupper($ownercty))) {
+		if(!preg_match('/^[A-Z]{2}$/', strtoupper($ownercty))) {
 			throw new InvalidArgumentException("Illegal country code");
 		}
 		$this->parameters['ownercty'] = strtoupper($ownercty);
@@ -337,6 +337,14 @@ class PaymentRequest
 			$field = strtolower(substr($method, 3));
 			if(in_array($field, $this->ogoneFields)) {
 				$this->parameters[$field] = $args[0];
+				return;
+			}
+		}
+
+		if(substr($method, 0, 3) == 'get') {
+			$field = strtolower(substr($method, 3));
+			if(array_key_exists($field, $this->parameters)) {
+				return $this->parameters[$field];
 			}
 		}
 

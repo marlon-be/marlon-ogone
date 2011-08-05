@@ -1,5 +1,8 @@
 # MARLON OGONE #
 
+The best documentation are the unit tests (and a vague understanding of Ogone).
+But we are in a friendly mood so here are some pointers: 
+
 # PaymentRequest and FormGenerator #
 
 	<?php
@@ -58,6 +61,6 @@ Alternatively, you can use the old style SHA composer:
 
 
 
-## TODO's ##
+# TODO's #
 
 - @todo Move webshop\documentation\payment_types\ogone.rst to this project
