@@ -48,6 +48,16 @@ class PaymentRequestTest extends \TestCase
 		$paymentRequest->$method($value);
 	}
 
+	/**
+	 * @test
+	 * @expectedException \BadMethodCallException
+	 */
+	public function UnknownMethodFails()
+	{
+		$paymentRequest = new PaymentRequest;
+		$paymentRequest->getFoobar();
+	}
+
 
 	public function provideBadParameters()
 	{
@@ -58,6 +68,8 @@ class PaymentRequestTest extends \TestCase
 		return array(
 			array('setAccepturl', $notAUri),
 			array('setAmount', 10.50),
+			array('setAmount', -1),
+			array('setAmount', 12345678901234567890),
 			//array('setBrand', ''),
 			array('setCancelurl', $notAUri),
 			array('setCurrency', 'Belgische Frank'),
@@ -65,16 +77,18 @@ class PaymentRequestTest extends \TestCase
 			array('setDeclineurl', $notAUri),
 			array('setDynamicTemplateUri', $notAUri),
 			array('setEmail', 'foo @ bar'),
+			array('setEmail', "$longstring@example.com"),
 			array('setExceptionurl', $notAUri),
 			//array('setFeedbackMessage', ''),
 			//array('setFeedbackParams', ''),
 			array('setLanguage', 'West-Vlaams'),
 			array('setOgoneUri', $notAUri),
-			//array('setOrderDescription', ''),
-			array('setOrderid', "Contains weird çh@®a©†€rs"),
+			array('setOrderDescription', $longString),
+			array('setOrderid', "Weird çh@®a©†€rs"),
+			array('setOrderid', $longString),
 			array('setOwnerAddress', $longString),
 			array('setOwnercountry', 'Benidorm'),
-			//array('setOwnerPhone', ''),
+			array('setOwnerPhone', $longString),
 			array('setOwnerTown', $longString),
 			array('setOwnerZip', $longString),
 			array('setParamvar', $longString),

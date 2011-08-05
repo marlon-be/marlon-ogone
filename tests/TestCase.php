@@ -46,6 +46,7 @@ abstract class TestCase extends PHPUnit_Framework_TestCase
 
 		$paymentRequest->setFeedbackMessage("Thanks for ordering");
 		$paymentRequest->setFeedbackParams(array('amountOfProducts' => '5', 'usedCoupon' => 1));
+		$paymentRequest->setParamvar('aParamVar');
 		$paymentRequest->setOrderDescription("Four horses and a carriage");
 
 		$paymentRequest->setOwnerPhone('123456789');
