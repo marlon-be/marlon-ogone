@@ -3,7 +3,7 @@ namespace Ogone;
 
 use Ogone\ShaComposer\ShaComposer;
 
-final class ConfirmationResponse
+class ConfirmationResponse
 {
 	/** @var string */
 	const SHASIGN_FIELD = 'shasign';
