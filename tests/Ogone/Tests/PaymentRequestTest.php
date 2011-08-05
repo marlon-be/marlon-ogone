@@ -22,6 +22,7 @@ class PaymentRequestTest extends \TestCase
 		$paymentRequest->validate();
 	}
 
+	/** @test */
 	public function UnimportantParamsUseMagicSetters()
 	{
 		$paymentRequest = new PaymentRequest;
