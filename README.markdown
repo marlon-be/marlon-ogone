@@ -27,7 +27,7 @@ But we are in a friendly mood so here are some pointers:
 	// Or use your own generator. Or pass $paymentRequest to a view
 
 
-# Ogone Confirmation Response wrapper #
+# PaymentResponse #
 
 ## Usage ##
 
