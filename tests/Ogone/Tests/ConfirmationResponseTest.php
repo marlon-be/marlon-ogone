@@ -38,15 +38,24 @@ class ConfirmationResponseTest extends \TestCase
 	}
 
 	/**
-	* @test
-	* @expectedException InvalidArgumentException
-	*/
+	 * @test
+	 * @expectedException InvalidArgumentException
+	 */
 	public function RequestIsFilteredFromNonOgoneParameters()
 	{
 		$aRequest = $this->provideRequest();
 
 		$confirmationResponse = new ConfirmationResponse($aRequest);
 		$confirmationResponse->getParam('unknown_param');
+	}
+
+	/** @test */
+	public function ChecksStatus()
+	{
+		$aRequest = $this->provideRequest();
+
+		$confirmationResponse = new ConfirmationResponse($aRequest);
+		$this->assertTrue($confirmationResponse->isSuccessful());
 	}
 
 	/**
@@ -57,7 +66,8 @@ class ConfirmationResponseTest extends \TestCase
 		return array(
 			'orderID' => '123',
 			'SHASIGN' => self::SHASTRING,
-			'UNKNOWN_PARAM' => false /* unkown parameter, should be filtered out */
+			'UNKNOWN_PARAM' => false, /* unkown parameter, should be filtered out */
+			'status' => 5,
 		);
 	}
 }

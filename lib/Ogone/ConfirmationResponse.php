@@ -2,6 +2,7 @@
 namespace Ogone;
 
 use Ogone\ShaComposer\ShaComposer;
+use InvalidArgumentException;
 
 class ConfirmationResponse
 {
@@ -63,7 +64,7 @@ class ConfirmationResponse
 	private function extractShaSign(array $parameters)
 	{
 		if(!array_key_exists(self::SHASIGN_FIELD, $parameters) || $parameters[self::SHASIGN_FIELD] == '') {
-			throw new \InvalidArgumentException('SHASIGN parameter not present in parameters.');
+			throw new InvalidArgumentException('SHASIGN parameter not present in parameters.');
 		}
 		return $parameters[self::SHASIGN_FIELD];
 	}
@@ -88,7 +89,7 @@ class ConfirmationResponse
 		$key = strtolower($key);
 
 		if(!array_key_exists($key, $this->parameters)) {
-			throw new \InvalidArgumentException('Parameter ' . $key . ' does not exist.');
+			throw new InvalidArgumentException('Parameter ' . $key . ' does not exist.');
 		}
 
 		return $this->parameters[$key];
