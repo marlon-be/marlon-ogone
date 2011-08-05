@@ -56,9 +56,7 @@ class PaymentRequest
 	/** Ogone uri to send the customer to. Usually PaymentRequest::TEST or PaymentRequest::PRODUCTION */
 	public function setOgoneUri($ogoneUri)
 	{
-		if(!filter_var($ogoneUri, FILTER_VALIDATE_URL)) {
-			throw new InvalidArgumentException("Action uri is not valid");
-		}
+		$this->validateUri($ogoneUri);
 		$this->ogoneUri = $ogoneUri;
 	}
 
@@ -214,45 +212,25 @@ class PaymentRequest
 
 	public function setAccepturl($accepturl)
 	{
-		if(!filter_var($accepturl, FILTER_VALIDATE_URL)) {
-			throw new InvalidArgumentException("Accepturl is not valid");
-		}
-		if(strlen($accepturl) > 200) {
-			throw new InvalidArgumentException("Accepturl is too long");
-		}
+		$this->validateUri($accepturl);
 		$this->parameters['accepturl'] = $accepturl;
 	}
 
 	public function setDeclineurl($declineurl)
 	{
-		if(!filter_var($declineurl, FILTER_VALIDATE_URL)) {
-			throw new InvalidArgumentException("Declineurl is not valid");
-		}
-		if(strlen($declineurl) > 200) {
-			throw new InvalidArgumentException("Declineurl is too long");
-		}
+		$this->validateUri($declineurl);
 		$this->parameters['declineurl'] = $declineurl;
 	}
 
 	public function setExceptionurl($exceptionurl)
 	{
-		if(!filter_var($exceptionurl, FILTER_VALIDATE_URL)) {
-			throw new InvalidArgumentException("Exceptionurl is not valid");
-		}
-		if(strlen($exceptionurl) > 200) {
-			throw new InvalidArgumentException("Exceptionurl is too long");
-		}
+		$this->validateUri($exceptionurl);
 		$this->parameters['exceptionurl'] = $exceptionurl;
 	}
 
 	public function setCancelurl($cancelurl)
 	{
-		if(!filter_var($cancelurl, FILTER_VALIDATE_URL)) {
-			throw new InvalidArgumentException("Cancelurl is not valid");
-		}
-		if(strlen($cancelurl) > 200) {
-			throw new InvalidArgumentException("Cancelurl is too long");
-		}
+		$this->validateUri($cancelurl);
 		$this->parameters['cancelurl'] = $cancelurl;
 	}
 
@@ -309,9 +287,7 @@ class PaymentRequest
 
 	public function setTp($tp)
 	{
-		if(!filter_var($tp, FILTER_VALIDATE_URL)) {
-			throw new InvalidArgumentException("TP (Dynamic template uri) is not valid");
-		}
+		$this->validateUri($tp);
 		$this->parameters['tp'] = $tp;
 	}
 
@@ -355,5 +331,15 @@ class PaymentRequest
 	{
 		$this->validate();
 		return $this->parameters;
+	}
+
+	protected function validateUri($uri)
+	{
+		if(!filter_var($uri, FILTER_VALIDATE_URL)) {
+			throw new InvalidArgumentException("Uri is not valid");
+		}
+		if(strlen($uri) > 200) {
+			throw new InvalidArgumentException("Uri is too long");
+		}
 	}
 }

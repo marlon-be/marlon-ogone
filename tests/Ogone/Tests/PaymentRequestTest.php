@@ -43,8 +43,10 @@ class PaymentRequestTest extends \TestCase
 
 	public function provideBadParameters()
 	{
-		$longString = str_repeat('long string ', 10);
+		$longString = str_repeat('longstring', 100);
 		$notAUri = 'http://not a uri';
+		$longUri = "http://www.example.com/$longString";
+
 		return array(
 			array('setAccepturl', $notAUri),
 			array('setAmount', 10.50),
