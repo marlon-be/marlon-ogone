@@ -201,6 +201,7 @@ class PaymentRequest
 	{
 		$this->setOwnertelno($ownerphone);
 	}
+
 	public function setOwnertelno($ownertelno)
 	{
 		if(strlen($ownertelno) > 30) {
@@ -208,7 +209,6 @@ class PaymentRequest
 		}
 		$this->parameters['ownertelno'] = $ownertelno;
 	}
-
 
 	public function setAccepturl($accepturl)
 	{
@@ -331,6 +331,17 @@ class PaymentRequest
 	{
 		$this->validate();
 		return $this->parameters;
+	}
+
+	/** @return PaymentRequest */
+	public static function createFromArray(array $parameters)
+	{
+		$instance = new static;
+		foreach($parameters as $key => $value)
+		{
+			$instance->{"set$key"}($value);
+		}
+		return $instance;
 	}
 
 	protected function validateUri($uri)

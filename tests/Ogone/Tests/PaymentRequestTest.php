@@ -58,7 +58,6 @@ class PaymentRequestTest extends \TestCase
 		$paymentRequest->getFoobar();
 	}
 
-
 	public function provideBadParameters()
 	{
 		$longString = str_repeat('longstring', 100);
@@ -77,7 +76,7 @@ class PaymentRequestTest extends \TestCase
 			array('setDeclineurl', $notAUri),
 			array('setDynamicTemplateUri', $notAUri),
 			array('setEmail', 'foo @ bar'),
-			array('setEmail', "$longstring@example.com"),
+			array('setEmail', "$longString@example.com"),
 			array('setExceptionurl', $notAUri),
 			//array('setFeedbackMessage', ''),
 			//array('setFeedbackParams', ''),

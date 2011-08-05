@@ -8,11 +8,12 @@ abstract class TestCase extends PHPUnit_Framework_TestCase
 	/** @return PaymentRequest*/
 	protected function provideMinimalPaymentRequest()
 	{
-		$paymentRequest = new PaymentRequest;
+		$paymentRequest = PaymentRequest::createFromArray(array(
+			'pspid' => '123456789',
+			'orderid' => '987654321',
+		));
 
 		$paymentRequest->setOgoneUri(PaymentRequest::TEST);
-		$paymentRequest->setPspid("123456789");
-		$paymentRequest->setOrderid("987654321");
 
 		$paymentRequest->setCustomername("Louis XIV");
 		$paymentRequest->setOwnerAddress("1, Rue du Palais");
@@ -20,7 +21,6 @@ abstract class TestCase extends PHPUnit_Framework_TestCase
 		$paymentRequest->setOwnerZip('2300');
 		$paymentRequest->setOwnerCountry("FR");
 		$paymentRequest->setEmail("louis.xiv@versailles.fr");
-
 
 		$paymentRequest->setAmount(100);
 
