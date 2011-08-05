@@ -2,8 +2,6 @@
 namespace Ogone\Tests;
 
 use Ogone\ShaComposer\ShaComposer;
-use Ogone\ShaComposer\MainParametersShaComposer;
-use Ogone\ShaComposer\AllParametersShaComposer;
 use Ogone\PaymentResponse;
 
 class PaymentResponseTest extends \TestCase

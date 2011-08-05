@@ -56,8 +56,8 @@ But we are in a friendly mood so here are some pointers:
 Alternatively, you can use the old style SHA composer: 
 
  	<?php
-	use Ogone\ShaComposer\MainParametersShaComposer;
-	$shaComposer = new MainParametersShaComposer($passphrase);
+	use Ogone\ShaComposer\LegacyShaComposer;
+	$shaComposer = new LegacyShaComposer($passphrase);
 
 
 

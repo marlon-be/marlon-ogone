@@ -5,11 +5,10 @@ namespace Ogone\ShaComposer;
  * SHA string composition the "old way", using only the "main" parameters
  * @deprecated Use AllParametersShaComposer wherever possible
  */
-class MainParametersShaComposer extends AbstractShaComposer
+class LegacyShaComposer extends AbstractShaComposer
 {
 	public function compose(array $parameters)
 	{
-		// use lowercase internally
 		$parameters = array_change_key_case($parameters, CASE_LOWER);
 
 		return strtoupper(sha1(implode('', array(

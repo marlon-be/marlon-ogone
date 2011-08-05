@@ -2,9 +2,9 @@
 namespace Ogone\Tests\ShaComposer;
 
 use Ogone\Passphrase;
-use Ogone\ShaComposer\MainParametersShaComposer;
+use Ogone\ShaComposer\LegacyShaComposer;
 
-class MainParametersShaComposerTest extends \TestCase
+class LegacyShaComposerTest extends \TestCase
 {
 	const PASSPHRASE = 'm0b1l4sha!';
 	const SHASTRING = 'C17C595E20FD2BAC4AFFA68E677DA34F43023249';
@@ -14,7 +14,7 @@ class MainParametersShaComposerTest extends \TestCase
 	{
 		$aRequest = $this->provideRequest();
 
-		$composer = new MainParametersShaComposer(new Passphrase(self::PASSPHRASE));
+		$composer = new LegacyShaComposer(new Passphrase(self::PASSPHRASE));
 		$shaString = $composer->compose($aRequest);
 
 		$this->assertEquals(self::SHASTRING, $shaString);
