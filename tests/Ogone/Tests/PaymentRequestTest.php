@@ -8,7 +8,14 @@ class PaymentRequestTest extends \TestCase
 	/** @test */
 	public function IsValidWhenRequiredFieldsAreFilledIn()
 	{
-		$paymentRequest = $this->providePaymentRequest();
+		$paymentRequest = $this->provideMinimalPaymentRequest();
+		$paymentRequest->validate();
+	}
+
+	/** @test */
+	public function IsValidWhenAllFieldsAreFilledIn()
+	{
+		$paymentRequest = $this->provideCompletePaymentRequest();
 		$paymentRequest->validate();
 	}
 
@@ -53,7 +60,7 @@ class PaymentRequestTest extends \TestCase
 			array('setAmount', 10.50),
 			//array('setBrand', ''),
 			array('setCancelurl', $notAUri),
-			array('setCurrency', 'invalid Currency'),
+			array('setCurrency', 'Belgische Frank'),
 			//array('setCustomername', ''),
 			array('setDeclineurl', $notAUri),
 			array('setDynamicTemplateUri', $notAUri),

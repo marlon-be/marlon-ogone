@@ -9,7 +9,7 @@ class SimpleFormGeneratorTest extends \TestCase
 	/** @test */
 	public function GeneratesAForm()
 	{
-		$paymentRequest = $this->providePaymentRequest();
+		$paymentRequest = $this->provideMinimalPaymentRequest();
 		$formGenerator = new SimpleFormGenerator;
 
 		$html = $formGenerator->render($paymentRequest);

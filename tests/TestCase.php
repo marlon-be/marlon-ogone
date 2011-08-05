@@ -5,11 +5,12 @@ require_once 'PHPUnit/Framework/TestCase.php';
 
 abstract class TestCase extends PHPUnit_Framework_TestCase
 {
-	/** @return PaymentRequest Only the required fields are filled in */
-	protected function providePaymentRequest()
+	/** @return PaymentRequest*/
+	protected function provideMinimalPaymentRequest()
 	{
 		$paymentRequest = new PaymentRequest;
 
+		$paymentRequest->setOgoneUri(PaymentRequest::TEST);
 		$paymentRequest->setPspid("123456789");
 		$paymentRequest->setOrderid("987654321");
 
@@ -25,4 +26,31 @@ abstract class TestCase extends PHPUnit_Framework_TestCase
 
 		return $paymentRequest;
 	}
+
+	/** @return PaymentRequest*/
+	protected function provideCompletePaymentRequest()
+	{
+		/** @return PaymentRequest */
+		$paymentRequest = $this->provideMinimalPaymentRequest();
+
+		$paymentRequest->setAccepturl('http://example.com/accept');
+		$paymentRequest->setDeclineurl('http://example.com/decline');
+		$paymentRequest->setExceptionurl('http://example.com/exception');
+		$paymentRequest->setCancelurl('http://example.com/cancel');
+		$paymentRequest->setDynamicTemplateUri('http://example.com/template');
+
+		$paymentRequest->setCurrency('EUR');
+		$paymentRequest->setLanguage('nl_BE');
+		$paymentRequest->setPaymentMethod('CreditCard');
+		$paymentRequest->setBrand('VISA');
+
+		$paymentRequest->setFeedbackMessage("Thanks for ordering");
+		$paymentRequest->setFeedbackParams(array('amountOfProducts' => '5', 'usedCoupon' => 1));
+		$paymentRequest->setOrderDescription("Four horses and a carriage");
+
+		$paymentRequest->setOwnerPhone('123456789');
+
+		return $paymentRequest;
+	}
+
 }
