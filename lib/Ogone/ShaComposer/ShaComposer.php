@@ -10,7 +10,7 @@ interface ShaComposer
 {
 	/**
 	 * Compose SHA string based on Ogone response parameters
-	 * @param array $responseParameters
+	 * @param array $parameters
 	 */
-	public function compose(array $responseParameters);
+	public function compose(array $parameters);
 }

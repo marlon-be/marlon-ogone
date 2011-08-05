@@ -6,21 +6,18 @@ namespace Ogone\ShaComposer;
  */
 class AllParametersShaComposer extends AbstractShaComposer
 {
-	public function compose(array $responseParameters)
+	public function compose(array $parameters)
 	{
-		// use lowercase internally
-		$responseParameters = array_change_key_case($responseParameters, CASE_LOWER);
-
-		// sort parameters
-		ksort($responseParameters);
+		// clean up
+		$parameters = array_change_key_case($parameters, CASE_UPPER);
+		array_walk($parameters, 'trim');
+		$parameters = array_filter($parameters, function($value){ return !is_null($value);});
+		ksort($parameters);
 
 		// compose SHA string
 		$shaString = '';
-		foreach($responseParameters as $key => $value)
-		{
-			if($value !== null) {
-				$shaString .= strtoupper($key) . '=' . trim($value) . $this->passphrase;
-			}
+		foreach($parameters as $key => $value) {
+			$shaString .= $key . '=' . $value . $this->passphrase;
 		}
 
 		return strtoupper(sha1($shaString));

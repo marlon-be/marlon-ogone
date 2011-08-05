@@ -22,6 +22,8 @@ class AllParametersShaComposerTest extends \TestCase
 
 	private function provideRequest()
 	{
+		// @todo also test unknown params, empty params
+
 		return array(
 			'currency' => 'EUR',
 			'ACCEPTANCE' => 1234,
