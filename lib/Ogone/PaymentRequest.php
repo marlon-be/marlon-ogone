@@ -3,6 +3,7 @@ namespace Ogone;
 
 use InvalidArgumentException;
 use RuntimeException;
+use BadMethodCallException;
 
 class PaymentRequest
 {
@@ -23,7 +24,8 @@ class PaymentRequest
 
 	private $requiredfields = array(
 		'pspid', 'cn', 'owneraddress', 'ownertown', 'ownerzip', 'ownercty', 'email',
-		'pm', 'brand', 'amount', 'orderid'
+		'amount', 'orderid'
+		// 'pm', 'brand' // left out because when missing, ogone will ask the customer for these
 	);
 
 	/** Note this is public to allow easy modification, if need be. */
@@ -170,7 +172,7 @@ class PaymentRequest
 
 	public function setOwnerTown($ownertown)
 	{
-		if(strlen($$ownertown) > 25) {
+		if(strlen($ownertown) > 25) {
 			throw new InvalidArgumentException("Owner town is too long");
 		}
 		$this->parameters['ownertown'] = $ownertown;

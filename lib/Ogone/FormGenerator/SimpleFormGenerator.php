@@ -1,5 +1,7 @@
 <?php
 namespace Ogone\FormGenerator;
+
+use Ogone\PaymentRequest;
 use InvalidArgumentException;
 
 class SimpleFormGenerator implements FormGenerator
@@ -11,10 +13,10 @@ class SimpleFormGenerator implements FormGenerator
 	public function render(PaymentRequest $paymentRequest)
 	{
 		$this->parameters = $paymentRequest->toArray();
-		$this->ogoneUri = $paymentRequest->getOgonenUri();
+		$this->ogoneUri = $paymentRequest->getOgoneUri();
 
 		ob_start();
-		include __DIR__.'/Template/form.php';
+		include __DIR__.'/template/simpleForm.php';
 		return ob_get_clean();
 	}
 
@@ -26,5 +28,10 @@ class SimpleFormGenerator implements FormGenerator
 	protected function getOgoneUri()
 	{
 		return $this->ogoneUri;
+	}
+
+	protected function getShaSign()
+	{
+		// @todo sha
 	}
 }
