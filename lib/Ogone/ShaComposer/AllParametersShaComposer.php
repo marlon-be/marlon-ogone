@@ -4,14 +4,19 @@ namespace Ogone\ShaComposer;
 /**
  * SHA string composition the "new way", using all parameters in the ogone response
  */
+use Ogone\ParameterFilter\ParameterFilter;
+
 class AllParametersShaComposer extends AbstractShaComposer
 {
+	/** @var array of ParameterFilter */
+	private $parameterFilters;
+
 	public function compose(array $parameters)
 	{
-		// clean up
-		$parameters = array_change_key_case($parameters, CASE_UPPER);
-		array_walk($parameters, 'trim');
-		$parameters = array_filter($parameters, function($value){ return !is_null($value);});
+		foreach($this->parameterFilters as $parameterFilter) {
+			$parameters = $parameterFilter->filter($parameters);
+		}
+
 		ksort($parameters);
 
 		// compose SHA string
@@ -21,5 +26,10 @@ class AllParametersShaComposer extends AbstractShaComposer
 		}
 
 		return strtoupper(sha1($shaString));
+	}
+
+	public function addParameterFilter(ParameterFilter $parameterFilter)
+	{
+		$this->parameterFilters[] = $parameterFilter;
 	}
 }

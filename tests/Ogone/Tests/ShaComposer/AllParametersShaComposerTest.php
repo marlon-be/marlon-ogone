@@ -1,6 +1,12 @@
 <?php
 namespace Ogone\Tests\ShaComposer;
 
+use Ogone\ParameterFilter\ShaInParameterFilter;
+
+use Ogone\ParameterFilter\ShaOutParameterFilter;
+
+use Ogone\ParameterFilter\GeneralParameterFilter;
+
 use Ogone\Passphrase;
 use Ogone\ShaComposer\AllParametersShaComposer;
 
@@ -13,6 +19,8 @@ class AllParametersShaComposerTest extends \TestCase
 	public function ShaStringIsComposedCorrectly(PassPhrase $passphrase, array $request, $expectedSha)
 	{
 		$composer = new AllParametersShaComposer($passphrase);
+		$composer->addParameterFilter(new GeneralParameterFilter);
+		// @todo $composer->addParameterFilter(new ShaOutParameterFilter);
 		$this->assertEquals($expectedSha, $composer->compose($request));
 	}
 
@@ -53,6 +61,7 @@ class AllParametersShaComposerTest extends \TestCase
 			'BRAND' => 'VISA',
 			'COMPLUS' => 'my feedbackmessage',
 			'IP' => '12.123.12.123',
+		// @todo	'foo' => 'bar',
 		);
 
 		return array(

@@ -42,6 +42,8 @@ But we are in a friendly mood so here are some pointers:
 	$passphrase = 'my-sha-out-passphrase-defined-in-ogone-interface';
 	$shaComposer = new AllParametersShaComposer($passphrase);
 	
+	
+	
 	if($paymentResponse->isValid($shaComposer) && $paymentResponse->isSuccessful())
 	{
 		// handle payment confirmation
