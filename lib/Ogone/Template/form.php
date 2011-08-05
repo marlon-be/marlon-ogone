@@ -1,4 +1,4 @@
-<form method="post" action="<?php echo $this->getActionUri()?>" id="ogone" name="ogone">
+<form method="post" action="<?php echo $this->getOgoneUri()?>" id="ogone" name="ogone">
 
 	<?php foreach($this->getParameters() as $key => $value) :?>
 		<?php if($value) :?>

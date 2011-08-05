@@ -1,3 +1,29 @@
+# MARLON OGONE #
+
+# PaymentRequest and FormGenerator #
+
+	<?php
+
+	use Ogone\PaymentRequest;
+	use Ogone\FormGenerator;
+
+	$paymentRequest = new PaymentRequest;
+	// Optionally set Ogone uri, defaults to TEST account
+	//$paymentRequest->setOgoneUri(PaymentRequest::PRODUCTION);
+
+	// Set various params:
+	$paymentRequest->setOrderid('123456');
+	$paymentRequest->setAmount('150'); // in cents
+	$paymentRequest->setCurrency('EUR');
+	// ...
+
+	$paymentRequest->validate();
+
+	$formGenerator = new SimpleFormGenerator; 
+	$html = $formGenerator->render($paymentRequest);
+	// Or use your own generator. Or pass $paymentRequest to a view
+
+
 # Ogone Confirmation Response wrapper #
 
 ## Usage ##
@@ -29,6 +55,8 @@ Alternatively, you can use the old style SHA composer:
  	<?php
 	use Ogone\ShaComposer\MainParametersShaComposer;
 	$shaComposer = new MainParametersShaComposer($passphrase);
+
+
 
 ## TODO's ##
 

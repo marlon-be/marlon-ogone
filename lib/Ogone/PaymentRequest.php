@@ -9,7 +9,7 @@ class PaymentRequest
 	const TEST = "https://secure.ogone.com/ncol/test/orderstandard.asp";
 	const PRODUCTION = "https://secure.ogone.com/ncol/prod/orderstandard.asp";
 
-	private $actionUri = self::TEST;
+	private $ogoneUri = self::TEST;
 
 	private $parameters = array();
 
@@ -46,18 +46,18 @@ class PaymentRequest
 	);
 
 	/** @return string */
-	public function getActionUri()
+	public function getOgoneUri()
 	{
-		return $this->actionUri;
+		return $this->ogoneUri;
 	}
 
 	/** Ogone uri to send the customer to. Usually PaymentRequest::TEST or PaymentRequest::PRODUCTION */
-	public function setActionUri($actionUri)
+	public function setOgoneUri($ogoneUri)
 	{
-		if(!filter_var($actionUri, FILTER_VALIDATE_URL)) {
+		if(!filter_var($ogoneUri, FILTER_VALIDATE_URL)) {
 			throw new InvalidArgumentException("Action uri is not valid");
 		}
-		$this->actionUri = $actionUri;
+		$this->ogoneUri = $ogoneUri;
 	}
 
 	public function setPspid($pspid)
