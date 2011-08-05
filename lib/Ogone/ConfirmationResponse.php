@@ -9,6 +9,7 @@ final class ConfirmationResponse
 	const SHASIGN_FIELD = 'shasign';
 
 	/**
+	 * @todo rename to ogoneFields
 	 * Available Ogone parameters
 	 * @var array
 	 */
