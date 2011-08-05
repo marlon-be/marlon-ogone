@@ -32,17 +32,17 @@ But we are in a friendly mood so here are some pointers:
 ## Usage ##
 
   	<?php
-	use Ogone\ConfirmationResponse;
+	use Ogone\PaymentResponse;
 	use Ogone\ShaComposer\AllParametersShaComposer;
 
 	// ...
 
-	$confirmationResponse = new ConfirmationResponse($_REQUEST);
+	$paymentResponse = new PaymentResponse($_REQUEST);
 
 	$passphrase = 'my-sha-out-passphrase-defined-in-ogone-interface';
 	$shaComposer = new AllParametersShaComposer($passphrase);
 	
-	if($confirmationResponse->isValid($shaComposer) && $confirmationResponse->isSuccessful())
+	if($paymentResponse->isValid($shaComposer) && $paymentResponse->isSuccessful())
 	{
 		// handle payment confirmation
 	}

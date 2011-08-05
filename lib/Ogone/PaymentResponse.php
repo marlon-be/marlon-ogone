@@ -4,7 +4,7 @@ namespace Ogone;
 use Ogone\ShaComposer\ShaComposer;
 use InvalidArgumentException;
 
-class ConfirmationResponse
+class PaymentResponse
 {
 	/** @var string */
 	const SHASIGN_FIELD = 'shasign';

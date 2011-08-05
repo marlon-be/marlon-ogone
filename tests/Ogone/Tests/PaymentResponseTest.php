@@ -4,9 +4,9 @@ namespace Ogone\Tests;
 use Ogone\ShaComposer\ShaComposer;
 use Ogone\ShaComposer\MainParametersShaComposer;
 use Ogone\ShaComposer\AllParametersShaComposer;
-use Ogone\ConfirmationResponse;
+use Ogone\PaymentResponse;
 
-class ConfirmationResponseTest extends \TestCase
+class PaymentResponseTest extends \TestCase
 {
 	const SHASTRING = 'foo';
 
@@ -15,8 +15,8 @@ class ConfirmationResponseTest extends \TestCase
 	{
 		$aRequest = $this->provideRequest();
 
-		$confirmationResponse = new ConfirmationResponse($aRequest);
-		$this->assertTrue($confirmationResponse->isValid(new FakeShaComposer()));
+		$paymentResponse = new PaymentResponse($aRequest);
+		$this->assertTrue($paymentResponse->isValid(new FakeShaComposer()));
 	}
 
 	/**
@@ -25,7 +25,7 @@ class ConfirmationResponseTest extends \TestCase
 	*/
 	public function CannotExistWithoutShaSign()
 	{
-		$confirmationResponse = new ConfirmationResponse(array());
+		$paymentResponse = new PaymentResponse(array());
 	}
 
 	/** @test */
@@ -33,8 +33,8 @@ class ConfirmationResponseTest extends \TestCase
 	{
 		$aRequest = $this->provideRequest();
 
-		$confirmationResponse = new ConfirmationResponse($aRequest);
-		$this->assertEquals($aRequest['orderID'], $confirmationResponse->getParam('orderid'));
+		$paymentResponse = new PaymentResponse($aRequest);
+		$this->assertEquals($aRequest['orderID'], $paymentResponse->getParam('orderid'));
 	}
 
 	/**
@@ -45,8 +45,8 @@ class ConfirmationResponseTest extends \TestCase
 	{
 		$aRequest = $this->provideRequest();
 
-		$confirmationResponse = new ConfirmationResponse($aRequest);
-		$confirmationResponse->getParam('unknown_param');
+		$paymentResponse = new PaymentResponse($aRequest);
+		$paymentResponse->getParam('unknown_param');
 	}
 
 	/** @test */
@@ -54,8 +54,8 @@ class ConfirmationResponseTest extends \TestCase
 	{
 		$aRequest = $this->provideRequest();
 
-		$confirmationResponse = new ConfirmationResponse($aRequest);
-		$this->assertTrue($confirmationResponse->isSuccessful());
+		$paymentResponse = new PaymentResponse($aRequest);
+		$this->assertTrue($paymentResponse->isSuccessful());
 	}
 
 	/**
@@ -79,6 +79,6 @@ class FakeShaComposer implements ShaComposer
 {
 	public function compose(array $responseParameters)
 	{
-		return ConfirmationResponseTest::SHASTRING;
+		return PaymentResponseTest::SHASTRING;
 	}
 }
