@@ -42,16 +42,21 @@ But we are in a friendly mood so here are some pointers:
 	$passphrase = 'my-sha-out-passphrase-defined-in-ogone-interface';
 	$shaComposer = new AllParametersShaComposer($passphrase);
 	
-	
-	
-	if($paymentResponse->isValid($shaComposer) && $paymentResponse->isSuccessful())
-	{
+	if($paymentResponse->isValid($shaComposer) && $paymentResponse->isSuccessful()) {
 		// handle payment confirmation
 	}
-	else
-	{
+	else {
 		// perform logic when the validation fails
 	}
+
+To make sure you don't include unwanted parameters in the ShaSign, you can add some additional filtering,
+use ShaOutParameterFilter for outgoing PaymentRequests, and ShaInParameterFilter for incmoming
+requests.
+
+  	<?php
+	$shaComposer = new AllParametersShaComposer($passphrase);
+	$shaComposer->addParameterFilter(new ShaOutParameterFilter);
+
 
 ## SHA-OUT with "old" hashing algorithm ##
 

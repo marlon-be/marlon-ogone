@@ -15,7 +15,7 @@ class ShaOutParameterFilter implements ParameterFilter
 
 	public function filter(array $parameters)
 	{
-		$parameters = array_change_key_case($parameters, CASE_LOWER);
+		$parameters = array_change_key_case($parameters, CASE_UPPER);
 		return array_intersect_key($parameters, array_flip($this->allowed));
 	}
 }

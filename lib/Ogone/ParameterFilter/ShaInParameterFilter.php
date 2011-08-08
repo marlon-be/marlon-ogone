@@ -42,6 +42,7 @@ class ShaInParameterFilter implements ParameterFilter
 
 	public function filter(array $parameters)
 	{
+	var_dump(__METHOD__.' in '.__FILE__.' @ '.__LINE__,$parameters,  array_intersect_key($parameters, array_flip($this->allowed))); die;
 		return array_intersect_key($parameters, array_flip($this->allowed));
 	}
 }

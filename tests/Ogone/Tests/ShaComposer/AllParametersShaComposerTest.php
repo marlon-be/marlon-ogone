@@ -19,8 +19,7 @@ class AllParametersShaComposerTest extends \TestCase
 	public function ShaStringIsComposedCorrectly(PassPhrase $passphrase, array $request, $expectedSha)
 	{
 		$composer = new AllParametersShaComposer($passphrase);
-		$composer->addParameterFilter(new GeneralParameterFilter);
-		// @todo $composer->addParameterFilter(new ShaOutParameterFilter);
+		$composer->addParameterFilter(new ShaOutParameterFilter);
 		$this->assertEquals($expectedSha, $composer->compose($request));
 	}
 

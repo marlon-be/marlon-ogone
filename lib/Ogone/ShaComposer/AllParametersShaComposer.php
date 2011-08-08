@@ -1,6 +1,8 @@
 <?php
 namespace Ogone\ShaComposer;
 
+use Ogone\ParameterFilter\GeneralParameterFilter;
+
 use Ogone\Passphrase;
 use Ogone\ParameterFilter\ParameterFilter;
 
@@ -23,6 +25,8 @@ class AllParametersShaComposer implements ShaComposer
 	public function __construct(Passphrase $passphrase)
 	{
 		$this->passphrase = $passphrase;
+
+		$this->addParameterFilter(new GeneralParameterFilter);
 	}
 
 	public function compose(array $parameters)
