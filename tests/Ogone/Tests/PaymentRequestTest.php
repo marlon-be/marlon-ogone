@@ -1,6 +1,9 @@
 <?php
 namespace Ogone\Tests;
 
+use Ogone\Tests\ShaComposer\FakeShaComposer;
+use Ogone\ShaComposer\AllParametersShaComposer;
+
 use Ogone\PaymentRequest;
 
 class PaymentRequestTest extends \TestCase
@@ -25,14 +28,14 @@ class PaymentRequestTest extends \TestCase
 	 */
 	public function IsInvalidWhenFieldsAreMissing()
 	{
-		$paymentRequest = new PaymentRequest;
+		$paymentRequest = new PaymentRequest(new FakeShaComposer);
 		$paymentRequest->validate();
 	}
 
 	/** @test */
 	public function UnimportantParamsUseMagicSetters()
 	{
-		$paymentRequest = new PaymentRequest;
+		$paymentRequest = new PaymentRequest(new FakeShaComposer);
 		$paymentRequest->setBgcolor('FFFFFF');
 		$this->assertEquals('FFFFFF', $paymentRequest->getBgcolor());
 	}
@@ -44,7 +47,7 @@ class PaymentRequestTest extends \TestCase
 	 */
 	public function BadParametersCauseExceptions($method, $value)
 	{
-		$paymentRequest = new PaymentRequest;
+		$paymentRequest = new PaymentRequest(new FakeShaComposer);
 		$paymentRequest->$method($value);
 	}
 
@@ -54,7 +57,7 @@ class PaymentRequestTest extends \TestCase
 	 */
 	public function UnknownMethodFails()
 	{
-		$paymentRequest = new PaymentRequest;
+		$paymentRequest = new PaymentRequest(new FakeShaComposer);
 		$paymentRequest->getFoobar();
 	}
 

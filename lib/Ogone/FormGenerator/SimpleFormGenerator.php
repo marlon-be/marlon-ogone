@@ -6,15 +6,12 @@ use InvalidArgumentException;
 
 class SimpleFormGenerator implements FormGenerator
 {
-	private $parameters;
-	private $ogoneUri;
+	private $paymentRequest;
 
 	/** @return string */
 	public function render(PaymentRequest $paymentRequest)
 	{
-		$this->parameters = $paymentRequest->toArray();
-		$this->ogoneUri = $paymentRequest->getOgoneUri();
-
+		$this->paymentRequest = $paymentRequest;
 		ob_start();
 		include __DIR__.'/template/simpleForm.php';
 		return ob_get_clean();
@@ -22,16 +19,16 @@ class SimpleFormGenerator implements FormGenerator
 
 	protected function getParameters()
 	{
-		return $this->parameters;
+		return $this->paymentRequest->toArray();
 	}
 
 	protected function getOgoneUri()
 	{
-		return $this->ogoneUri;
+		return $this->paymentRequest->getOgoneUri();
 	}
 
 	protected function getShaSign()
 	{
-		// @todo sha
+		return $this->paymentRequest->getShaSign();
 	}
 }

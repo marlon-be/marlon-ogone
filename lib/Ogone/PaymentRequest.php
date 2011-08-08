@@ -1,6 +1,8 @@
 <?php
 namespace Ogone;
 
+use Ogone\ShaComposer\ShaComposer;
+
 use InvalidArgumentException;
 use RuntimeException;
 use BadMethodCallException;
@@ -9,6 +11,9 @@ class PaymentRequest
 {
 	const TEST = "https://secure.ogone.com/ncol/test/orderstandard.asp";
 	const PRODUCTION = "https://secure.ogone.com/ncol/prod/orderstandard.asp";
+
+	/** @var ShaComposer */
+	private $shaComposer;
 
 	private $ogoneUri = self::TEST;
 
@@ -46,6 +51,17 @@ class PaymentRequest
 		'pl_PL' => 'Polish', 'pt_PT' => 'Portugese', 'ru_RU' => 'Russian',
 		'se_SE' => 'Swedish', 'sk_SK' => 'Slovak', 'tr_TR' => 'Turkish'
 	);
+
+	public function __construct(ShaComposer $shaComposer)
+	{
+		$this->shaComposer = $shaComposer;
+	}
+
+	/** @return string */
+	public function getShaSign()
+	{
+		return $this->shaComposer->compose($this->toArray());
+	}
 
 	/** @return string */
 	public function getOgoneUri()
@@ -293,8 +309,6 @@ class PaymentRequest
 
 	public function validate()
 	{
-		// @todo validate sha here?
-
 		foreach($this->requiredfields as $field)
 		{
 			if(empty($this->parameters[$field])) {
@@ -334,9 +348,9 @@ class PaymentRequest
 	}
 
 	/** @return PaymentRequest */
-	public static function createFromArray(array $parameters)
+	public static function createFromArray(ShaComposer $shaComposer, array $parameters)
 	{
-		$instance = new static;
+		$instance = new static($shaComposer);
 		foreach($parameters as $key => $value)
 		{
 			$instance->{"set$key"}($value);

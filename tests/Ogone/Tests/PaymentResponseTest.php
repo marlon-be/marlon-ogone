@@ -1,20 +1,19 @@
 <?php
 namespace Ogone\Tests;
 
+use Ogone\Tests\ShaComposer\FakeShaComposer;
 use Ogone\ShaComposer\ShaComposer;
 use Ogone\PaymentResponse;
 
 class PaymentResponseTest extends \TestCase
 {
-	const SHASTRING = 'foo';
-
 	/** @test */
 	public function CanBeVerified()
 	{
 		$aRequest = $this->provideRequest();
 
 		$paymentResponse = new PaymentResponse($aRequest);
-		$this->assertTrue($paymentResponse->isValid(new FakeShaComposer()));
+		$this->assertTrue($paymentResponse->isValid(new FakeShaComposer));
 	}
 
 	/**
@@ -63,20 +62,10 @@ class PaymentResponseTest extends \TestCase
 	{
 		return array(
 			'orderID' => '123',
-			'SHASIGN' => self::SHASTRING,
+			'SHASIGN' => FakeShaComposer::FAKESHASTRING,
 			'UNKNOWN_PARAM' => false, /* unkown parameter, should be filtered out */
 			'status' => 5,
 		);
 	}
 }
 
-/**
- * Fake SHA Composer to decouple test from actual SHA composers
- */
-class FakeShaComposer implements ShaComposer
-{
-	public function compose(array $responseParameters)
-	{
-		return PaymentResponseTest::SHASTRING;
-	}
-}

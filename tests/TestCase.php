@@ -1,14 +1,20 @@
 <?php
 
+use Ogone\Tests\ShaComposer\FakeShaComposer;
+use Ogone\Passphrase;
+use Ogone\ParameterFilter\ShaInParameterFilter;
+use Ogone\ShaComposer\AllParametersShaComposer;
 use Ogone\PaymentRequest;
+
 require_once 'PHPUnit/Framework/TestCase.php';
+require_once __DIR__.'/Ogone/Tests/ShaComposer/FakeShaComposer.php';
 
 abstract class TestCase extends PHPUnit_Framework_TestCase
 {
 	/** @return PaymentRequest*/
 	protected function provideMinimalPaymentRequest()
 	{
-		$paymentRequest = PaymentRequest::createFromArray(array(
+		$paymentRequest = PaymentRequest::createFromArray(new FakeShaComposer, array(
 			'pspid' => '123456789',
 			'orderid' => '987654321',
 		));

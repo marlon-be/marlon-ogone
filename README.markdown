@@ -1,7 +1,14 @@
 # MARLON OGONE #
 
-The best documentation are the unit tests (and a vague understanding of Ogone).
-But we are in a friendly mood so here are some pointers: 
+## Overview ##
+
+- Create a PaymentRequest, containing all the info needed by Ogone.
+- Generate  a form
+- Submit it to Ogone (client side)
+- Receive a PaymentResponse back from Ogone (as a HTTP Request)
+
+Both PaymentRequest and PaymentResponse are authenticated by comparing a the shasign, 
+which is a hash of the parameters and a secret passphrase. You can create the hash using a ShaComposer.  
 
 # PaymentRequest and FormGenerator #
 
@@ -10,7 +17,12 @@ But we are in a friendly mood so here are some pointers:
 	use Ogone\PaymentRequest;
 	use Ogone\FormGenerator;
 
-	$paymentRequest = new PaymentRequest;
+	$passphrase = 'my-sha-in-passphrase-defined-in-ogone-interface';
+	$shaComposer = new AllParametersShaComposer($passphrase);
+	$shaComposer->addParameterFilter(new ShaInParameterFilter); //optional
+	
+	$paymentRequest = new PaymentRequest($shaComposer);
+	
 	// Optionally set Ogone uri, defaults to TEST account
 	//$paymentRequest->setOgoneUri(PaymentRequest::PRODUCTION);
 
@@ -39,6 +51,7 @@ But we are in a friendly mood so here are some pointers:
 
 	$passphrase = 'my-sha-out-passphrase-defined-in-ogone-interface';
 	$shaComposer = new AllParametersShaComposer($passphrase);
+	$shaComposer->addParameterFilter(new ShaOutParameterFilter); //optional
 	
 	if($paymentResponse->isValid($shaComposer) && $paymentResponse->isSuccessful()) {
 		// handle payment confirmation
@@ -46,16 +59,6 @@ But we are in a friendly mood so here are some pointers:
 	else {
 		// perform logic when the validation fails
 	}
-
-# ParameterFilters #
-
-To make sure you don't include unwanted parameters in the ShaSign, you can add some additional filtering,
-use ShaOutParameterFilter for outgoing PaymentRequests, and ShaInParameterFilter for incmoming
-requests.
-
-  	<?php
-	$shaComposer = new AllParametersShaComposer($passphrase);
-	$shaComposer->addParameterFilter(new ShaOutParameterFilter);
 
 
 ## SHA-OUT with "old" hashing algorithm ##
