@@ -68,7 +68,6 @@ class PaymentRequestTest extends \TestCase
 			array('setAccepturl', $notAUri),
 			array('setAmount', 10.50),
 			array('setAmount', -1),
-			array('setAmount', 12345678901234567890),
 			//array('setBrand', ''),
 			array('setCancelurl', $notAUri),
 			array('setCurrency', 'Belgische Frank'),
