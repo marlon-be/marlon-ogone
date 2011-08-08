@@ -43,6 +43,7 @@ class ShaInParameterFilter implements ParameterFilter
 
 	public function filter(array $parameters)
 	{
+		$parameters = array_change_key_case($parameters, CASE_UPPER);
 		return array_intersect_key($parameters, array_flip($this->allowed));
 	}
 }
