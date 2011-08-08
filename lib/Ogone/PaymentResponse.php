@@ -10,11 +10,10 @@ class PaymentResponse
 	const SHASIGN_FIELD = 'shasign';
 
 	/**
-	 * @todo rename to ogoneFields
 	 * Available Ogone parameters
 	 * @var array
 	 */
-	private $ogoneParameters = array('aavaddress', 'aavcheck', 'aavzip', 'acceptance', 'alias', 'amount', 'bin', 'brand', 'cardno', 'cccty', 'cn',
+	private $ogoneFields = array('aavaddress', 'aavcheck', 'aavzip', 'acceptance', 'alias', 'amount', 'bin', 'brand', 'cardno', 'cccty', 'cn',
 		'complus', 'creation_status', 'currency', 'cvccheck', 'dcc_commpercentage', 'dcc_convamount', 'dcc_convccy', 'dcc_exchrate', 'dcc_exchratesource',
 		'dcc_exchratets', 'dcc_indicator', 'dcc_marginpercentage', 'dcc_validhours', 'digestcardno', 'eci', 'ed', 'enccardno', 'ip', 'ipcty',
 		'nbremailusage','nbripusage', 'nbripusage_alltx', 'nbrusage', 'ncerror', 'orderid', 'payid', 'pm', 'sco_category', 'scoring', 'status',
@@ -53,7 +52,7 @@ class PaymentResponse
 	private function filterRequestParameters(array $httpRequest)
 	{
 		// filter request for Ogone parameters
-		return array_intersect_key($httpRequest, array_flip($this->ogoneParameters));
+		return array_intersect_key($httpRequest, array_flip($this->ogoneFields));
 	}
 
 	/**
