@@ -25,8 +25,6 @@ class AllParametersShaComposerTest extends \TestCase
 
 	public function provideRequest()
 	{
-		// @todo also test unknown params, empty params
-
 		$passphrase = new PassPhrase('Mysecretsig1875!?');
 
 		$expectedSha1 = 'B209960D5703DD1047F95A0F97655FFE5AC8BD52';
@@ -40,7 +38,8 @@ class AllParametersShaComposerTest extends \TestCase
 			'PAYID' => 32100123,
 			'PM' => 'CreditCard',
 			'STATUS' => 9,
-			'orderID' => 12
+			'orderID' => 12,
+			'unknownparam' => 'some value',
 		);
 
 		$expectedSha2 = 'D58400479DCEDD6B6C7E67D61FDC0CC9E6ED65CB';
@@ -60,7 +59,7 @@ class AllParametersShaComposerTest extends \TestCase
 			'BRAND' => 'VISA',
 			'COMPLUS' => 'my feedbackmessage',
 			'IP' => '12.123.12.123',
-		// @todo	'foo' => 'bar',
+			'foo' => 'bar',
 		);
 
 		return array(
