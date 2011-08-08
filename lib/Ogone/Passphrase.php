@@ -4,18 +4,22 @@ namespace Ogone;
 /**
  * Ogone Passphrase Value Object
  */
-class Passphrase 
+final class Passphrase
 {
 	/**
 	 * @var string
 	 */
 	private $passphrase;
-	
+
+	/** @@codeCoverageIgnore */
 	public function __construct($passphrase)
 	{
+		if(!is_string($passphrase)) {
+			throw new \InvalidArgumentException("String expected");
+		}
 		$this->passphrase = $passphrase;
 	}
-	
+
 	/**
 	 * String representation
 	 */

@@ -1,28 +1,53 @@
 <?php
 namespace Ogone\ShaComposer;
 
+use Ogone\ParameterFilter\GeneralParameterFilter;
+
+use Ogone\Passphrase;
+use Ogone\ParameterFilter\ParameterFilter;
+
 /**
- * SHA string composition the "new way", using all parameters in the request
+ * SHA string composition the "new way", using all parameters in the ogone response
  */
-class AllParametersShaComposer extends AbstractShaComposer
+class AllParametersShaComposer implements ShaComposer
 {
-	public function compose($requestParameters)
+	/** @var array of ParameterFilter */
+	private $parameterFilters;
+
+	/**
+	 * @var string Passphrase
+	 */
+	private $passphrase;
+
+	/**
+	 * @param string $passphrase
+	 */
+	public function __construct(Passphrase $passphrase)
 	{
-		// use lowercase internally
-		$requestParameters = array_change_key_case($requestParameters, CASE_LOWER);
-		
-		// sort parameters
-		ksort($requestParameters);
-		
+		$this->passphrase = $passphrase;
+
+		$this->addParameterFilter(new GeneralParameterFilter);
+	}
+
+	public function compose(array $parameters)
+	{
+		foreach($this->parameterFilters as $parameterFilter) {
+			$parameters = $parameterFilter->filter($parameters);
+		}
+
+		ksort($parameters);
+
 		// compose SHA string
 		$shaString = '';
-		foreach($requestParameters as $key => $value)
-		{
-			if($value !== null) {
-				$shaString .= strtoupper($key) . '=' . trim($value) . $this->passphrase;
-			}
+		foreach($parameters as $key => $value) {
+			$shaString .= $key . '=' . $value . $this->passphrase;
 		}
-		
+
 		return strtoupper(sha1($shaString));
+	}
+
+	public function addParameterFilter(ParameterFilter $parameterFilter)
+	{
+		$this->parameterFilters[] = $parameterFilter;
 	}
 }
