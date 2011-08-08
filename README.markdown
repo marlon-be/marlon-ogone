@@ -29,8 +29,6 @@ But we are in a friendly mood so here are some pointers:
 
 # PaymentResponse #
 
-## Usage ##
-
   	<?php
 	use Ogone\PaymentResponse;
 	use Ogone\ShaComposer\AllParametersShaComposer;
@@ -49,6 +47,8 @@ But we are in a friendly mood so here are some pointers:
 		// perform logic when the validation fails
 	}
 
+# ParameterFilters #
+
 To make sure you don't include unwanted parameters in the ShaSign, you can add some additional filtering,
 use ShaOutParameterFilter for outgoing PaymentRequests, and ShaInParameterFilter for incmoming
 requests.
@@ -60,7 +60,7 @@ requests.
 
 ## SHA-OUT with "old" hashing algorithm ##
 
-Alternatively, you can use the old style SHA composer: 
+You can use the legacy SHA composer, which only uses some parameters to create the Sha, instead of all of them: 
 
  	<?php
 	use Ogone\ShaComposer\LegacyShaComposer;

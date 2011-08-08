@@ -1,6 +1,7 @@
 <?php
 namespace Ogone\ParameterFilter;
 
+/** @todo test this */
 class ShaInParameterFilter implements ParameterFilter
 {
 	private $allowed = array(
