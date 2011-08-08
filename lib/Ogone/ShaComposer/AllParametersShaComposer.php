@@ -1,15 +1,29 @@
 <?php
 namespace Ogone\ShaComposer;
 
+use Ogone\Passphrase;
+use Ogone\ParameterFilter\ParameterFilter;
+
 /**
  * SHA string composition the "new way", using all parameters in the ogone response
  */
-use Ogone\ParameterFilter\ParameterFilter;
-
-class AllParametersShaComposer extends AbstractShaComposer
+class AllParametersShaComposer implements ShaComposer
 {
 	/** @var array of ParameterFilter */
 	private $parameterFilters;
+
+	/**
+	 * @var string Passphrase
+	 */
+	private $passphrase;
+
+	/**
+	 * @param string $passphrase
+	 */
+	public function __construct(Passphrase $passphrase)
+	{
+		$this->passphrase = $passphrase;
+	}
 
 	public function compose(array $parameters)
 	{

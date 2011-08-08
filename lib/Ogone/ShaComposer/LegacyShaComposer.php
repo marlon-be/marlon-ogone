@@ -1,12 +1,27 @@
 <?php
 namespace Ogone\ShaComposer;
 
+use Ogone\Passphrase;
+
 /**
  * SHA string composition the "old way", using only the "main" parameters
  * @deprecated Use AllParametersShaComposer wherever possible
  */
-class LegacyShaComposer extends AbstractShaComposer
+class LegacyShaComposer implements ShaComposer
 {
+	/**
+	 * @var string Passphrase
+	 */
+	private $passphrase;
+
+	/**
+	 * @param string $passphrase
+	 */
+	public function __construct(Passphrase $passphrase)
+	{
+		$this->passphrase = $passphrase;
+	}
+
 	public function compose(array $parameters)
 	{
 		$parameters = array_change_key_case($parameters, CASE_LOWER);
