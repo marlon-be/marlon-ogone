@@ -8,6 +8,10 @@ class SimpleFormGenerator implements FormGenerator
 {
 	private $paymentRequest;
 
+	private $showSubmitButton = true;
+
+	private $formName = 'ogone';
+
 	/** @return string */
 	public function render(PaymentRequest $paymentRequest)
 	{
@@ -30,5 +34,15 @@ class SimpleFormGenerator implements FormGenerator
 	protected function getShaSign()
 	{
 		return $this->paymentRequest->getShaSign();
+	}
+
+	public function showSubmitButton($bool = true)
+	{
+		$this->showSubmitButton = $bool;
+	}
+
+	public function setFormName($formName)
+	{
+		$this->formName = $formName;
 	}
 }
