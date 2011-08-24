@@ -12,6 +12,57 @@ class PaymentRequest
 	const TEST = "https://secure.ogone.com/ncol/test/orderstandard.asp";
 	const PRODUCTION = "https://secure.ogone.com/ncol/prod/orderstandard.asp";
 
+	private $brandsmap = array(
+		'AIRPLUS' => 'CreditCard',
+		'American Express' => 'CreditCard',
+		'Aurora' => 'CreditCard',
+		'Aurore' => 'CreditCard',
+		'Billy' => 'CreditCard',
+		'CB' => 'CreditCard',
+		'Cofinoga' => 'CreditCard',
+		'Dankort' => 'CreditCard',
+		'Diners Club' => 'CreditCard',
+		'JCB' => 'CreditCard',
+		'MaestroUK' => 'CreditCard',
+		'MasterCard' => 'CreditCard',
+		'Solo' => 'CreditCard',
+		'UATP' => 'CreditCard',
+		'VISA' => 'CreditCard',
+		'BCMC' => 'CreditCard',
+		'Maestro' => 'CreditCard',
+		'PostFinance + card' => 'PostFinance Card',
+		'NetReserve' => 'CreditCard',
+		'PRIVILEGE' => 'CreditCard',
+		'UNEUROCOM' => 'UNEUROCOM',
+		'CBC Online' => 'CBC Online',
+		'CENTEA Online' => 'CENTEA Online',
+		'Dexia Direct Net' => 'Dexia Direct Net',
+		'Sofort Uberweisung' => 'DirectEbanking',
+		'eDankort' => 'eDankort',
+		'EPS' => 'EPS',
+		'Fortis Pay Button' => 'Fortis Pay Button',
+		'giropay' => 'giropay',
+		'iDEAL' => 'iDEAL',
+		'ING HomePay' => 'ING HomePay',
+		'KBC Online' => 'KBC Online',
+		'MPASS' => 'MPASS',
+		'paysafecard' => 'paysafecard',
+		'PostFinance e-finance' => 'PostFinance e-finance',
+		'Direct Debits AT' => 'Direct Debits AT',
+		'Direct Debits DE' => 'Direct Debits DE',
+		'Direct Debits NL' => 'Direct Debits NL',
+		'Acceptgiro' => 'Acceptgiro',
+		'Bank transfer' => 'Bank transfer',
+		'Payment on Delivery' => 'Payment on Delivery',
+		'InterSolve' => 'InterSolve',
+		'MiniTix' => 'MiniTix',
+		'PingPing' => 'PingPing',
+		'TUNZ' => 'TUNZ',
+		'cashU' => 'cashU',
+		'PAYPAL' => 'PAYPAL',
+		'Wallie' => 'Wallie',
+	);
+
 	/** @var ShaComposer */
 	private $shaComposer;
 
@@ -279,11 +330,19 @@ class PaymentRequest
 
 	public function setPm($pm)
 	{
+		if(!in_array($pm, $this->brandsmap)) {
+			throw new InvalidArgumentException("Unknown Payment method [$pm].");
+		}
 		$this->parameters['pm'] = $pm;
 	}
 
 	public function setBrand($brand)
 	{
+		if(!array_key_exists($brand, $this->brandsmap)) {
+			throw new InvalidArgumentException("Unknown Brand [$brand].");
+		}
+
+		$this->setPaymentMethod($this->brandsmap[$brand]);
 		$this->parameters['brand'] = $brand;
 	}
 
