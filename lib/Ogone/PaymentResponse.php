@@ -99,4 +99,9 @@ class PaymentResponse
 		// @todo use constants
 		return in_array($this->getParam('status'), array(5, 9));
 	}
+
+	public function toArray()
+	{
+		return $this->parameters + array('shasign' => $this->shaSign);
+	}
 }
