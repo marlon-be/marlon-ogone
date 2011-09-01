@@ -19,7 +19,7 @@ class SimpleFormGeneratorTest extends \TestCase
 				<input type="hidden" name="ownerzip" value="2300" />
 				<input type="hidden" name="ownercty" value="FR" />
 				<input type="hidden" name="email" value="louis.xiv@versailles.fr" />
-				<input type="hidden" name="amount" value="10000" />
+				<input type="hidden" name="amount" value="100" />
 				<input type="hidden" name="SHASIGN" value="foo" />
 				<input type="submit" value="Submit" id="submit" name="submit" />
 			</form>';
