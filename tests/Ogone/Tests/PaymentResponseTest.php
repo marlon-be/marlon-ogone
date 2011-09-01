@@ -55,6 +55,15 @@ class PaymentResponseTest extends \TestCase
 		$this->assertTrue($paymentResponse->isSuccessful());
 	}
 
+	/** @test */
+	public function AmountIsConvertedToCent()
+	{
+		$aRequest = $this->provideRequest();
+
+		$paymentResponse = new PaymentResponse($aRequest);
+		$this->assertEquals(100, $paymentResponse->getParam('amount'));
+	}
+
 	/**
 	 * Helper method to setup a request array
 	 */
@@ -65,6 +74,7 @@ class PaymentResponseTest extends \TestCase
 			'SHASIGN' => FakeShaComposer::FAKESHASTRING,
 			'UNKNOWN_PARAM' => false, /* unkown parameter, should be filtered out */
 			'status' => 5,
+			'amount' => 1,
 		);
 	}
 }

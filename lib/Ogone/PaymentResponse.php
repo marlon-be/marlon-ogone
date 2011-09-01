@@ -43,6 +43,7 @@ class PaymentResponse
 
 		// filter request for Ogone parameters
 		$this->parameters = $this->filterRequestParameters($httpRequest);
+		$this->parameters['amount'] = (int) ($this->parameters['amount'] * 100);
 	}
 
 	/**
