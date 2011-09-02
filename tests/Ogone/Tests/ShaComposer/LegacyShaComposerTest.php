@@ -16,8 +16,8 @@ use Ogone\ShaComposer\LegacyShaComposer;
 
 class LegacyShaComposerTest extends \TestCase
 {
-	const PASSPHRASE = 'm0b1l4sha!';
-	const SHASTRING = 'C17C595E20FD2BAC4AFFA68E677DA34F43023249';
+	const PASSPHRASE = 'passphrase-set-in-ogone-interface';
+	const SHASTRING = '66BF34D8B3EF2136E0C267BDBC1F708B8D75A8AA';
 
 	/** @test */
 	public function ShaStringCanBeComposed()
