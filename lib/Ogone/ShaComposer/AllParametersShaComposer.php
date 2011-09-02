@@ -12,7 +12,6 @@
 namespace Ogone\ShaComposer;
 
 use Ogone\ParameterFilter\GeneralParameterFilter;
-
 use Ogone\Passphrase;
 use Ogone\ParameterFilter\ParameterFilter;
 
