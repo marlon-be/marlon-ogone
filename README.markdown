@@ -114,6 +114,3 @@ ParameterFilters are used to filter the provided parameters (no shit Sherlock).
 Both ShaIn- and ShaOutParameterFilters are provided and are based on the parameter lists defined in the Ogone documentation. 
 Parameter filtering is optional, but we recommend using them to enforce expected parameters.
 
-# TODO's #
-
-- @todo Move webshop\documentation\payment_types\ogone.rst to this project
