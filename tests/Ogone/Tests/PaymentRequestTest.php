@@ -97,4 +97,13 @@ class PaymentRequestTest extends \TestCase
 			array('setPspid', $longString),
 		);
 	}
+	
+    /**
+     * @test
+     * @expectedException \InvalidArgumentException
+     */
+    public function CreateFromArrayInvalidPhone()
+    {
+        $paymentRequest = PaymentRequest::createFromArray(new FakeShaComposer, array('language'=>'West-Vlaams'));
+    }
 }
