@@ -1,4 +1,12 @@
-# MARLON OGONE #
+# Ogone PHP library #
+
+This library allows you to easily implement an [Ogone](http://ogone.com) integration into your project.
+It provides the necessary components to complete a correct payment flow with the [Ogone](http://ogone.com) platform.
+
+Requirements: 
+
+- PHP 5.3
+- network connection between your webserver and the Ogone platform
 
 ## Overview ##
 
