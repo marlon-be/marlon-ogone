@@ -7,8 +7,38 @@
 - Submit it to Ogone (client side)
 - Receive a PaymentResponse back from Ogone (as a HTTP Request)
 
-Both PaymentRequest and PaymentResponse are authenticated by comparing a the shasign, 
+Both PaymentRequest and PaymentResponse are authenticated by comparing the SHA sign, 
 which is a hash of the parameters and a secret passphrase. You can create the hash using a ShaComposer.  
+
+# SHA Composers #
+
+Ogone provides 2 methods to generate a SHA sign:
+
+- "Main parameters only"
+
+  ![Main parameters only](documentation/images/ogone_security_legacy.png)
+  
+  Implementation using this library is trivial:
+  
+  <?php
+	use Ogone\ShaComposer\LegacyShaComposer;
+	$shaComposer = new LegacyShaComposer($passphrase);
+  
+
+- "Each parameter followed by the passphrase"
+  This method allows you to select one of the following encryption methods: SHA-1 (default), SHA-256 and SHA-512.
+
+  .. image:: documentation/images/ogone_security_allparameters_sha1_utf8.png
+  
+  Implementation using this library is trivial:
+  
+  <?php
+	use Ogone\ShaComposer\AllParametersShaComposer;
+	$shaComposer = new AllParametersShaComposer($passphrase);
+	$shaComposer->addParameterFilter(new ShaInParameterFilter); //optional
+  
+
+This library currently supports both the legacy method "Main parameters only" and the new method "Each parameter followed by the passphrase" with SHA-1 encryption.
 
 # PaymentRequest and FormGenerator #
 
@@ -61,6 +91,8 @@ which is a hash of the parameters and a secret passphrase. You can create the ha
 	}
 
 
+
+
 ## SHA-OUT with "old" hashing algorithm ##
 
 You can use the legacy SHA composer, which only uses some parameters to create the Sha, instead of all of them: 
@@ -68,7 +100,7 @@ You can use the legacy SHA composer, which only uses some parameters to create t
  	<?php
 	use Ogone\ShaComposer\LegacyShaComposer;
 	$shaComposer = new LegacyShaComposer($passphrase);
-
+	
 
 
 # TODO's #
