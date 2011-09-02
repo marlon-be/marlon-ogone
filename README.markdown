@@ -16,31 +16,34 @@ Ogone provides 2 methods to generate a SHA sign:
 
 - "Main parameters only"
 
-  ![Main parameters only](http://github.com/marlon-be/marlon-ogone/documentation/images/ogone_security_legacy.png)
+  ![Main parameters only](http://github.com/marlon-be/marlon-ogone/raw/master/documentation/images/ogone_security_legacy.png)
   
   Implementation using this library is trivial:
-  
+
+```php
   <?php
 	use Ogone\ShaComposer\LegacyShaComposer;
 	$shaComposer = new LegacyShaComposer($passphrase);
-  
+```
 
 - "Each parameter followed by the passphrase"
   This method allows you to select one of the following encryption methods: SHA-1 (default), SHA-256 and SHA-512.
 
-  .. image:: documentation/images/ogone_security_allparameters_sha1_utf8.png
+  ![Each parameter followed by the passphrase](http://github.com/marlon-be/marlon-ogone/raw/master/documentation/images/ogone_security_allparameters_sha1_utf8.png)
   
   Implementation using this library is trivial:
   
+```php
   <?php
 	use Ogone\ShaComposer\AllParametersShaComposer;
 	$shaComposer = new AllParametersShaComposer($passphrase);
 	$shaComposer->addParameterFilter(new ShaInParameterFilter); //optional
-  
+```  
 
 This library currently supports both the legacy method "Main parameters only" and the new method "Each parameter followed by the passphrase" with SHA-1 encryption.
 
 # PaymentRequest and FormGenerator #
+
 
 	<?php
 
