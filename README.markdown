@@ -44,7 +44,7 @@ This library currently supports both the legacy method "Main parameters only" an
 
 # PaymentRequest and FormGenerator #
 
-
+```php
 	<?php
 
 	use Ogone\PaymentRequest;
@@ -70,10 +70,11 @@ This library currently supports both the legacy method "Main parameters only" an
 	$formGenerator = new SimpleFormGenerator; 
 	$html = $formGenerator->render($paymentRequest);
 	// Or use your own generator. Or pass $paymentRequest to a view
-
+```
 
 # PaymentResponse #
 
+```php
   	<?php
 	use Ogone\PaymentResponse;
 	use Ogone\ShaComposer\AllParametersShaComposer;
@@ -92,19 +93,7 @@ This library currently supports both the legacy method "Main parameters only" an
 	else {
 		// perform logic when the validation fails
 	}
-
-
-
-
-## SHA-OUT with "old" hashing algorithm ##
-
-You can use the legacy SHA composer, which only uses some parameters to create the Sha, instead of all of them: 
-
- 	<?php
-	use Ogone\ShaComposer\LegacyShaComposer;
-	$shaComposer = new LegacyShaComposer($passphrase);
-	
-
+```
 
 # TODO's #
 
