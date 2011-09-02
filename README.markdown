@@ -16,7 +16,7 @@ Ogone provides 2 methods to generate a SHA sign:
 
 - "Main parameters only"
 
-  ![Main parameters only](documentation/images/ogone_security_legacy.png)
+  ![Main parameters only](http://github.com/marlon-be/marlon-ogone/documentation/images/ogone_security_legacy.png)
   
   Implementation using this library is trivial:
   
