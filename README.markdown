@@ -8,6 +8,8 @@ Requirements:
 - PHP 5.3
 - network connection between your webserver and the Ogone platform
 
+As always, this is work in progress. Please feel free to fork this project and let them pull requests coming!
+
 ## Overview ##
 
 - Create a PaymentRequest, containing all the info needed by Ogone.
@@ -35,7 +37,7 @@ Ogone provides 2 methods to generate a SHA sign:
 ```
 
 - "Each parameter followed by the passphrase"
-  This method allows you to select one of the following encryption methods: SHA-1 (default), SHA-256 and SHA-512.
+  This method allows you to select one of the following encryption methods: SHA-1 (default), SHA-256 or SHA-512.
 
   ![Each parameter followed by the passphrase](http://github.com/marlon-be/marlon-ogone/raw/master/documentation/images/ogone_security_allparameters_sha1_utf8.png)
   
@@ -45,8 +47,7 @@ Ogone provides 2 methods to generate a SHA sign:
   <?php
 	use Ogone\ShaComposer\AllParametersShaComposer;
 	$shaComposer = new AllParametersShaComposer($passphrase);
-	$shaComposer->addParameterFilter(new ShaInParameterFilter); //optional
-```  
+```
 
 This library currently supports both the legacy method "Main parameters only" and the new method "Each parameter followed by the passphrase" with SHA-1 encryption.
 
@@ -55,6 +56,7 @@ This library currently supports both the legacy method "Main parameters only" an
 ```php
 	<?php
 
+	use Ogone\Passphrase;
 	use Ogone\PaymentRequest;
 	use Ogone\FormGenerator;
 
@@ -102,6 +104,12 @@ This library currently supports both the legacy method "Main parameters only" an
 		// perform logic when the validation fails
 	}
 ```
+
+# Parameter filters #
+
+ParameterFilters are used to filter the provided parameters (no shit Sherlock).
+Both ShaIn- and ShaOutParameterFilters are provided and are based on the parameter lists defined in the Ogone documentation. 
+Parameter filtering is optional, but we recommend using them to enforce expected parameters.
 
 # TODO's #
 
