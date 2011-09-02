@@ -12,6 +12,57 @@ class PaymentRequest
 	const TEST = "https://secure.ogone.com/ncol/test/orderstandard.asp";
 	const PRODUCTION = "https://secure.ogone.com/ncol/prod/orderstandard.asp";
 
+	private $brandsmap = array(
+		'Acceptgiro' => 'Acceptgiro',
+		'AIRPLUS' => 'CreditCard',
+		'American Express' => 'CreditCard',
+		'Aurora' => 'CreditCard',
+		'Aurore' => 'CreditCard',
+		'Bank transfer' => 'Bank transfer',
+		'BCMC' => 'CreditCard',
+		'Billy' => 'CreditCard',
+		'cashU' => 'cashU',
+		'CB' => 'CreditCard',
+		'CBC Online' => 'CBC Online',
+		'CENTEA Online' => 'CENTEA Online',
+		'Cofinoga' => 'CreditCard',
+		'Dankort' => 'CreditCard',
+		'Dexia Direct Net' => 'Dexia Direct Net',
+		'Diners Club' => 'CreditCard',
+		'Direct Debits AT' => 'Direct Debits AT',
+		'Direct Debits DE' => 'Direct Debits DE',
+		'Direct Debits NL' => 'Direct Debits NL',
+		'eDankort' => 'eDankort',
+		'EPS' => 'EPS',
+		'Fortis Pay Button' => 'Fortis Pay Button',
+		'giropay' => 'giropay',
+		'iDEAL' => 'iDEAL',
+		'ING HomePay' => 'ING HomePay',
+		'InterSolve' => 'InterSolve',
+		'JCB' => 'CreditCard',
+		'KBC Online' => 'KBC Online',
+		'Maestro' => 'CreditCard',
+		'MaestroUK' => 'CreditCard',
+		'MasterCard' => 'CreditCard',
+		'MiniTix' => 'MiniTix',
+		'MPASS' => 'MPASS',
+		'NetReserve' => 'CreditCard',
+		'Payment on Delivery' => 'Payment on Delivery',
+		'PAYPAL' => 'PAYPAL',
+		'paysafecard' => 'paysafecard',
+		'PingPing' => 'PingPing',
+		'PostFinance + card' => 'PostFinance Card',
+		'PostFinance e-finance' => 'PostFinance e-finance',
+		'PRIVILEGE' => 'CreditCard',
+		'Sofort Uberweisung' => 'DirectEbanking',
+		'Solo' => 'CreditCard',
+		'TUNZ' => 'TUNZ',
+		'UATP' => 'CreditCard',
+		'UNEUROCOM' => 'UNEUROCOM',
+		'VISA' => 'CreditCard',
+		'Wallie' => 'Wallie',
+	);
+
 	/** @var ShaComposer */
 	private $shaComposer;
 
@@ -123,7 +174,7 @@ class PaymentRequest
 		if($amount >= 1.0E+15) {
 			throw new InvalidArgumentException("Amount is too high");
 		}
-		$this->parameters['amount'] = (int) $amount * 100;
+		$this->parameters['amount'] = (int) $amount;
 
 	}
 
@@ -279,11 +330,19 @@ class PaymentRequest
 
 	public function setPm($pm)
 	{
+		if(!in_array($pm, $this->brandsmap)) {
+			throw new InvalidArgumentException("Unknown Payment method [$pm].");
+		}
 		$this->parameters['pm'] = $pm;
 	}
 
 	public function setBrand($brand)
 	{
+		if(!array_key_exists($brand, $this->brandsmap)) {
+			throw new InvalidArgumentException("Unknown Brand [$brand].");
+		}
+
+		$this->setPaymentMethod($this->brandsmap[$brand]);
 		$this->parameters['brand'] = $brand;
 	}
 

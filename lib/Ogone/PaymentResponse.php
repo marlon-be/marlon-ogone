@@ -84,6 +84,10 @@ class PaymentResponse
 	 */
 	public function getParam($key)
 	{
+		if(method_exists($this, 'get'.$key)) {
+			return $this->{'get'.$key}();
+		}
+
 		// always use lowercase internally
 		$key = strtolower($key);
 
@@ -94,9 +98,19 @@ class PaymentResponse
 		return $this->parameters[$key];
 	}
 
+	public function getAmount()
+	{
+		return $this->parameters['amount'] = (int) ($this->parameters['amount'] * 100);
+	}
+
 	public function isSuccessful()
 	{
 		// @todo use constants
 		return in_array($this->getParam('status'), array(5, 9));
+	}
+
+	public function toArray()
+	{
+		return $this->parameters + array('shasign' => $this->shaSign);
 	}
 }

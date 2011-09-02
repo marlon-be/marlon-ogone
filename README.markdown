@@ -17,7 +17,7 @@ which is a hash of the parameters and a secret passphrase. You can create the ha
 	use Ogone\PaymentRequest;
 	use Ogone\FormGenerator;
 
-	$passphrase = 'my-sha-in-passphrase-defined-in-ogone-interface';
+	$passphrase = new Passphrase('my-sha-in-passphrase-defined-in-ogone-interface');
 	$shaComposer = new AllParametersShaComposer($passphrase);
 	$shaComposer->addParameterFilter(new ShaInParameterFilter); //optional
 	
@@ -49,7 +49,7 @@ which is a hash of the parameters and a secret passphrase. You can create the ha
 
 	$paymentResponse = new PaymentResponse($_REQUEST);
 
-	$passphrase = 'my-sha-out-passphrase-defined-in-ogone-interface';
+	$passphrase = new Passphrase('my-sha-out-passphrase-defined-in-ogone-interface');
 	$shaComposer = new AllParametersShaComposer($passphrase);
 	$shaComposer->addParameterFilter(new ShaOutParameterFilter); //optional
 	
