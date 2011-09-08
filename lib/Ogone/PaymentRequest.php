@@ -19,8 +19,8 @@ use BadMethodCallException;
 
 class PaymentRequest
 {
-	const TEST = "https://secure.ogone.com/ncol/test/orderstandard.asp";
-	const PRODUCTION = "https://secure.ogone.com/ncol/prod/orderstandard.asp";
+	const TEST = "https://secure.ogone.com/ncol/test/orderstandard_utf8.asp";
+	const PRODUCTION = "https://secure.ogone.com/ncol/prod/orderstandard_utf8.asp";
 
 	private $brandsmap = array(
 		'Acceptgiro' => 'Acceptgiro',
