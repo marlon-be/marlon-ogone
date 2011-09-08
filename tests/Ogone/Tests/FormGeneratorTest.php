@@ -20,7 +20,7 @@ class SimpleFormGeneratorTest extends \TestCase
 	public function GeneratesAForm()
 	{
 		$expected =
-			'<form method="post" action="https://secure.ogone.com/ncol/test/orderstandard.asp" id="ogone" name="ogone">
+			'<form method="post" action="https://secure.ogone.com/ncol/test/orderstandard_utf8.asp" id="ogone" name="ogone">
 				<input type="hidden" name="pspid" value="123456789" />
 				<input type="hidden" name="orderid" value="987654321" />
 				<input type="hidden" name="cn" value="Louis XIV" />
