@@ -430,7 +430,8 @@ class PaymentRequest
 	protected function validateUri($uri)
 	{
 		if(!filter_var($uri, FILTER_VALIDATE_URL)) {
-			throw new InvalidArgumentException("Uri is not valid");
+			// NOTE: turned off exception because of a bug in PHP v5.3.2 https://bugs.php.net/bug.php?id=51632
+			//throw new InvalidArgumentException("Uri is not valid");
 		}
 		if(strlen($uri) > 200) {
 			throw new InvalidArgumentException("Uri is too long");
