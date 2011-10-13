@@ -17,7 +17,7 @@ class GeneralParameterFilter implements ParameterFilter
 	{
 		$parameters = array_change_key_case($parameters, CASE_UPPER);
 		array_walk($parameters, 'trim');
-		$parameters = array_filter($parameters, function($value){ return !is_null($value);});
+		$parameters = array_filter($parameters, function($value){ return (bool) strlen($value);});
 
 		return $parameters;
 	}
