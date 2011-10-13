@@ -17,17 +17,17 @@ use InvalidArgumentException;
 class PaymentResponse
 {
 	/** @var string */
-	const SHASIGN_FIELD = 'shasign';
+	const SHASIGN_FIELD = 'SHASIGN';
 
 	/**
 	 * Available Ogone parameters
 	 * @var array
 	 */
-	private $ogoneFields = array('aavaddress', 'aavcheck', 'aavzip', 'acceptance', 'alias', 'amount', 'bin', 'brand', 'cardno', 'cccty', 'cn',
-		'complus', 'creation_status', 'currency', 'cvccheck', 'dcc_commpercentage', 'dcc_convamount', 'dcc_convccy', 'dcc_exchrate', 'dcc_exchratesource',
-		'dcc_exchratets', 'dcc_indicator', 'dcc_marginpercentage', 'dcc_validhours', 'digestcardno', 'eci', 'ed', 'enccardno', 'ip', 'ipcty',
-		'nbremailusage','nbripusage', 'nbripusage_alltx', 'nbrusage', 'ncerror', 'orderid', 'payid', 'pm', 'sco_category', 'scoring', 'status',
-		'subscription_id', 'trxdate','vc');
+	private $ogoneFields = array('AAVADDRESS', 'AAVCHECK', 'AAVZIP', 'ACCEPTANCE', 'ALIAS', 'AMOUNT', 'BIN', 'BRAND', 'CARDNO', 'CCCTY', 'CN',
+		'COMPLUS', 'CREATION_STATUS', 'CURRENCY', 'CVCCHECK', 'DCC_COMMPERCENTAGE', 'DCC_CONVAMOUNT', 'DCC_CONVCCY', 'DCC_EXCHRATE', 'DCC_EXCHRATESOURCE',
+		'DCC_EXCHRATETS', 'DCC_INDICATOR', 'DCC_MARGINPERCENTAGE', 'DCC_VALIDHOURS', 'DIGESTCARDNO', 'ECI', 'ED', 'ENCCARDNO', 'IP', 'IPCTY',
+		'NBREMAILUSAGE','NBRIPUSAGE', 'NBRIPUSAGE_ALLTX', 'NBRUSAGE', 'NCERROR', 'ORDERID', 'PAYID', 'PM', 'SCO_CATEGORY', 'SCORING', 'STATUS',
+		'SUBSCRIPTION_ID', 'TRXDATE','VC');
 
 	/**
 	 * @var array
@@ -46,7 +46,7 @@ class PaymentResponse
 	public function __construct(array $httpRequest)
 	{
 		// use lowercase internally
-		$httpRequest = array_change_key_case($httpRequest, CASE_LOWER);
+		$httpRequest = array_change_key_case($httpRequest, CASE_UPPER);
 
 		// set sha sign
 		$this->shaSign = $this->extractShaSign($httpRequest);
@@ -98,8 +98,8 @@ class PaymentResponse
 			return $this->{'get'.$key}();
 		}
 
-		// always use lowercase internally
-		$key = strtolower($key);
+		// always use uppercase
+		$key = strtoupper($key);
 
 		if(!array_key_exists($key, $this->parameters)) {
 			throw new InvalidArgumentException('Parameter ' . $key . ' does not exist.');
@@ -110,17 +110,17 @@ class PaymentResponse
 
 	public function getAmount()
 	{
-		return $this->parameters['amount'] = (int) ($this->parameters['amount'] * 100);
+		return $this->parameters['AMOUNT'] = (int) ($this->parameters['AMOUNT'] * 100);
 	}
 
 	public function isSuccessful()
 	{
 		// @todo use constants
-		return in_array($this->getParam('status'), array(5, 9));
+		return in_array($this->getParam('STATUS'), array(5, 9));
 	}
 
 	public function toArray()
 	{
-		return $this->parameters + array('shasign' => $this->shaSign);
+		return $this->parameters + array('SHASIGN' => $this->shaSign);
 	}
 }
