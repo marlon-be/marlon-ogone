@@ -74,6 +74,26 @@ class PaymentResponseTest extends \TestCase
 		$this->assertEquals(100, $paymentResponse->getParam('amount'));
 	}
 
+	public function provideFloats()
+	{
+		return array(
+			array('17.89', 1789),
+			array('65.35', 6535),
+			array('12.99', 1299),
+		);
+
+	}
+
+	/**
+	 * @test
+	 * @dataProvider provideFloats
+	 */
+	public function CorrectlyConvertsFloatAmountsToInteger($string, $integer)
+	{
+		$paymentResponse = new PaymentResponse(array('amount' => $string, 'shasign' => '123'));
+		$this->assertEquals($integer, $paymentResponse->getParam('amount'));
+	}
+
 	/**
 	 * Helper method to setup a request array
 	 */
