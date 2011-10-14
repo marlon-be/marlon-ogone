@@ -108,9 +108,30 @@ class PaymentResponse
 		return $this->parameters[$key];
 	}
 
+	/**
+	 * @return int Amount in cents
+	 */
 	public function getAmount()
 	{
-		return $this->parameters['AMOUNT'] = (int) ($this->parameters['AMOUNT'] * 100);
+		$value = trim($this->parameters['AMOUNT']);
+
+		$withoutDecimals = '#^\d*$#';
+		$oneDecimal = '#^\d*\.\d$#';
+		$twoDecimals = '#^\d*\.\d\d$#';
+
+		if(preg_match($withoutDecimals, $value)) {
+			return (int) ($value.'00');
+		}
+
+		if(preg_match($oneDecimal, $value)) {
+			return (int) (str_replace('.', '', $value).'0');
+		}
+
+		if(preg_match($twoDecimals, $value)) {
+			return (int) (str_replace('.', '', $value));
+		}
+
+		throw new \InvalidArgumentException("Not a valid currency amount");
 	}
 
 	public function isSuccessful()

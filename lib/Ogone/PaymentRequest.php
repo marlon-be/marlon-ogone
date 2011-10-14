@@ -184,7 +184,7 @@ class PaymentRequest
 		if($amount >= 1.0E+15) {
 			throw new InvalidArgumentException("Amount is too high");
 		}
-		$this->parameters['amount'] = (int) $amount;
+		$this->parameters['amount'] = $amount;
 
 	}
 
