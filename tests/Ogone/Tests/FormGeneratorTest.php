@@ -31,7 +31,7 @@ class SimpleFormGeneratorTest extends \TestCase
 				<input type="hidden" name="email" value="louis.xiv@versailles.fr" />
 				<input type="hidden" name="amount" value="100" />
 				<input type="hidden" name="SHASIGN" value="foo" />
-				<input type="submit" value="Submit" id="submit" name="submit" />
+				<input type="submit" value="Submit" id="ogonesubmit" name="ogonesubmit" />
 			</form>';
 
 		$paymentRequest = $this->provideMinimalPaymentRequest();

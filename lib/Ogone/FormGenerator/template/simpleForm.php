@@ -7,6 +7,6 @@
 <input type="hidden" name="SHASIGN" value="<?php echo $this->getShaSign()?>" />
 
 <?php if($this->showSubmitButton) :?>
-	<input type="submit" value="Submit" id="submit" name="submit" />
+	<input name="ogonesubmit" type="submit" value="Submit" id="ogonesubmit" />
 <?php endif?>
 </form>
