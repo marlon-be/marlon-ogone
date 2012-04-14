@@ -1,3 +1,6 @@
 {
-    "name": "marlon-be/marlon-ogone"
+    "name": "marlon-be/marlon-ogone",
+    "autoload": {
+        "psr-0": { "Ogone": "lib/" }
+    }
 }
