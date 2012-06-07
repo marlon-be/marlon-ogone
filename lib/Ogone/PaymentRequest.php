@@ -89,8 +89,7 @@ class PaymentRequest
 	);
 
 	private $requiredfields = array(
-		'pspid', 'cn', 'owneraddress', 'ownertown', 'ownerzip', 'ownercty', 'email',
-		'amount', 'orderid'
+		'pspid', 'currency', 'amount', 'orderid'
 		// 'pm', 'brand' // left out because when missing, ogone will ask the customer for these
 	);
 
