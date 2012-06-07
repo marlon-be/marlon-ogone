@@ -31,14 +31,17 @@ abstract class TestCase extends PHPUnit_Framework_TestCase
 
 		$paymentRequest->setOgoneUri(PaymentRequest::TEST);
 
+		// minimal required fields for ogone (together with pspid and orderid)
+		$paymentRequest->setCurrency("EUR");
+		$paymentRequest->setAmount(100);
+
+		// these fields are actually optional but are good practice to be included
 		$paymentRequest->setCustomername("Louis XIV");
 		$paymentRequest->setOwnerAddress("1, Rue du Palais");
 		$paymentRequest->setOwnerTown("Versailles");
 		$paymentRequest->setOwnerZip('2300');
 		$paymentRequest->setOwnerCountry("FR");
 		$paymentRequest->setEmail("louis.xiv@versailles.fr");
-
-		$paymentRequest->setAmount(100);
 
 		return $paymentRequest;
 	}
