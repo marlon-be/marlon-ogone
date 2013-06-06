@@ -30,6 +30,7 @@ class PaymentRequest
 		'Aurore' => 'CreditCard',
 		'Bank transfer' => 'Bank transfer',
 		'BCMC' => 'CreditCard',
+        'Belfius Direct Net' => 'Belfius Direct Net',
 		'Billy' => 'CreditCard',
 		'cashU' => 'cashU',
 		'CB' => 'CreditCard',
