@@ -19,6 +19,39 @@ class PaymentResponse
 	/** @var string */
 	const SHASIGN_FIELD = 'SHASIGN';
 
+    /**
+     * @var int
+     */
+    const STATUS_INCOMPLETE_OR_INVALID = 0;
+    /**
+     * @var int
+     */
+    const STATUS_CANCELLED_BY_CLIENT = 1;
+    /**
+     * @var int
+     */
+    const STATUS_AUTHORISATION_REFUSED = 2;
+    /**
+     * @var int
+     */
+    const STATUS_AUTHORISED = 5;
+    /**
+     * @var int
+     */
+    const STATUS_AUTHORISED_AND_CANCELED = 6;
+    /**
+     * @var int
+     */
+    const STATUS_PAYMENT_DELETED = 7;
+    /**
+     * @var int
+     */
+    const STATUS_REFUND = 8;
+    /**
+     * @var int
+     */
+    const STATUS_PAYMENT_REQUESTED = 9;
+
 	/**
 	 * Available Ogone parameters
 	 * @var array
@@ -134,14 +167,26 @@ class PaymentResponse
 		throw new \InvalidArgumentException("Not a valid currency amount");
 	}
 
-	public function isSuccessful()
+    /**
+     * @return bool
+     */
+    public function isSuccessful()
 	{
-		// @todo use constants
-		return in_array($this->getParam('STATUS'), array(5, 9));
+		return in_array($this->getStatus(), array(self::STATUS_AUTHORISED, self::STATUS_PAYMENT_REQUESTED));
 	}
 
 	public function toArray()
 	{
 		return $this->parameters + array('SHASIGN' => $this->shaSign);
 	}
+
+    /**
+     * Returns the status of the response.
+     *
+     * @return int One of the ogone status codes.
+     */
+    public function getStatus()
+    {
+        return isset($this->parameters['STATUS']) ? $this->parameters['STATUS'] : null;
+    }
 }
