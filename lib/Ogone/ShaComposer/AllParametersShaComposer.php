@@ -13,6 +13,7 @@ namespace Ogone\ShaComposer;
 
 use Ogone\ParameterFilter\GeneralParameterFilter;
 use Ogone\Passphrase;
+use Ogone\HashAlgorithm;
 use Ogone\ParameterFilter\ParameterFilter;
 
 /**
@@ -27,22 +28,19 @@ class AllParametersShaComposer implements ShaComposer
 	 * @var string Passphrase
 	 */
 	private $passphrase;
+
     /**
-     * @var string
+     * @var HashAlgorithm
      */
     private $hashAlgorithm;
 
-	/**
-	 * @param Passphrase $passphrase
-     * @param string $hashAlgorithm
-	 */
-	public function __construct(Passphrase $passphrase, $hashAlgorithm = 'sha1')
+	public function __construct(Passphrase $passphrase, HashAlgorithm $hashAlgorithm = null)
 	{
 		$this->passphrase = $passphrase;
 
 		$this->addParameterFilter(new GeneralParameterFilter);
 
-        $this->hashAlgorithm = $hashAlgorithm;
+        $this->hashAlgorithm = $hashAlgorithm ?: new HashAlgorithm(HashAlgorithm::HASH_SHA1);
 	}
 
 	public function compose(array $parameters)
@@ -66,24 +64,4 @@ class AllParametersShaComposer implements ShaComposer
 	{
 		$this->parameterFilters[] = $parameterFilter;
 	}
-
-    /**
-     * Sets the hash algorithm.
-     *
-     * @param string $hashAlgorithm
-     * @return $this
-     * @throws \InvalidArgumentException
-     */
-    public function setHashAlgorithm($hashAlgorithm)
-    {
-        if (! in_array($hashAlgorithm, array('sha1', 'sha256', 'sha512'))) {
-            throw new \InvalidArgumentException(
-                $hashAlgorithm . ' is not supported, only sha1, sha256 and sha512 are allowed.'
-            );
-        }
-
-        $this->hashAlgorithm = $hashAlgorithm;
-
-        return $this;
-    }
 }
