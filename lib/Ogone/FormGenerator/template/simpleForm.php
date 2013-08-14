@@ -4,7 +4,7 @@
 	<input type="hidden" name="<?php echo $key?>" value="<?php echo htmlspecialchars($value) ?>"  />
 	<?php endif?>
 <?php endforeach?>
-<input type="hidden" name="SHASIGN" value="<?php echo $this->getShaSign()?>" />
+<input type="hidden" name="<?php echo Ogone\PaymentRequest::SHASIGN_FIELD ?>" value="<?php echo $this->getShaSign()?>" />
 
 <?php if($this->showSubmitButton) :?>
 	<input name="ogonesubmit" type="submit" value="Submit" id="ogonesubmit" />

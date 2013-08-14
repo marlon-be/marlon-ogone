@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Ogone\Tests;
+namespace Ogone\Tests\FormGenerator;
 
 use Ogone\PaymentRequest;
 use Ogone\FormGenerator\SimpleFormGenerator;
@@ -32,7 +32,7 @@ class SimpleFormGeneratorTest extends \TestCase
 				<input type="hidden" name="ownercty" value="FR" />
 				<input type="hidden" name="email" value="louis.xiv@versailles.fr" />
 
-				<input type="hidden" name="SHASIGN" value="foo" />
+				<input type="hidden" name="'.PaymentRequest::SHASIGN_FIELD.'" value="foo" />
 				<input type="submit" value="Submit" id="ogonesubmit" name="ogonesubmit" />
 			</form>';
 
