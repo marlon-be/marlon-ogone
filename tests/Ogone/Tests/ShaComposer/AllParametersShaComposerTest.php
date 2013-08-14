@@ -18,6 +18,7 @@ use Ogone\ParameterFilter\ShaOutParameterFilter;
 use Ogone\ParameterFilter\GeneralParameterFilter;
 
 use Ogone\Passphrase;
+use Ogone\PaymentResponse;
 use Ogone\ShaComposer\AllParametersShaComposer;
 
 class AllParametersShaComposerTest extends \TestCase
@@ -47,7 +48,7 @@ class AllParametersShaComposerTest extends \TestCase
 			'NCERROR' => 0,
 			'PAYID' => 32100123,
 			'PM' => 'CreditCard',
-			'STATUS' => 9,
+			'STATUS' => PaymentResponse::STATUS_PAYMENT_REQUESTED,
 			'orderID' => 12,
 			'unknownparam' => 'some value',
 		);
@@ -59,7 +60,7 @@ class AllParametersShaComposerTest extends \TestCase
 			'amount' => '99',
 			'PM' => 'CreditCard',
 			'ACCEPTANCE' => 'test123',
-			'STATUS' => '9',
+			'STATUS' => (string)PaymentResponse::STATUS_PAYMENT_REQUESTED,
 			'CARDNO' => 'XXXXXXXXXXXX1111',
 			'ED' => '0312',
 			'CN' => 'Some Name',
