@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Ogone\Tests;
+namespace Ogone\Tests\FormGenerator;
 
 use Ogone\PaymentRequest;
 use Ogone\FormGenerator\SimpleFormGenerator;
