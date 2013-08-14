@@ -103,7 +103,7 @@ class PaymentResponseTest extends \TestCase
 			'orderID' => '123',
 			'SHASIGN' => FakeShaComposer::FAKESHASTRING,
 			'UNKNOWN_PARAM' => false, /* unkown parameter, should be filtered out */
-			'status' => 5,
+			'status' => PaymentResponse::STATUS_AUTHORISED,
 			'amount' => 1,
 		);
 	}
