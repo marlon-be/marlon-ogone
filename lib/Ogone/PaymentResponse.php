@@ -172,21 +172,11 @@ class PaymentResponse
      */
     public function isSuccessful()
 	{
-		return in_array($this->getStatus(), array(self::STATUS_AUTHORISED, self::STATUS_PAYMENT_REQUESTED));
+		return in_array($this->getParam('STATUS'), array(self::STATUS_AUTHORISED, self::STATUS_PAYMENT_REQUESTED));
 	}
 
 	public function toArray()
 	{
 		return $this->parameters + array('SHASIGN' => $this->shaSign);
 	}
-
-    /**
-     * Returns the status of the response.
-     *
-     * @return int One of the ogone status codes.
-     */
-    public function getStatus()
-    {
-        return isset($this->parameters['STATUS']) ? $this->parameters['STATUS'] : null;
-    }
 }
