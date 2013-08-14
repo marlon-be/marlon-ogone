@@ -30,7 +30,7 @@ class UrlGenerator implements FormGenerator
     {
         $parameters = $paymentRequest->toArray();
 
-        $parameters['SHASIGN'] = $paymentRequest->getShaSign();
+        $parameters[PaymentRequest::SHASIGN_FIELD] = $paymentRequest->getShaSign();
 
         return $paymentRequest->getOgoneUri() . '?' . http_build_query($parameters);
     }
