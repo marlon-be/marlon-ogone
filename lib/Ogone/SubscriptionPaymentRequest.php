@@ -81,9 +81,9 @@ class SubscriptionPaymentRequest extends PaymentRequest {
     public function setSubscriptionDescription($description)
     {
         if(strlen($description) > 100) {
-            throw new InvalidArgumentException("Subscription description cannot be longer than 50 characters");
+            throw new InvalidArgumentException("Subscription description cannot be longer than 100 characters");
         }
-        if(preg_match('/[^a-zA-Z0-9_- ]/', $description)) {
+        if(preg_match('/[^a-zA-Z0-9_ -]/', $description)) {
             throw new InvalidArgumentException("Subscription description cannot contain special characters");
         }
         $this->parameters['SUB_COM'] = $description;
@@ -211,7 +211,7 @@ class SubscriptionPaymentRequest extends PaymentRequest {
         if(strlen($comment) > 200) {
             throw new InvalidArgumentException("Subscription comment cannot be longer than 200 characters");
         }
-        if(preg_match('/[^a-zA-Z0-9_- ]/', $comment)) {
+        if(preg_match('/[^a-zA-Z0-9_ -]/', $comment)) {
             throw new InvalidArgumentException("Subscription comment cannot contain special characters");
         }
         $this->parameters['SUB_COMMENT'] = $comment;
