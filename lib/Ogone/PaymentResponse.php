@@ -177,6 +177,6 @@ class PaymentResponse
 
 	public function toArray()
 	{
-		return $this->parameters + array('SHASIGN' => $this->shaSign);
+		return $this->parameters + array(self::SHASIGN_FIELD => $this->shaSign);
 	}
 }
