@@ -11,6 +11,7 @@
 
 namespace Ogone\ShaComposer;
 
+use Ogone\HashAlgorithm;
 use Ogone\Passphrase;
 
 /**
@@ -24,19 +25,25 @@ class LegacyShaComposer implements ShaComposer
 	 */
 	private $passphrase;
 
+    /**
+     * @var HashAlgorithm
+     */
+    private $hashAlgorithm;
+
 	/**
 	 * @param string $passphrase
 	 */
-	public function __construct(Passphrase $passphrase)
+	public function __construct(Passphrase $passphrase, HashAlgorithm $hashAlgorithm = null)
 	{
 		$this->passphrase = $passphrase;
+        $this->hashAlgorithm = $hashAlgorithm ?: new HashAlgorithm($hashAlgorithm::HASH_SHA1);
 	}
 
 	public function compose(array $parameters)
 	{
 		$parameters = array_change_key_case($parameters, CASE_LOWER);
 
-		return strtoupper(sha1(implode('', array(
+		return strtoupper(hash($this->hashAlgorithm, implode('', array(
 			$parameters['orderid'],
 			$parameters['currency'],
 			$parameters['amount'],
