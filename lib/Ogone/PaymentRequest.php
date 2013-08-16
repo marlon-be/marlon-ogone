@@ -79,7 +79,7 @@ class PaymentRequest
 
 	private $ogoneUri = self::TEST;
 
-	private $parameters = array();
+	protected $parameters = array();
 
 	private $ogoneFields = array(
 		'pspid', 'orderid', 'com', 'amount', 'currency', 'language', 'cn', 'email',
@@ -380,7 +380,7 @@ class PaymentRequest
 	{
 		foreach($this->requiredfields as $field)
 		{
-			if(empty($this->parameters[$field])) {
+			if(!isset($this->parameters[$field])) {
 				throw new RuntimeException("$field can not be empty");
 			}
 		}
