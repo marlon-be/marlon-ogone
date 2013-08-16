@@ -1,9 +1,10 @@
 <?php
 
-namespace Ogone;
+namespace Ogone\Subscription;
 
 use InvalidArgumentException;
 use DateTime;
+use Ogone\PaymentRequest;
 use RuntimeException;
 
 class SubscriptionPaymentRequest extends PaymentRequest {
@@ -109,58 +110,12 @@ class SubscriptionPaymentRequest extends PaymentRequest {
     /**
      * Set subscription payment interval
      * @author René de Kat <renedekat@9lives-development.com>
-     *
-     * @param string $unit 			(‘d’ = daily, ‘ww’ = weekly, ‘m’ = monthly)
-     * @param integer $interval 	Interval between each occurrence of the subscription payments.
-     * @param integer $moment		Depending on sub_period_unit
-     *								Daily (d)
-     *								interval in days
-     *								Weekly (ww)
-     * 								1=Sunday, … 7=Saturday
-     *								Monthly (m)
-     * 								day of the month
      */
-    public function setSubscriptionPeriod($unit, $interval, $moment)
+    public function setSubscriptionPeriod(SubscriptionPeriod $period)
     {
-        // Check unit
-        if (!in_array($unit, array('d', 'ww', 'm'))) {
-            throw new InvalidArgumentException("Subscription period unit should be d (daily), ww (weekly) or m (monthly)");
-        }
-        $this->parameters['SUB_PERIOD_UNIT'] = $unit;
-
-
-        // Check interval
-        if(!is_int($interval)) {
-            throw new InvalidArgumentException("Integer expected for interval");
-        }
-        if($interval < 0) {
-            throw new InvalidArgumentException("Interval must be a positive number > 0");
-        }
-        if($interval >= 1.0E+15) {
-            throw new InvalidArgumentException("Interval is too high");
-        }
-        $this->parameters['SUB_PERIOD_NUMBER'] = $interval;
-
-        // Check moment
-        if(!is_int($moment)) {
-            throw new InvalidArgumentException("Integer expected for moment");
-        }
-        if($moment <= 0) {
-            throw new InvalidArgumentException("Moment must be a positive number");
-        }
-
-        if ('ww' == $unit) {
-            // Valid values are 1 to 7
-            if ($moment > 7) {
-                throw new InvalidArgumentException("Moment should be 1 (Sunday), 2, 3 .. 7 (Saturday)");
-            }
-        } elseif ('m' == $unit) {
-            // We will not allow a day of month > 28
-            if ($moment > 28) {
-                throw new InvalidArgumentException("Moment can't be larger than 29. Last day for month allowed is 28.");
-            }
-        }
-        $this->parameters['SUB_PERIOD_MOMENT'] = $moment;
+        $this->parameters['SUB_PERIOD_UNIT'] = $period->getUnit();
+        $this->parameters['SUB_PERIOD_NUMBER'] = $period->getInterval();
+        $this->parameters['SUB_PERIOD_MOMENT'] = $period->getMoment();
     }
 
 
