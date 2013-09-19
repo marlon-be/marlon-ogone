@@ -374,7 +374,13 @@ class PaymentRequest
 	{
 		$this->validateUri($tp);
 		$this->parameters['tp'] = $tp;
-	}
+    }
+
+    /** Sets the logo image */
+    public function setLogo($logo)
+    {
+        $this->parameters['logo'] = $logo;
+    }
 
 	public function validate()
 	{
