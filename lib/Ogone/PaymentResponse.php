@@ -19,6 +19,18 @@ class PaymentResponse
 	/** @var string */
 	const SHASIGN_FIELD = 'SHASIGN';
 
+	/** Response statusses */
+	const PAYMENT_INVALID = 0;	
+	const PAYMENT_CANCELLED = 1;
+	const PAYMENT_AUTHORISATION_REFUSED = 2;
+	const ORDER_STORED = 4;
+	const PAYMENT_AUTHORISED = 5;
+	const PAYMENT_AUTHORISED_AND_CANCELLED = 6;
+	const PAYMENT_DELETED = 7;
+	const PAYMENT_REFUND = 8;
+	const PAYMENT_REQUESTED = 9;
+
+
 	/**
 	 * Available Ogone parameters
 	 * @var array
@@ -83,7 +95,7 @@ class PaymentResponse
 	 * @return bool
 	 */
 	public function isValid(ShaComposer $shaComposer)
-	{
+	{		
 		return $shaComposer->compose($this->parameters) == $this->shaSign;
 	}
 
@@ -136,8 +148,7 @@ class PaymentResponse
 
 	public function isSuccessful()
 	{
-		// @todo use constants
-		return in_array($this->getParam('STATUS'), array(5, 9));
+		return in_array($this->getParam('STATUS'), array(self::PAYMENT_AUTHORISED, self::PAYMENT_REQUESTED));
 	}
 
 	public function toArray()

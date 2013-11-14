@@ -1,6 +1,6 @@
 <form method="post" action="<?php echo $this->getOgoneUri()?>" id="<?php echo $this->formName?>" name="<?php echo $this->formName?>">
 <?php foreach($this->getParameters() as $key => $value) :?>
-	<?php if($value) :?>
+	<?php if(false !== $value) :?>
 	<input type="hidden" name="<?php echo $key?>" value="<?php echo htmlspecialchars($value) ?>"  />
 	<?php endif?>
 <?php endforeach?>
