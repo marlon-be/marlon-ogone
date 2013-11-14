@@ -14,7 +14,7 @@ namespace Ogone\Tests;
 use Ogone\Tests\ShaComposer\FakeShaComposer;
 use Ogone\ShaComposer\AllParametersShaComposer;
 
-use Ogone\PaymentRequest;
+use Ogone\EcommercePaymentRequest;
 
 class PaymentRequestTest extends \TestCase
 {
@@ -38,14 +38,14 @@ class PaymentRequestTest extends \TestCase
 	 */
 	public function IsInvalidWhenFieldsAreMissing()
 	{
-		$paymentRequest = new PaymentRequest(new FakeShaComposer);
+		$paymentRequest = new EcommercePaymentRequest(new FakeShaComposer);
 		$paymentRequest->validate();
 	}
 
 	/** @test */
 	public function UnimportantParamsUseMagicSetters()
 	{
-		$paymentRequest = new PaymentRequest(new FakeShaComposer);
+		$paymentRequest = new EcommercePaymentRequest(new FakeShaComposer);
 		$paymentRequest->setBgcolor('FFFFFF');
 		$this->assertEquals('FFFFFF', $paymentRequest->getBgcolor());
 	}
@@ -57,7 +57,7 @@ class PaymentRequestTest extends \TestCase
 	 */
 	public function BadParametersCauseExceptions($method, $value)
 	{
-		$paymentRequest = new PaymentRequest(new FakeShaComposer);
+		$paymentRequest = new EcommercePaymentRequest(new FakeShaComposer);
 		$paymentRequest->$method($value);
 	}
 
@@ -67,7 +67,7 @@ class PaymentRequestTest extends \TestCase
 	 */
 	public function UnknownMethodFails()
 	{
-		$paymentRequest = new PaymentRequest(new FakeShaComposer);
+		$paymentRequest = new EcommercePaymentRequest(new FakeShaComposer);
 		$paymentRequest->getFoobar();
 	}
 
@@ -107,13 +107,5 @@ class PaymentRequestTest extends \TestCase
 			array('setPspid', $longString),
 		);
 	}
-	
-    /**
-     * @test
-     * @expectedException \InvalidArgumentException
-     */
-    public function CreateFromArrayInvalidPhone()
-    {
-        $paymentRequest = PaymentRequest::createFromArray(new FakeShaComposer, array('language'=>'West-Vlaams'));
-    }
+
 }
