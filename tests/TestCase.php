@@ -17,6 +17,7 @@ use Ogone\ShaComposer\AllParametersShaComposer;
 use Ogone\PaymentRequest;
 use Ogone\EcommercePaymentRequest;
 use Ogone\CreateAliasRequest;
+use Ogone\DirectLinkPaymentRequest;
 
 require_once 'PHPUnit/Framework/TestCase.php';
 require_once __DIR__.'/Ogone/Tests/ShaComposer/FakeShaComposer.php';
@@ -94,6 +95,20 @@ abstract class TestCase extends PHPUnit_Framework_TestCase
         $aliasRequest->setExceptionurl('http://example.com/exception');
 
         return $aliasRequest;
+    }
+
+    /** @return DirectLinkPaymentRequest */
+    protected function provideMinimalDirectLinkPaymentRequest()
+    {
+        $directLinkRequest = new DirectLinkPaymentRequest(new FakeShaComposer());
+        $directLinkRequest->setPspid('123456');
+        $directLinkRequest->setUserId('user_1234');
+        $directLinkRequest->setPassword('abracadabra');
+        $directLinkRequest->setAmount(100);
+        $directLinkRequest->setCurrency('EUR');
+        $directLinkRequest->setOrderid('999');
+
+        return $directLinkRequest;
     }
 
 }

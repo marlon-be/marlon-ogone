@@ -12,6 +12,7 @@ namespace Ogone\Tests;
 
 use Ogone\Tests\ShaComposer\FakeShaComposer;
 use Ogone\CreateAliasRequest;
+use Ogone\Alias;
 
 class CreateAliasRequestTest extends \TestCase {
 
@@ -52,6 +53,44 @@ class CreateAliasRequestTest extends \TestCase {
     public function IsInvalidWhenFieldsAreMissing()
     {
         $aliasRequest = new CreateAliasRequest(new FakeShaComposer);
+        $aliasRequest->validate();
+    }
+
+    /**
+     * @test
+     */
+    public function IsValidWithAliasSet()
+    {
+        $alias = new Alias('customer_123');
+
+        $aliasRequest = $this->provideMinimalAliasRequest();
+        $aliasRequest->setAlias($alias);
+        $aliasRequest->validate();
+    }
+
+    /**
+     * @test
+     * @expectedException \InvalidArgumentException
+     */
+    public function IsInvalidWithTooLongAlias()
+    {
+        $alias = new Alias(str_repeat('repeat', 10));
+
+        $aliasRequest = $this->provideMinimalAliasRequest();
+        $aliasRequest->setAlias($alias);
+        $aliasRequest->validate();
+    }
+
+    /**
+     * @test
+     * @expectedException \InvalidArgumentException
+     */
+    public function IsInvalidWithAliasWrongCharacter()
+    {
+        $alias = new Alias('customer_#!§?');
+
+        $aliasRequest = $this->provideMinimalAliasRequest();
+        $aliasRequest->setAlias($alias);
         $aliasRequest->validate();
     }
 } 

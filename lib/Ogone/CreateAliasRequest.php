@@ -11,6 +11,8 @@
 namespace Ogone;
 
 use Ogone\ShaComposer\ShaComposer;
+use Ogone\Alias;
+use InvalidArgumentException;
 
 class CreateAliasRequest extends AbstractRequest {
 
@@ -37,11 +39,8 @@ class CreateAliasRequest extends AbstractRequest {
         return array(self::TEST, self::PRODUCTION);
     }
 
-    public function setAlias($alias)
+    public function setAlias(Alias $alias)
     {
-        if(strlen($alias) > 50) {
-            throw new InvalidArgumentException("Alias is too long");
-        }
-        $this->parameters['alias'] = $alias;
+        $this->parameters['alias'] = $alias->__toString();
     }
 } 

@@ -72,6 +72,8 @@ class AllParametersShaComposerTest extends \TestCase
 			'foo' => 'bar',
 		);
 
+
+
 		return array(
 			array($passphrase, $request1, $expectedSha1),
 			array($passphrase, $request2, $expectedSha2),

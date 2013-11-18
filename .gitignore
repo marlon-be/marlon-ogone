@@ -5,3 +5,5 @@ build
 phpunit.xml
 vendor/
 composer.lock
+/tests/createalias.php
+/tests/directlink.php
