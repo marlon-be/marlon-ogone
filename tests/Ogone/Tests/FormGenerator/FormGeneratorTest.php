@@ -37,6 +37,8 @@ class SimpleFormGeneratorTest extends \TestCase
 
 		$paymentRequest = $this->provideMinimalPaymentRequest();
 		$formGenerator = new SimpleFormGenerator;
+        $formGenerator->showSubmitButton(true);
+        $formGenerator->setFormName('ogone');
 
 		$html = $formGenerator->render($paymentRequest);
 

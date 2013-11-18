@@ -11,6 +11,8 @@
 namespace Ogone;
 
 use Ogone\ShaComposer\ShaComposer;
+use Ogone\Alias;
+use InvalidArgumentException;
 
 class DirectLinkPaymentRequest extends AbstractPaymentRequest {
 
@@ -26,7 +28,7 @@ class DirectLinkPaymentRequest extends AbstractPaymentRequest {
     public function getRequiredFields()
     {
         $requiredfields = array(
-            'pspid', 'currency', 'amount', 'orderid'
+            'pspid', 'currency', 'amount', 'orderid', 'userid', 'pswd'
         );
 
         return $requiredfields;
@@ -56,14 +58,11 @@ class DirectLinkPaymentRequest extends AbstractPaymentRequest {
         if(strlen($password) < 8) {
             throw new InvalidArgumentException("Password is too short");
         }
-        $this->parameters['password'] = $password;
+        $this->parameters['pswd'] = $password;
     }
 
-    public function setAlias($alias)
+    public function setAlias(Alias $alias)
     {
-        if(strlen($alias) > 50) {
-            throw new InvalidArgumentException("Alias is too long");
-        }
-        $this->parameters['alias'] = $alias;
+        $this->parameters['alias'] = $alias->__toString();
     }
 } 

@@ -92,6 +92,7 @@ This library currently supports both the legacy method "Main parameters only" an
 
 	use Ogone\Passphrase;
 	use Ogone\CreateAliasRequest;
+	use Ogone\Alias;
 
 	$passphrase = new Passphrase('my-sha-in-passphrase-defined-in-ogone-interface');
 	$shaComposer = new AllParametersShaComposer($passphrase);
@@ -108,31 +109,65 @@ This library currently supports both the legacy method "Main parameters only" an
 	$createAliasRequest->setExceptionurl('http://example.com/exception');
 
 	// set optional alias, if empty, Ogone creates one
-	$createAliasRequest->setAlias('customer_123');
+	$alias = new Alias('customer_123');
+	$createAliasRequest->setAlias($alias);
 
 	$createAliasRequest->validate();
 
 	// Now pass $createAliasRequest to a view to build a custom form, you have access to
 	// $createAliasRequest->getOgoneUri(), $createAliasRequest->getParameters() and $createAliasRequest->getShaSign()
-	// Be sure to add the required fields CN (Card holder's name), CARDNO (Card/account number), ED (Expiry date (MMYY)) and CVC (Card Verification Code)
+	// Be sure to add the required fields CN (Card holder's name), CARDNO (Card/account number), ED (Expiry date (MMYY)), CVC (Card Verification Code)
+	// and the SHASIGN
 ```
 
-# PaymentResponse #
+# DirectLinkRequest #
+
+```php
+	<?php
+
+	use Ogone\DirectLinkPaymentRequest;
+	use Ogone\Passphrase;
+	use Ogone\ShaComposer\AllParametersShaComposer;
+	use Ogone\Alias;
+
+	$passphrase = new Passphrase('my-sha-in-passphrase-defined-in-ogone-interface');
+	$shaComposer = new AllParametersShaComposer($passphrase);
+	$shaComposer->addParameterFilter(new ShaInParameterFilter); //optional
+
+	$directLinkRequest = new DirectLinkPaymentRequest($shaComposer);
+	$directLinkRequest->setOrderid('order_1234');
+
+	$alias = new Alias('customer_123');
+	$directLinkRequest->setAlias($alias);
+	$directLinkRequest->setPspid('123456');
+	$directLinkRequest->setUserId('ogone-api-user');
+	$directLinkRequest->setPassword('ogone-api-password');
+	$directLinkRequest->setAmount(100);
+	$directLinkRequest->setCurrency('EUR');
+	$directLinkRequest->validate();
+
+	// now create a url to be posted to Ogone
+	// you have access to $directLinkRequest->toArray(), $directLinkRequest->getOgoneUri() and directLinkRequest->getShaSign()
+```
+
+
+# EcommercePaymentResponse #
 
 ```php
   	<?php
-	use Ogone\PaymentResponse;
+
+	use Ogone\EcommercePaymentResponse;
 	use Ogone\ShaComposer\AllParametersShaComposer;
 
 	// ...
 
-	$paymentResponse = new PaymentResponse($_REQUEST);
+	$ecommercePaymentResponse = new EcommercePaymentResponse($_REQUEST);
 
 	$passphrase = new Passphrase('my-sha-out-passphrase-defined-in-ogone-interface');
 	$shaComposer = new AllParametersShaComposer($passphrase);
 	$shaComposer->addParameterFilter(new ShaOutParameterFilter); //optional
 
-	if($paymentResponse->isValid($shaComposer) && $paymentResponse->isSuccessful()) {
+	if($ecommercePaymentResponse->isValid($shaComposer) && $ecommercePaymentResponse->isSuccessful()) {
 		// handle payment confirmation
 	}
 	else {
@@ -140,8 +175,52 @@ This library currently supports both the legacy method "Main parameters only" an
 	}
 ```
 
+# CreateAliasResponse #
+
+```php
+  	<?php
+
+	use Ogone\CreateAliasResponse;
+	use Ogone\ShaComposer\AllParametersShaComposer;
+
+	// ...
+
+	$createAliasResponse = new CreateAliasResponse($_REQUEST);
+
+	$passphrase = new Passphrase('my-sha-out-passphrase-defined-in-ogone-interface');
+	$shaComposer = new AllParametersShaComposer($passphrase);
+	$shaComposer->addParameterFilter(new ShaOutParameterFilter); //optional
+
+	if($createAliasResponse->isValid($shaComposer) && $createAliasResponse->isSuccessful()) {
+		// Alias creation is succesful, get the Alias object
+		$alias = $createAliasResponse->getAlias();
+	}
+	else {
+		// validation failed, retry?
+	}
+```
+
+# DirectLinkPaymentResponse #
+
+As the DirectLink payment gets an instant feedback from the server (and no async response) we don't use the SHA validation.
+
+```php
+	<?php
+
+	use Ogone\DirectLinkPaymentResponse;
+
+	$directLinkResponse = new DirectLinkPaymentResponse('ogone-direct-link-result-as-xml');
+
+	if($directLinkResponse->isSuccessful()) {
+    	// handle payment confirmation
+	} else {
+    	// perform logic when the validation fails
+	}
+```
+
+
+
 # Parameter filters #
 ParameterFilters are used to filter the provided parameters (no shit Sherlock).
 Both ShaIn- and ShaOutParameterFilters are provided and are based on the parameter lists defined in the Ogone documentation.
 Parameter filtering is optional, but we recommend using them to enforce expected parameters.
-
