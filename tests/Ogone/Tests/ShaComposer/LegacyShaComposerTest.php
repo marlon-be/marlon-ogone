@@ -12,6 +12,7 @@
 namespace Ogone\Tests\ShaComposer;
 
 use Ogone\Passphrase;
+use Ogone\PaymentResponse;
 use Ogone\ShaComposer\LegacyShaComposer;
 
 class LegacyShaComposerTest extends \TestCase
@@ -45,7 +46,7 @@ class LegacyShaComposerTest extends \TestCase
 			'ORDERID' => 2101947639,
 			'PAYID' => 10673859,
 			'PM' => 'CreditCard',
-			'STATUS' => 5,
+			'STATUS' => PaymentResponse::STATUS_AUTHORISED,
 			'TRXDATE' => '07/05/11'
 		);
 	}
