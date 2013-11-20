@@ -26,11 +26,9 @@ class CreateAliasRequest extends AbstractRequest {
 
     public function getRequiredFields()
     {
-        $requiredfields = array(
+        return array(
             'pspid', 'accepturl', 'exceptionurl'
         );
-
-        return $requiredfields;
     }
 
     public function getValidOgoneUris()

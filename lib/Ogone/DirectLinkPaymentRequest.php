@@ -27,11 +27,9 @@ class DirectLinkPaymentRequest extends AbstractPaymentRequest {
 
     public function getRequiredFields()
     {
-        $requiredfields = array(
+        return array(
             'pspid', 'currency', 'amount', 'orderid', 'userid', 'pswd'
         );
-
-        return $requiredfields;
     }
 
     public function getValidOgoneUris()

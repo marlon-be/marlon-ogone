@@ -25,11 +25,9 @@ class EcommercePaymentRequest extends AbstractPaymentRequest {
 
     public function getRequiredFields()
     {
-        $requiredfields = array(
+        return array(
             'pspid', 'currency', 'amount', 'orderid'
         );
-
-        return $requiredfields;
     }
 
     public function getValidOgoneUris()

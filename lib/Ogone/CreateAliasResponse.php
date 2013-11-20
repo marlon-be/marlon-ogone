@@ -13,8 +13,12 @@ namespace Ogone;
 use Ogone\ShaComposer\ShaComposer;
 use Ogone\Alias;
 
-class CreateAliasResponse extends AbstractResponse
-{
+class CreateAliasResponse extends AbstractResponse {
+
+    const STATUS_OK = 0;
+    const STATUS_NOK = 1;
+    const STATUS_UPDATED = 2;
+
     /**
      * Checks if the response is valid
      * @return bool
@@ -26,8 +30,7 @@ class CreateAliasResponse extends AbstractResponse
 
     public function isSuccessful()
     {
-        // 0 = OK, 1 Not OK, 2 = Alias Updated
-        return in_array($this->getParam('STATUS'), array(0, 2));
+        return in_array($this->getParam('STATUS'), array(self::STATUS_OK, self::STATUS_UPDATED));
     }
 
     public function getAlias()

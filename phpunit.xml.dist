@@ -35,4 +35,13 @@
 			<directory suffix=".php">lib</directory>
 		</whitelist>
 	</filter>
+
+    <php>
+        <var name="pspid" value="your-ogone-pspid" />
+        <var name="passphrase_sha_in" value="your-sha-in"/>
+        <var name="passphrase_sha_out" value="your-sha-out" />
+        <var name="userid" value="api-user-id" />
+        <var name="password" value="api-password" />
+    </php>
+
 </phpunit>
