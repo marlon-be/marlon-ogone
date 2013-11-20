@@ -15,10 +15,9 @@ use InvalidArgumentException;
 class Alias {
 
     /** @var string */
-
     private $alias;
 
-    public function __construct($alias = '')
+    public function __construct($alias)
     {
         if(strlen($alias) > 50) {
             throw new InvalidArgumentException("Alias is too long");
@@ -35,4 +34,4 @@ class Alias {
     {
         return (string) $this->alias;
     }
-} 
+}
