@@ -19,6 +19,14 @@ class Alias {
 
     public function __construct($alias)
     {
+        if($alias === null) {
+            throw new InvalidArgumentException("Alias cannot be null");
+        }
+
+        if($alias == '') {
+            throw new InvalidArgumentException("Alias cannot be empty");
+        }
+
         if(strlen($alias) > 50) {
             throw new InvalidArgumentException("Alias is too long");
         }
