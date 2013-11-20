@@ -12,7 +12,6 @@ namespace Ogone;
 
 use Ogone\ShaComposer\ShaComposer;
 use Ogone\Alias;
-use InvalidArgumentException;
 
 class CreateAliasRequest extends AbstractRequest {
 
@@ -41,6 +40,6 @@ class CreateAliasRequest extends AbstractRequest {
 
     public function setAlias(Alias $alias)
     {
-        $this->parameters['alias'] = $alias->__toString();
+        $this->parameters['alias'] = (string) $alias;
     }
-} 
+}
