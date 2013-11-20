@@ -19,6 +19,9 @@ use BadMethodCallException;
 
 class PaymentRequest
 {
+    /** @var string */
+    const SHASIGN_FIELD = 'SHASIGN';
+    
 	const TEST = "https://secure.ogone.com/ncol/test/orderstandard_utf8.asp";
 	const PRODUCTION = "https://secure.ogone.com/ncol/prod/orderstandard_utf8.asp";
 
