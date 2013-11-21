@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<phpunit 
+<phpunit
 		 backupGlobals="false"
          backupStaticAttributes="false"
          colors="true"
@@ -43,5 +43,11 @@
         <const name="USERID" value="api-user-id" />
         <const name="PASSWORD" value="api-password" />
     </php>
+
+    <groups>
+        <exclude>
+            <group>integration</group>
+        </exclude>
+    </groups>
 
 </phpunit>
