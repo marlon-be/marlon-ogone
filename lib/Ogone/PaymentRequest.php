@@ -2,7 +2,7 @@
 
 namespace Ogone;
 
-interface PaymentRequest
+interface PaymentRequest extends Request
 {
     /** @var string */
     const SHASIGN_FIELD = 'SHASIGN';
