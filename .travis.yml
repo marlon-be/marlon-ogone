@@ -10,4 +10,3 @@ notifications:
 
 before_script:
    - composer install --dev
-   - phpunit

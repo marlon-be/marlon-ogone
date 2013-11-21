@@ -4,15 +4,9 @@ namespace Ogone\Subscription;
 
 use InvalidArgumentException;
 use DateTime;
-use Ogone\PaymentRequest;
-use RuntimeException;
+use Ogone\EcommercePaymentRequest;
 
-class SubscriptionPaymentRequest extends PaymentRequest {
-
-    private $requiredSubscriptionFields = array(
-        'SUBSCRIPTION_ID', 'SUB_AMOUNT', 'SUB_COM', 'SUB_ORDERID', 'SUB_PERIOD_UNIT',
-        'SUB_PERIOD_NUMBER', 'SUB_PERIOD_MOMENT','SUB_STARTDATE', 'SUB_ENDDATE', 'SUB_STATUS'
-    );
+class SubscriptionPaymentRequest extends EcommercePaymentRequest {
 
     /**
      * Set amount in cents, eg EUR 12.34 is written as 1234
@@ -48,7 +42,7 @@ class SubscriptionPaymentRequest extends PaymentRequest {
         if(preg_match('/[^a-zA-Z0-9_-]/', $subscriptionId)) {
             throw new InvalidArgumentException("Subscription id cannot contain special characters");
         }
-        $this->parameters['SUBSCRIPTION_ID'] = $subscriptionId;
+        $this->parameters['subscription_id'] = $subscriptionId;
     }
 
     /**
@@ -70,7 +64,7 @@ class SubscriptionPaymentRequest extends PaymentRequest {
         if($amount >= 1.0E+15) {
             throw new InvalidArgumentException("Amount is too high");
         }
-        $this->parameters['SUB_AMOUNT'] = $amount;
+        $this->parameters['sub_amount'] = $amount;
     }
 
     /**
@@ -87,7 +81,7 @@ class SubscriptionPaymentRequest extends PaymentRequest {
         if(preg_match('/[^a-zA-Z0-9_ -]/', $description)) {
             throw new InvalidArgumentException("Subscription description cannot contain special characters");
         }
-        $this->parameters['SUB_COM'] = $description;
+        $this->parameters['sub_com'] = $description;
     }
 
     /**
@@ -104,7 +98,7 @@ class SubscriptionPaymentRequest extends PaymentRequest {
         if(preg_match('/[^a-zA-Z0-9_-]/', $orderId)) {
             throw new InvalidArgumentException("Subscription order id cannot contain special characters");
         }
-        $this->parameters['SUB_ORDERID'] = $orderId;
+        $this->parameters['sub_orderid'] = $orderId;
     }
 
     /**
@@ -113,9 +107,9 @@ class SubscriptionPaymentRequest extends PaymentRequest {
      */
     public function setSubscriptionPeriod(SubscriptionPeriod $period)
     {
-        $this->parameters['SUB_PERIOD_UNIT'] = $period->getUnit();
-        $this->parameters['SUB_PERIOD_NUMBER'] = $period->getInterval();
-        $this->parameters['SUB_PERIOD_MOMENT'] = $period->getMoment();
+        $this->parameters['sub_period_unit'] = $period->getUnit();
+        $this->parameters['sub_period_number'] = $period->getInterval();
+        $this->parameters['sub_period_moment'] = $period->getMoment();
     }
 
 
@@ -127,7 +121,7 @@ class SubscriptionPaymentRequest extends PaymentRequest {
      */
     public function setSubscriptionStartdate(DateTime $date)
     {
-        $this->parameters['SUB_STARTDATE'] = $date->format('Y-m-d');
+        $this->parameters['sub_startdate'] = $date->format('Y-m-d');
     }
 
     /**
@@ -138,7 +132,7 @@ class SubscriptionPaymentRequest extends PaymentRequest {
      */
     public function setSubscriptionEnddate(DateTime $date)
     {
-        $this->parameters['SUB_ENDDATE'] = $date->format('Y-m-d');
+        $this->parameters['sub_enddate'] = $date->format('Y-m-d');
     }
 
     /**
@@ -152,7 +146,7 @@ class SubscriptionPaymentRequest extends PaymentRequest {
         if (!in_array($status, array(0, 1))) {
             throw new InvalidArgumentException("Invalid status specified for subscription. Possible values: 0 = inactive, 1 = active");
         }
-        $this->parameters['SUB_STATUS'] = $status;
+        $this->parameters['sub_status'] = $status;
     }
 
     /**
@@ -169,18 +163,15 @@ class SubscriptionPaymentRequest extends PaymentRequest {
         if(preg_match('/[^a-zA-Z0-9_ -]/', $comment)) {
             throw new InvalidArgumentException("Subscription comment cannot contain special characters");
         }
-        $this->parameters['SUB_COMMENT'] = $comment;
+        $this->parameters['sub_comment'] = $comment;
     }
 
-    public function validate()
+    public function getRequiredFields()
     {
-        parent::validate();
-
-        foreach($this->requiredSubscriptionFields as $field)
-        {
-            if(!isset($this->parameters[$field])) {
-                throw new RuntimeException("$field can not be empty");
-            }
-        }
+        return array(
+            'pspid', 'currency', 'orderid',
+            'subscription_id', 'sub_amount', 'sub_com', 'sub_orderid', 'sub_period_unit',
+            'sub_period_number', 'sub_period_moment','sub_startdate', 'sub_enddate', 'sub_status'
+        );
     }
 }

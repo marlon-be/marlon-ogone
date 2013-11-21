@@ -15,21 +15,22 @@ use Ogone\Passphrase;
 use Ogone\ParameterFilter\ShaInParameterFilter;
 use Ogone\ShaComposer\AllParametersShaComposer;
 use Ogone\PaymentRequest;
+use Ogone\EcommercePaymentRequest;
+use Ogone\CreateAliasRequest;
+use Ogone\DirectLinkPaymentRequest;
 
 require_once 'PHPUnit/Framework/TestCase.php';
 require_once __DIR__.'/Ogone/Tests/ShaComposer/FakeShaComposer.php';
 
 abstract class TestCase extends PHPUnit_Framework_TestCase
 {
-	/** @return PaymentRequest*/
+	/** @return EcommercePaymentRequest*/
 	protected function provideMinimalPaymentRequest()
 	{
-		$paymentRequest = PaymentRequest::createFromArray(new FakeShaComposer, array(
-			'pspid' => '123456789',
-			'orderid' => '987654321',
-		));
-
-		$paymentRequest->setOgoneUri(PaymentRequest::TEST);
+        $paymentRequest = new EcommercePaymentRequest(new FakeShaComposer);
+        $paymentRequest->setPspid('123456789');
+        $paymentRequest->setOrderid('987654321');
+		$paymentRequest->setOgoneUri(EcommercePaymentRequest::TEST);
 
 		// minimal required fields for ogone (together with pspid and orderid)
 		$paymentRequest->setCurrency("EUR");
@@ -46,10 +47,10 @@ abstract class TestCase extends PHPUnit_Framework_TestCase
 		return $paymentRequest;
 	}
 
-	/** @return PaymentRequest*/
+	/** @return EcommercePaymentRequest*/
 	protected function provideCompletePaymentRequest()
 	{
-		/** @return PaymentRequest */
+
 		$paymentRequest = $this->provideMinimalPaymentRequest();
 
 		$paymentRequest->setAccepturl('http://example.com/accept');
@@ -72,5 +73,42 @@ abstract class TestCase extends PHPUnit_Framework_TestCase
 
 		return $paymentRequest;
 	}
+
+    /** @return EcommercePaymentRequest*/
+    protected function provideEcommercePaymentRequest()
+    {
+        $ecommercePaymentRequest = new EcommercePaymentRequest(new FakeShaComposer());
+        $ecommercePaymentRequest->setPspid('123456789');
+        $ecommercePaymentRequest->setOrderid('987654321');
+        $ecommercePaymentRequest->setCurrency('EUR');
+        $ecommercePaymentRequest->setAmount(100);
+
+        return $ecommercePaymentRequest;
+    }
+
+    /** @return CreateAliasRequest*/
+    protected function provideMinimalAliasRequest()
+    {
+        $aliasRequest = new CreateAliasRequest(new FakeShaComposer);
+        $aliasRequest->setPspid('18457454');
+        $aliasRequest->setAccepturl('http://example.com/accept');
+        $aliasRequest->setExceptionurl('http://example.com/exception');
+
+        return $aliasRequest;
+    }
+
+    /** @return DirectLinkPaymentRequest */
+    protected function provideMinimalDirectLinkPaymentRequest()
+    {
+        $directLinkRequest = new DirectLinkPaymentRequest(new FakeShaComposer());
+        $directLinkRequest->setPspid('123456');
+        $directLinkRequest->setUserId('user_1234');
+        $directLinkRequest->setPassword('abracadabra');
+        $directLinkRequest->setAmount(100);
+        $directLinkRequest->setCurrency('EUR');
+        $directLinkRequest->setOrderid('999');
+
+        return $directLinkRequest;
+    }
 
 }

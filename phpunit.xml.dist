@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<phpunit 
+<phpunit
 		 backupGlobals="false"
          backupStaticAttributes="false"
          colors="true"
@@ -35,4 +35,19 @@
 			<directory suffix=".php">lib</directory>
 		</whitelist>
 	</filter>
+
+    <php>
+        <const name="PSPID" value="your-ogone-pspid" />
+        <const name="PASSPHRASE_SHA_IN" value="your-sha-in"/>
+        <const name="PASSPHRASE_SHA_OUT" value="your-sha-out" />
+        <const name="USERID" value="api-user-id" />
+        <const name="PASSWORD" value="api-password" />
+    </php>
+
+    <groups>
+        <exclude>
+            <group>integration</group>
+        </exclude>
+    </groups>
+
 </phpunit>

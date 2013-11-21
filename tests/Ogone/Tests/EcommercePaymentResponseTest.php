@@ -11,18 +11,19 @@
 
 namespace Ogone\Tests;
 
+use Ogone\PaymentResponse;
 use Ogone\Tests\ShaComposer\FakeShaComposer;
 use Ogone\ShaComposer\ShaComposer;
-use Ogone\PaymentResponse;
+use Ogone\EcommercePaymentResponse;
 
-class PaymentResponseTest extends \TestCase
+class EcommercePaymentResponseTest extends \TestCase
 {
 	/** @test */
 	public function CanBeVerified()
 	{
 		$aRequest = $this->provideRequest();
 
-		$paymentResponse = new PaymentResponse($aRequest);
+		$paymentResponse = new EcommercePaymentResponse($aRequest);
 		$this->assertTrue($paymentResponse->isValid(new FakeShaComposer));
 	}
 
@@ -32,7 +33,7 @@ class PaymentResponseTest extends \TestCase
 	*/
 	public function CannotExistWithoutShaSign()
 	{
-		$paymentResponse = new PaymentResponse(array());
+		$paymentResponse = new EcommercePaymentResponse(array());
 	}
 
 	/** @test */
@@ -40,7 +41,7 @@ class PaymentResponseTest extends \TestCase
 	{
 		$aRequest = $this->provideRequest();
 
-		$paymentResponse = new PaymentResponse($aRequest);
+		$paymentResponse = new EcommercePaymentResponse($aRequest);
 		$this->assertEquals($aRequest['orderID'], $paymentResponse->getParam('orderid'));
 	}
 
@@ -52,7 +53,7 @@ class PaymentResponseTest extends \TestCase
 	{
 		$aRequest = $this->provideRequest();
 
-		$paymentResponse = new PaymentResponse($aRequest);
+		$paymentResponse = new EcommercePaymentResponse($aRequest);
 		$paymentResponse->getParam('unknown_param');
 	}
 
@@ -61,7 +62,7 @@ class PaymentResponseTest extends \TestCase
 	{
 		$aRequest = $this->provideRequest();
 
-		$paymentResponse = new PaymentResponse($aRequest);
+		$paymentResponse = new EcommercePaymentResponse($aRequest);
 		$this->assertTrue($paymentResponse->isSuccessful());
 	}
 
@@ -70,7 +71,7 @@ class PaymentResponseTest extends \TestCase
 	{
 		$aRequest = $this->provideRequest();
 
-		$paymentResponse = new PaymentResponse($aRequest);
+		$paymentResponse = new EcommercePaymentResponse($aRequest);
 		$this->assertEquals(100, $paymentResponse->getParam('amount'));
 	}
 
@@ -80,9 +81,19 @@ class PaymentResponseTest extends \TestCase
 			array('17.89', 1789),
 			array('65.35', 6535),
 			array('12.99', 1299),
+            array('1.0', 100)
 		);
-
 	}
+
+    /**
+     * @test
+     * @expectedException InvalidArgumentException
+     */
+    public function InvalidForInvalidCurrency()
+    {
+        $paymentResponse = new EcommercePaymentResponse(array('amount' => 'NaN', 'shasign' => '123'));
+        $paymentResponse->getParam('amount');
+    }
 
 	/**
 	 * @test
@@ -90,7 +101,7 @@ class PaymentResponseTest extends \TestCase
 	 */
 	public function CorrectlyConvertsFloatAmountsToInteger($string, $integer)
 	{
-		$paymentResponse = new PaymentResponse(array('amount' => $string, 'shasign' => '123'));
+		$paymentResponse = new EcommercePaymentResponse(array('amount' => $string, 'shasign' => '123'));
 		$this->assertEquals($integer, $paymentResponse->getParam('amount'));
 	}
 

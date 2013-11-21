@@ -62,6 +62,8 @@ class AllParametersShaComposerTest extends \TestCase
 		$expectedSha2 = 'D58400479DCEDD6B6C7E67D61FDC0CC9E6ED65CB';
 		$request2 = $this->createExtensiveParameterSet();
 
+
+
 		return array(
 			array($passphrase, $request1, $expectedSha1),
 			array($passphrase, $request2, $expectedSha2),

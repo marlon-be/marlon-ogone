@@ -11,6 +11,7 @@
 
 namespace Ogone\FormGenerator;
 
+use Ogone\EcommercePaymentRequest;
 use Ogone\PaymentRequest;
 
 /**
@@ -26,7 +27,7 @@ class UrlGenerator implements FormGenerator
      *
      * @return string url
      */
-    public function render(PaymentRequest $paymentRequest)
+    public function render(EcommercePaymentRequest $paymentRequest)
     {
         $parameters = $paymentRequest->toArray();
 
