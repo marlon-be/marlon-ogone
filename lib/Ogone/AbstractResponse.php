@@ -14,9 +14,6 @@ use InvalidArgumentException;
 
 abstract class AbstractResponse implements Response {
 
-    /** @var string */
-    const SHASIGN_FIELD = 'SHASIGN';
-
     /**
      * Available Ogone parameters
      * @var array
@@ -96,4 +93,4 @@ abstract class AbstractResponse implements Response {
 
         return $this->parameters[$key];
     }
-} 
+}

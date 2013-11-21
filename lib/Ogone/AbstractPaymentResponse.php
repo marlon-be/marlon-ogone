@@ -11,8 +11,8 @@
 namespace Ogone;
 
 
-abstract class AbstractPaymentResponse extends AbstractResponse {
-
+abstract class AbstractPaymentResponse extends AbstractResponse implements PaymentResponse
+{
     /**
      * @return int Amount in cents
      */
@@ -41,7 +41,7 @@ abstract class AbstractPaymentResponse extends AbstractResponse {
 
     public function isSuccessful()
     {
-        return in_array($this->getParam('STATUS'), array(5, 9));
+        return in_array($this->getParam('STATUS'), array(PaymentResponse::STATUS_AUTHORISED, PaymentResponse::STATUS_PAYMENT_REQUESTED));
     }
 
-} 
+}

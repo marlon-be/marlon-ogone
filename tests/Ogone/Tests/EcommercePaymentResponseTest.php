@@ -11,6 +11,7 @@
 
 namespace Ogone\Tests;
 
+use Ogone\PaymentResponse;
 use Ogone\Tests\ShaComposer\FakeShaComposer;
 use Ogone\ShaComposer\ShaComposer;
 use Ogone\EcommercePaymentResponse;

@@ -12,5 +12,8 @@ namespace Ogone;
 
 interface Response {
 
+    /** @var string */
+    const SHASIGN_FIELD = 'SHASIGN';
+
     public function isSuccessful();
-} 
+}
