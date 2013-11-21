@@ -20,6 +20,9 @@ use Ogone\ParameterFilter\ShaOutParameterFilter;
 use Ogone\DirectLinkPaymentRequest;
 use Ogone\DirectLinkPaymentResponse;
 
+/**
+ * @group integration
+ */
 class OgoneTest extends \TestCase {
 
     /**
@@ -156,4 +159,4 @@ class OgoneTest extends \TestCase {
 
         return $createAliasResponse;
     }
-} 
+}

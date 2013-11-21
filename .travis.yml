@@ -10,4 +10,4 @@ notifications:
 
 before_script:
    - composer install --dev
-   - phpunit
+   - phpunit --exclude-group=integration
