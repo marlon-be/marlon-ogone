@@ -9,12 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace Ogone\Tests;
+namespace Ogone\Tests\Ecommerce;
 
 use Ogone\Tests\ShaComposer\FakeShaComposer;
-use Ogone\ShaComposer\AllParametersShaComposer;
-
-use Ogone\EcommercePaymentRequest;
+use Ogone\Ecommerce\EcommercePaymentRequest;
 
 class EcommercePaymentRequestTest extends \TestCase
 {

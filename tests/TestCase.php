@@ -15,7 +15,7 @@ use Ogone\Passphrase;
 use Ogone\ParameterFilter\ShaInParameterFilter;
 use Ogone\ShaComposer\AllParametersShaComposer;
 use Ogone\PaymentRequest;
-use Ogone\EcommercePaymentRequest;
+use Ogone\Ecommerce\EcommercePaymentRequest;
 use Ogone\CreateAliasRequest;
 use Ogone\DirectLinkPaymentRequest;
 

@@ -4,7 +4,7 @@ namespace Ogone\Subscription;
 
 use InvalidArgumentException;
 use DateTime;
-use Ogone\EcommercePaymentRequest;
+use Ogone\Ecommerce\EcommercePaymentRequest;
 
 class SubscriptionPaymentRequest extends EcommercePaymentRequest {
 

@@ -8,8 +8,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Ogone;
+namespace Ogone\Ecommerce;
 
+use Ogone\AbstractPaymentResponse;
 use Ogone\ShaComposer\ShaComposer;
 
 class EcommercePaymentResponse extends AbstractPaymentResponse {
@@ -22,4 +23,4 @@ class EcommercePaymentResponse extends AbstractPaymentResponse {
     {
         return $shaComposer->compose($this->parameters) == $this->shaSign;
     }
-} 
+}

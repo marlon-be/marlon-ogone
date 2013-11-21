@@ -8,8 +8,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Ogone;
+namespace Ogone\Ecommerce;
 
+use Ogone\AbstractPaymentRequest;
 use Ogone\ShaComposer\ShaComposer;
 
 class EcommercePaymentRequest extends AbstractPaymentRequest {
@@ -34,4 +35,4 @@ class EcommercePaymentRequest extends AbstractPaymentRequest {
     {
         return array(self::TEST, self::PRODUCTION);
     }
-} 
+}

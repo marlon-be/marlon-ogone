@@ -60,7 +60,7 @@ This library currently supports both the legacy method "Main parameters only" an
 ```php
 	<?php
 	use Ogone\Passphrase;
-	use Ogone\EcommercePaymentRequest;
+	use Ogone\Ecommerce\EcommercePaymentRequest;
 	use Ogone\FormGenerator;
 
 	$passphrase = new Passphrase('my-sha-in-passphrase-defined-in-ogone-interface');

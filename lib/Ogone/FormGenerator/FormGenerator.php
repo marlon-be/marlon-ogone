@@ -11,7 +11,7 @@
 
 namespace Ogone\FormGenerator;
 
-use Ogone\EcommercePaymentRequest;
+use Ogone\Ecommerce\EcommercePaymentRequest;
 
 interface FormGenerator
 {

@@ -2,7 +2,7 @@
 
 namespace Ogone\Tests\FormGenerator;
 
-use Ogone\EcommercePaymentRequest;
+use Ogone\Ecommerce\EcommercePaymentRequest;
 use Ogone\FormGenerator\UrlGenerator;
 use Ogone\PaymentRequest;
 use Ogone\Tests\ShaComposer\FakeShaComposer;
