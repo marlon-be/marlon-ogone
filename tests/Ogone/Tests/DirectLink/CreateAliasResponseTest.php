@@ -8,9 +8,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Ogone\Tests;
+namespace Ogone\Tests\DirectLink;
 
-use Ogone\CreateAliasResponse;
+use Ogone\DirectLink\CreateAliasResponse;
 use Ogone\Tests\ShaComposer\FakeShaComposer;
 
 class CreateAliasResponseTest extends \TestCase {
@@ -75,4 +75,4 @@ class CreateAliasResponseTest extends \TestCase {
         );
     }
 
-} 
+}

@@ -91,8 +91,8 @@ This library currently supports both the legacy method "Main parameters only" an
 	<?php
 
 	use Ogone\Passphrase;
-	use Ogone\CreateAliasRequest;
-	use Ogone\Alias;
+	use Ogone\DirectLink\CreateAliasRequest;
+	use Ogone\DirectLink\Alias;
 
 	$passphrase = new Passphrase('my-sha-in-passphrase-defined-in-ogone-interface');
 	$shaComposer = new AllParametersShaComposer($passphrase);
@@ -125,10 +125,10 @@ This library currently supports both the legacy method "Main parameters only" an
 ```php
 	<?php
 
-	use Ogone\DirectLinkPaymentRequest;
+	use Ogone\DirectLink\DirectLinkPaymentRequest;
 	use Ogone\Passphrase;
 	use Ogone\ShaComposer\AllParametersShaComposer;
-	use Ogone\Alias;
+	use Ogone\DirectLink\Alias;
 
 	$passphrase = new Passphrase('my-sha-in-passphrase-defined-in-ogone-interface');
 	$shaComposer = new AllParametersShaComposer($passphrase);
@@ -180,7 +180,7 @@ This library currently supports both the legacy method "Main parameters only" an
 ```php
   	<?php
 
-	use Ogone\CreateAliasResponse;
+	use Ogone\DirectLink\CreateAliasResponse;
 	use Ogone\ShaComposer\AllParametersShaComposer;
 
 	// ...
@@ -207,7 +207,7 @@ As the DirectLink payment gets an instant feedback from the server (and no async
 ```php
 	<?php
 
-	use Ogone\DirectLinkPaymentResponse;
+	use Ogone\DirectLink\DirectLinkPaymentResponse;
 
 	$directLinkResponse = new DirectLinkPaymentResponse('ogone-direct-link-result-as-xml');
 

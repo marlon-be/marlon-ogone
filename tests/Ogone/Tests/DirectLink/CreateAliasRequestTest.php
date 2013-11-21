@@ -8,11 +8,11 @@
  * file that was distributed with this source code.
  */
 
-namespace Ogone\Tests;
+namespace Ogone\Tests\DirectLink;
 
 use Ogone\Tests\ShaComposer\FakeShaComposer;
-use Ogone\CreateAliasRequest;
-use Ogone\Alias;
+use Ogone\DirectLink\CreateAliasRequest;
+use Ogone\DirectLink\Alias;
 
 class CreateAliasRequestTest extends \TestCase {
 
@@ -93,4 +93,4 @@ class CreateAliasRequestTest extends \TestCase {
         $aliasRequest->setAlias($alias);
         $aliasRequest->validate();
     }
-} 
+}

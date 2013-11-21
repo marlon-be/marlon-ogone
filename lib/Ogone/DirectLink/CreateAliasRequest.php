@@ -8,10 +8,10 @@
  * file that was distributed with this source code.
  */
 
-namespace Ogone;
+namespace Ogone\DirectLink;
 
+use Ogone\AbstractRequest;
 use Ogone\ShaComposer\ShaComposer;
-use Ogone\Alias;
 
 class CreateAliasRequest extends AbstractRequest {
 

@@ -12,13 +12,13 @@ namespace Ogone\Tests;
 
 use Guzzle\Http\Client;
 use Ogone\Passphrase;
-use Ogone\Alias;
-use Ogone\CreateAliasRequest;
-use Ogone\CreateAliasResponse;
+use Ogone\DirectLink\Alias;
+use Ogone\DirectLink\CreateAliasRequest;
+use Ogone\DirectLink\CreateAliasResponse;
 use Ogone\ShaComposer\AllParametersShaComposer;
 use Ogone\ParameterFilter\ShaOutParameterFilter;
-use Ogone\DirectLinkPaymentRequest;
-use Ogone\DirectLinkPaymentResponse;
+use Ogone\DirectLink\DirectLinkPaymentRequest;
+use Ogone\DirectLink\DirectLinkPaymentResponse;
 
 /**
  * @group integration

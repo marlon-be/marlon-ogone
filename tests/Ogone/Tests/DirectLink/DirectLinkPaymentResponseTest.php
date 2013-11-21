@@ -8,10 +8,10 @@
  * file that was distributed with this source code.
  */
 
-namespace Ogone\Tests;
+namespace Ogone\Tests\DirectLink;
 
 use Ogone\Tests;
-use Ogone\DirectLinkPaymentResponse;
+use Ogone\DirectLink\DirectLinkPaymentResponse;
 
 class DirectLinkPaymentResponseTest extends \TestCase {
 
@@ -131,4 +131,4 @@ class DirectLinkPaymentResponseTest extends \TestCase {
 
         return $xml;
     }
-} 
+}

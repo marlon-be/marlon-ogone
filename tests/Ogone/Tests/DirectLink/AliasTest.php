@@ -8,9 +8,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Ogone\Tests;
+namespace Ogone\Tests\DirectLink;
 
-use Ogone\Alias;
+use Ogone\DirectLink\Alias;
 
 class AliasTest extends \TestCase
 {

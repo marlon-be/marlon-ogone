@@ -8,8 +8,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Ogone;
+namespace Ogone\DirectLink;
 
+use Ogone\AbstractPaymentResponse;
 use SimpleXMLElement;
 use InvalidArgumentException;
 
@@ -49,4 +50,4 @@ class DirectLinkPaymentResponse extends AbstractPaymentResponse {
 
         return $attributesArray;
     }
-} 
+}

@@ -8,10 +8,10 @@
  * file that was distributed with this source code.
  */
 
-namespace Ogone;
+namespace Ogone\DirectLink;
 
+use Ogone\AbstractResponse;
 use Ogone\ShaComposer\ShaComposer;
-use Ogone\Alias;
 
 class CreateAliasResponse extends AbstractResponse {
 

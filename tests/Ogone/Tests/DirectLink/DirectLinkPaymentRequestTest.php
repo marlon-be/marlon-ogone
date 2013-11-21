@@ -8,12 +8,12 @@
  * file that was distributed with this source code.
  */
 
-namespace Ogone\Tests;
+namespace Ogone\Tests\DirectLink;
 
 use Ogone\Tests;
 use Ogone\Tests\ShaComposer\FakeShaComposer;
-use Ogone\DirectLinkPaymentRequest;
-use Ogone\Alias;
+use Ogone\DirectLink\DirectLinkPaymentRequest;
+use Ogone\DirectLink\Alias;
 
 class DirectLinkPaymentRequestTest extends \TestCase {
 
@@ -98,4 +98,4 @@ class DirectLinkPaymentRequestTest extends \TestCase {
             array('setUserid', '12')
         );
     }
-} 
+}

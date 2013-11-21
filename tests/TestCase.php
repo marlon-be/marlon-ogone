@@ -16,8 +16,8 @@ use Ogone\ParameterFilter\ShaInParameterFilter;
 use Ogone\ShaComposer\AllParametersShaComposer;
 use Ogone\PaymentRequest;
 use Ogone\Ecommerce\EcommercePaymentRequest;
-use Ogone\CreateAliasRequest;
-use Ogone\DirectLinkPaymentRequest;
+use Ogone\DirectLink\CreateAliasRequest;
+use Ogone\DirectLink\DirectLinkPaymentRequest;
 
 require_once 'PHPUnit/Framework/TestCase.php';
 require_once __DIR__.'/Ogone/Tests/ShaComposer/FakeShaComposer.php';
