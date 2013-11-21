@@ -2,6 +2,7 @@
 
 namespace Ogone\Tests\FormGenerator;
 
+use Ogone\EcommercePaymentRequest;
 use Ogone\FormGenerator\UrlGenerator;
 use Ogone\PaymentRequest;
 use Ogone\Tests\ShaComposer\FakeShaComposer;
@@ -10,7 +11,7 @@ class UrlGeneratorTest extends \TestCase {
 
     /** @test */
     public function GeneratesAnUrl() {
-        $expected = PaymentRequest::TEST . '?'.
+        $expected = EcommercePaymentRequest::TEST . '?'.
             'pspid=123456789' . '&'.
             'orderid=987654321' . '&'.
             'currency=EUR' . '&'.
@@ -28,6 +29,6 @@ class UrlGeneratorTest extends \TestCase {
 
         $url = $urlGenerator->render($paymentRequest);
 
-        $this->assertEquals($expected, $url);
+        $this->assertEquals(strtolower($expected), strtolower($url));
     }
 }
