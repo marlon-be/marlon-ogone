@@ -243,7 +243,7 @@ abstract class AbstractRequest implements Request {
     public function toArray()
     {
         $this->validate();
-        return $this->parameters;
+        return array_change_key_case($this->parameters, CASE_UPPER);
     }
 
 } 

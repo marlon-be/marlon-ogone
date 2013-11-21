@@ -19,11 +19,7 @@ class Alias {
 
     public function __construct($alias)
     {
-        if($alias === null) {
-            throw new InvalidArgumentException("Alias cannot be null");
-        }
-
-        if($alias == '') {
+        if(empty($alias)) {
             throw new InvalidArgumentException("Alias cannot be empty");
         }
 

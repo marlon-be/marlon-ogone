@@ -43,7 +43,7 @@ abstract class AbstractResponse implements Response {
      */
     public function __construct(array $httpRequest)
     {
-        // use lowercase internally
+        // use uppercase internally
         $httpRequest = array_change_key_case($httpRequest, CASE_UPPER);
 
         // set sha sign
