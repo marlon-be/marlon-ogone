@@ -27,7 +27,7 @@ class OgoneTest extends \TestCase {
      */
     public function AliasCreationIsSuccessful()
     {
-        $passphraseOut = new Passphrase($GLOBALS['passphrase_sha_out']);
+        $passphraseOut = new Passphrase(PASSPHRASE_SHA_OUT);
         $shaOutComposer = new AllParametersShaComposer($passphraseOut);
         $shaOutComposer->addParameterFilter(new ShaOutParameterFilter());
 
@@ -45,7 +45,7 @@ class OgoneTest extends \TestCase {
      */
     public function DirectLinkPaymentIsSuccessful($alias)
     {
-        $passphrase = new Passphrase($GLOBALS['passphrase_sha_in']);
+        $passphrase = new Passphrase(PASSPHRASE_SHA_IN);
         $shaComposer = new AllParametersShaComposer($passphrase);
         $directLinkRequest = new DirectLinkPaymentRequest($shaComposer);
 
@@ -53,9 +53,9 @@ class OgoneTest extends \TestCase {
         $directLinkRequest->setOrderid($orderId);
 
         $alias = new Alias($alias);
-        $directLinkRequest->setPspid($GLOBALS['pspid']);
-        $directLinkRequest->setUserId($GLOBALS['userid']);
-        $directLinkRequest->setPassword($GLOBALS['password']);
+        $directLinkRequest->setPspid(PSPID);
+        $directLinkRequest->setUserId(USERID);
+        $directLinkRequest->setPassword(PASSWORD);
         $directLinkRequest->setAlias($alias);
         $directLinkRequest->setAmount(100);
         $directLinkRequest->setCurrency('EUR');
@@ -82,7 +82,7 @@ class OgoneTest extends \TestCase {
      */
     public function AliasIsCreatedByOgone()
     {
-        $passphraseOut = new Passphrase($GLOBALS['passphrase_sha_out']);
+        $passphraseOut = new Passphrase(PASSPHRASE_SHA_OUT);
         $shaOutComposer = new AllParametersShaComposer($passphraseOut);
         $shaOutComposer->addParameterFilter(new ShaOutParameterFilter());
 
@@ -97,7 +97,7 @@ class OgoneTest extends \TestCase {
      */
     public function CreateAliasInvalid()
     {
-        $passphraseOut = new Passphrase($GLOBALS['passphrase_sha_out']);
+        $passphraseOut = new Passphrase(PASSPHRASE_SHA_OUT);
         $shaOutComposer = new AllParametersShaComposer($passphraseOut);
         $shaOutComposer->addParameterFilter(new ShaOutParameterFilter());
 
@@ -113,11 +113,11 @@ class OgoneTest extends \TestCase {
         /*
          *  Create an alias request to Ogone
          */
-        $passphrase = new Passphrase($GLOBALS['passphrase_sha_in']);
+        $passphrase = new Passphrase(PASSPHRASE_SHA_IN);
         $shaComposer = new AllParametersShaComposer($passphrase);
 
         $createAliasRequest = new CreateAliasRequest($shaComposer);
-        $createAliasRequest->setPspid($GLOBALS['pspid']);
+        $createAliasRequest->setPspid(PSPID);
         $createAliasRequest->setAccepturl('http://www.example.com');
         $createAliasRequest->setExceptionurl('http://www.example.com');
 

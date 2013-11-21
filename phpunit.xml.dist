@@ -37,11 +37,11 @@
 	</filter>
 
     <php>
-        <var name="pspid" value="your-ogone-pspid" />
-        <var name="passphrase_sha_in" value="your-sha-in"/>
-        <var name="passphrase_sha_out" value="your-sha-out" />
-        <var name="userid" value="api-user-id" />
-        <var name="password" value="api-password" />
+        <const name="PSPID" value="your-ogone-pspid" />
+        <const name="PASSPHRASE_SHA_IN" value="your-sha-in"/>
+        <const name="PASSPHRASE_SHA_OUT" value="your-sha-out" />
+        <const name="USERID" value="api-user-id" />
+        <const name="PASSWORD" value="api-password" />
     </php>
 
 </phpunit>
