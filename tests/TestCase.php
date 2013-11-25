@@ -57,6 +57,7 @@ abstract class TestCase extends PHPUnit_Framework_TestCase
 		$paymentRequest->setDeclineurl('http://example.com/decline');
 		$paymentRequest->setExceptionurl('http://example.com/exception');
 		$paymentRequest->setCancelurl('http://example.com/cancel');
+        $paymentRequest->setBackurl('http://example.com/back');
 		$paymentRequest->setDynamicTemplateUri('http://example.com/template');
 
 		$paymentRequest->setCurrency('EUR');
