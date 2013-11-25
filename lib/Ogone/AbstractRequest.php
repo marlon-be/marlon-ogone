@@ -88,7 +88,7 @@ abstract class AbstractRequest implements Request {
     protected $ogoneFields = array(
         'pspid', 'orderid', 'com', 'amount', 'currency', 'language', 'cn', 'email',
         'ownerzip', 'owneraddress', 'ownercty', 'ownertown', 'ownertelno', 'accepturl',
-        'declineurl', 'exceptionurl', 'cancelurl', 'complus', 'paramplus', 'pm',
+        'declineurl', 'exceptionurl', 'cancelurl', 'backurl', 'complus', 'paramplus', 'pm',
         'brand', 'title', 'bgcolor', 'txtcolor', 'tblbgcolor', 'tbltxtcolor', 'buttonbgcolor',
         'buttontxtcolor', 'logo', 'fonttype', 'tp', 'paramvar'
     );
@@ -164,6 +164,12 @@ abstract class AbstractRequest implements Request {
     {
         $this->validateUri($cancelurl);
         $this->parameters['cancelurl'] = $cancelurl;
+    }
+
+    public function setBackurl($backurl)
+    {
+        $this->validateUri($backurl);
+        $this->parameters['backurl'] = $backurl;
     }
 
     /** Alias for setParamplus */
