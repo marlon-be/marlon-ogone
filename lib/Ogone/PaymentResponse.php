@@ -43,15 +43,19 @@ interface PaymentResponse extends Response
     /**
      * @var int
      */
-    const STATUS_PAYMENT = 91;
-    /**
-     * @var int
-     */
     const STATUS_AUTHORISATION_NOT_KNOWN = 52;
     /**
      * @var int
      */
+    const STATUS_PAYMENT = 91;
+    /**
+     * @var int
+     */
     const STATUS_PAYMENT_UNCERTAIN = 92;
+    /**
+     * @var int
+     */
+    const STATUS_PAYMENT_REFUSED = 93;
 
 
 }
