@@ -16,4 +16,6 @@ interface Response {
     const SHASIGN_FIELD = 'SHASIGN';
 
     public function isSuccessful();
+
+    public function getParam($key);
 }
