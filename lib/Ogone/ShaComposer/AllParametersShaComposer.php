@@ -13,6 +13,7 @@ namespace Ogone\ShaComposer;
 
 use Ogone\ParameterFilter\GeneralParameterFilter;
 use Ogone\Passphrase;
+use Ogone\HashAlgorithm;
 use Ogone\ParameterFilter\ParameterFilter;
 
 /**
@@ -28,14 +29,18 @@ class AllParametersShaComposer implements ShaComposer
 	 */
 	private $passphrase;
 
-	/**
-	 * @param string $passphrase
-	 */
-	public function __construct(Passphrase $passphrase)
+    /**
+     * @var HashAlgorithm
+     */
+    private $hashAlgorithm;
+
+	public function __construct(Passphrase $passphrase, HashAlgorithm $hashAlgorithm = null)
 	{
 		$this->passphrase = $passphrase;
 
 		$this->addParameterFilter(new GeneralParameterFilter);
+
+        $this->hashAlgorithm = $hashAlgorithm ?: new HashAlgorithm(HashAlgorithm::HASH_SHA1);
 	}
 
 	public function compose(array $parameters)
@@ -52,7 +57,7 @@ class AllParametersShaComposer implements ShaComposer
 			$shaString .= $key . '=' . $value . $this->passphrase;
 		}
 
-		return strtoupper(sha1($shaString));
+		return strtoupper(hash($this->hashAlgorithm, $shaString));
 	}
 
 	public function addParameterFilter(ParameterFilter $parameterFilter)

@@ -11,21 +11,20 @@
 
 namespace Ogone\FormGenerator;
 
-use Ogone\PaymentRequest;
-use InvalidArgumentException;
+use Ogone\Ecommerce\EcommercePaymentRequest;
 
 class SimpleFormGenerator implements FormGenerator
 {
-	private $paymentRequest;
+	private $ecommercePaymentRequest;
 
 	private $showSubmitButton = true;
 
 	private $formName = 'ogone';
 
 	/** @return string */
-	public function render(PaymentRequest $paymentRequest)
+	public function render(EcommercePaymentRequest $ecommercePaymentRequest)
 	{
-		$this->paymentRequest = $paymentRequest;
+		$this->ecommercePaymentRequest = $ecommercePaymentRequest;
 		ob_start();
 		include __DIR__.'/template/simpleForm.php';
 		return ob_get_clean();
@@ -33,17 +32,17 @@ class SimpleFormGenerator implements FormGenerator
 
 	protected function getParameters()
 	{
-		return $this->paymentRequest->toArray();
+		return $this->ecommercePaymentRequest->toArray();
 	}
 
 	protected function getOgoneUri()
 	{
-		return $this->paymentRequest->getOgoneUri();
+		return $this->ecommercePaymentRequest->getOgoneUri();
 	}
 
 	protected function getShaSign()
 	{
-		return $this->paymentRequest->getShaSign();
+		return $this->ecommercePaymentRequest->getShaSign();
 	}
 
 	public function showSubmitButton($bool = true)

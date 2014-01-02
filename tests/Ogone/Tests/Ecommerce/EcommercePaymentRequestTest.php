@@ -9,14 +9,12 @@
  * file that was distributed with this source code.
  */
 
-namespace Ogone\Tests;
+namespace Ogone\Tests\Ecommerce;
 
 use Ogone\Tests\ShaComposer\FakeShaComposer;
-use Ogone\ShaComposer\AllParametersShaComposer;
+use Ogone\Ecommerce\EcommercePaymentRequest;
 
-use Ogone\PaymentRequest;
-
-class PaymentRequestTest extends \TestCase
+class EcommercePaymentRequestTest extends \TestCase
 {
 	/** @test */
 	public function IsValidWhenRequiredFieldsAreFilledIn()
@@ -38,14 +36,14 @@ class PaymentRequestTest extends \TestCase
 	 */
 	public function IsInvalidWhenFieldsAreMissing()
 	{
-		$paymentRequest = new PaymentRequest(new FakeShaComposer);
+		$paymentRequest = new EcommercePaymentRequest(new FakeShaComposer);
 		$paymentRequest->validate();
 	}
 
 	/** @test */
 	public function UnimportantParamsUseMagicSetters()
 	{
-		$paymentRequest = new PaymentRequest(new FakeShaComposer);
+		$paymentRequest = new EcommercePaymentRequest(new FakeShaComposer);
 		$paymentRequest->setBgcolor('FFFFFF');
 		$this->assertEquals('FFFFFF', $paymentRequest->getBgcolor());
 	}
@@ -57,7 +55,7 @@ class PaymentRequestTest extends \TestCase
 	 */
 	public function BadParametersCauseExceptions($method, $value)
 	{
-		$paymentRequest = new PaymentRequest(new FakeShaComposer);
+		$paymentRequest = new EcommercePaymentRequest(new FakeShaComposer);
 		$paymentRequest->$method($value);
 	}
 
@@ -67,7 +65,7 @@ class PaymentRequestTest extends \TestCase
 	 */
 	public function UnknownMethodFails()
 	{
-		$paymentRequest = new PaymentRequest(new FakeShaComposer);
+		$paymentRequest = new EcommercePaymentRequest(new FakeShaComposer);
 		$paymentRequest->getFoobar();
 	}
 
@@ -81,8 +79,10 @@ class PaymentRequestTest extends \TestCase
 			array('setAccepturl', $notAUri),
 			array('setAmount', 10.50),
 			array('setAmount', -1),
-			//array('setBrand', ''),
+            array('setAmount', 1000000000000000),
+			array('setBrand', 'Oxfam'),
 			array('setCancelurl', $notAUri),
+            array('setCancelurl', $longUri),
 			array('setCurrency', 'Belgische Frank'),
 			//array('setCustomername', ''),
 			array('setDeclineurl', $notAUri),
@@ -103,17 +103,9 @@ class PaymentRequestTest extends \TestCase
 			array('setOwnerTown', $longString),
 			array('setOwnerZip', $longString),
 			array('setParamvar', $longString),
-			//array('setPaymentMethod', ''),
+			array('setPaymentMethod', 'Digital'),
 			array('setPspid', $longString),
 		);
 	}
-	
-    /**
-     * @test
-     * @expectedException \InvalidArgumentException
-     */
-    public function CreateFromArrayInvalidPhone()
-    {
-        $paymentRequest = PaymentRequest::createFromArray(new FakeShaComposer, array('language'=>'West-Vlaams'));
-    }
+
 }

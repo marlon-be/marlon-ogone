@@ -1,5 +1,4 @@
 <?php
-
 /*
  * This file is part of the Marlon Ogone package.
  *
@@ -9,12 +8,14 @@
  * file that was distributed with this source code.
  */
 
-namespace Ogone\FormGenerator;
+namespace Ogone;
 
-use Ogone\Ecommerce\EcommercePaymentRequest;
+interface Response {
 
-interface FormGenerator
-{
-	/** @return string Html */
-	function render(EcommercePaymentRequest $paymentRequest);
+    /** @var string */
+    const SHASIGN_FIELD = 'SHASIGN';
+
+    public function isSuccessful();
+
+    public function getParam($key);
 }

@@ -2,5 +2,9 @@
     "name": "marlon-be/marlon-ogone",
     "autoload": {
         "psr-0": { "Ogone": "lib/" }
+    },
+    "require-dev" : {
+        "phpunit/phpunit": "3.7.*",
+        "guzzle/guzzle": "3.7.*"
     }
 }

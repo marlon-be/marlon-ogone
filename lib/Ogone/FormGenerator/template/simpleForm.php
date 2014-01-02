@@ -1,10 +1,10 @@
 <form method="post" action="<?php echo $this->getOgoneUri()?>" id="<?php echo $this->formName?>" name="<?php echo $this->formName?>">
 <?php foreach($this->getParameters() as $key => $value) :?>
-	<?php if($value) :?>
+	<?php if(false !== $value) :?>
 	<input type="hidden" name="<?php echo $key?>" value="<?php echo htmlspecialchars($value) ?>"  />
 	<?php endif?>
 <?php endforeach?>
-<input type="hidden" name="SHASIGN" value="<?php echo $this->getShaSign()?>" />
+<input type="hidden" name="<?php echo Ogone\PaymentRequest::SHASIGN_FIELD ?>" value="<?php echo $this->getShaSign()?>" />
 
 <?php if($this->showSubmitButton) :?>
 	<input name="ogonesubmit" type="submit" value="Submit" id="ogonesubmit" />
