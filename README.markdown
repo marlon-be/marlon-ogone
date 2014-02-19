@@ -158,7 +158,7 @@ This library currently supports both the legacy method "Main parameters only" an
 ```php
   	<?php
 
-	use Ogone\EcommercePaymentResponse;
+	use Ogone\Ecommerce\EcommercePaymentResponse;
 	use Ogone\ShaComposer\AllParametersShaComposer;
 
 	// ...
