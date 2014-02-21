@@ -61,7 +61,7 @@ This library currently supports both the legacy method "Main parameters only" an
 	<?php
 	use Ogone\Passphrase;
 	use Ogone\Ecommerce\EcommercePaymentRequest;
-        use Ogone\ShaComposer\AllParametersShaComposer;
+    use Ogone\ShaComposer\AllParametersShaComposer;
 	use Ogone\FormGenerator;
 
 	$passphrase = new Passphrase('my-sha-in-passphrase-defined-in-ogone-interface');
@@ -93,7 +93,7 @@ This library currently supports both the legacy method "Main parameters only" an
 
 	use Ogone\Passphrase;
 	use Ogone\DirectLink\CreateAliasRequest;
-        use Ogone\ShaComposer\AllParametersShaComposer;
+    use Ogone\ShaComposer\AllParametersShaComposer;
 	use Ogone\DirectLink\Alias;
 
 	$passphrase = new Passphrase('my-sha-in-passphrase-defined-in-ogone-interface');
