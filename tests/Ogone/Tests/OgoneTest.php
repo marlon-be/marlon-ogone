@@ -11,6 +11,7 @@
 namespace Ogone\Tests;
 
 use Guzzle\Http\Client;
+use Ogone\DirectLink\Eci;
 use Ogone\Passphrase;
 use Ogone\DirectLink\Alias;
 use Ogone\DirectLink\CreateAliasRequest;
@@ -62,6 +63,7 @@ class OgoneTest extends \TestCase {
         $directLinkRequest->setAlias($alias);
         $directLinkRequest->setAmount(100);
         $directLinkRequest->setCurrency('EUR');
+        $directLinkRequest->setEci(new Eci(Eci::ECOMMERCE_RECURRING));
         $directLinkRequest->validate();
 
         $body = array();
@@ -80,45 +82,6 @@ class OgoneTest extends \TestCase {
         $this->assertTrue($directLinkResponse->isSuccessful());
 
         return $alias;
-    }
-
-    /**
-     * @test
-     * @depends DirectLinkPaymentIsSuccessful
-     */
-    public function DirectLinkRecurrentPaymentIsSuccessful($alias)
-    {
-        $passphrase = new Passphrase(PASSPHRASE_SHA_IN);
-        $shaComposer = new AllParametersShaComposer($passphrase);
-        $directLinkRequest = new DirectLinkPaymentRequest($shaComposer);
-
-        $orderId = uniqid('order_'); // create a unique order id
-        $directLinkRequest->setOrderid($orderId);
-
-        $alias = new Alias($alias);
-        $directLinkRequest->setPspid(PSPID);
-        $directLinkRequest->setUserId(USERID);
-        $directLinkRequest->setPassword(PASSWORD);
-        $directLinkRequest->setAlias($alias);
-        $directLinkRequest->setAmount(100);
-        $directLinkRequest->setCurrency('EUR');
-        $directLinkRequest->setAsRecurrentPayment();
-        $directLinkRequest->validate();
-
-        $body = array();
-        foreach($directLinkRequest->toArray() as $key => $value) {
-            $body[strtoupper($key)] = $value;
-        }
-
-        $body['SHASIGN'] = $directLinkRequest->getShaSign();
-
-        $client = new Client($directLinkRequest->getOgoneUri());
-        $request = $client->post(null, null, $body);
-        $response = $request->send();
-
-        $directLinkResponse = new DirectLinkPaymentResponse($response->getBody(true));
-
-        $this->assertTrue($directLinkResponse->isSuccessful());
     }
 
     /**

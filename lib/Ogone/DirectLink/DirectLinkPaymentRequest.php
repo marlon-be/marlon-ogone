@@ -64,8 +64,8 @@ class DirectLinkPaymentRequest extends AbstractPaymentRequest {
         $this->parameters['alias'] = $alias->__toString();
     }
 
-    public function setAsRecurrentPayment()
+    public function setEci(Eci $eci)
     {
-        $this->parameters['eci'] = 9;
+        $this->parameters['eci'] = (string) $eci;
     }
 }
