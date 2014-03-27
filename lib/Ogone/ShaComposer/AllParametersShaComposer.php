@@ -57,7 +57,7 @@ class AllParametersShaComposer implements ShaComposer
 			$shaString .= $key . '=' . $value . $this->passphrase;
 		}
 
-		return strtoupper(hash($this->hashAlgorithm, $shaString));
+		return hash($this->hashAlgorithm, $shaString);
 	}
 
 	public function addParameterFilter(ParameterFilter $parameterFilter)
