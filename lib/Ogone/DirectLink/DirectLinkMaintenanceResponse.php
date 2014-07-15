@@ -16,6 +16,11 @@ class DirectLinkMaintenanceResponse extends DirectLinkPaymentResponse {
 
     protected function filterRequestParameters(array $httpRequest)
     {
-        return array_intersect_key($httpRequest, array_flip(array_merge($this->ogoneFields, array('NCERRORPLUS'))));
+        $fields = array(
+            'NCERRORPLUS',
+            'PAYIDSUB',
+        );
+
+        return array_intersect_key($httpRequest, array_flip(array_merge($this->ogoneFields, $fields)));
     }
 }
