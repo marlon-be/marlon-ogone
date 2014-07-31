@@ -45,7 +45,7 @@ class DirectLinkMaintenanceRequest extends AbstractDirectLinkRequest {
 
     public function setAmount($amount)
     {
-        if (!ctype_digit($amount)) {
+        if (!is_int($amount)) {
             throw new InvalidArgumentException("Amount should be an integer");
         }
 

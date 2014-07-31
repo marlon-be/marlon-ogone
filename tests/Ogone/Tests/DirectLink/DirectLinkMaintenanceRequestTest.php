@@ -52,6 +52,16 @@ class DirectLinkMaintenanceRequestTest extends \TestCase {
 
     /**
      * @test
+     */
+    public function isValidWithIntegerAmount()
+    {
+        $directLinkMaintenanceRequest = $this->provideMinimalDirectLinkMaintenanceRequest();
+        $directLinkMaintenanceRequest->setAmount(232);
+        $directLinkMaintenanceRequest->validate();
+    }
+
+    /**
+     * @test
      * @dataProvider provideBadParameters
      * @expectedException \InvalidArgumentException
      */
@@ -67,6 +77,8 @@ class DirectLinkMaintenanceRequestTest extends \TestCase {
             array('setPassword', '12'),
             array('setUserid', '12'),
             array('setOperation', 'ABC'),
+            array('setAmount', '232'),
+            array('setAmount', 2.32),
         );
     }
 }
