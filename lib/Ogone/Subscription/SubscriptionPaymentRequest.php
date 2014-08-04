@@ -117,7 +117,7 @@ class SubscriptionPaymentRequest extends EcommercePaymentRequest {
      * Subscription start date
      * @author René de Kat <renedekat@9lives-development.com>
      *
-     * @param DateTime $data 	Startdate of the subscription.
+     * @param DateTime $date 	Startdate of the subscription.
      */
     public function setSubscriptionStartdate(DateTime $date)
     {
@@ -128,7 +128,7 @@ class SubscriptionPaymentRequest extends EcommercePaymentRequest {
      * Subscription end date
      * @author René de Kat <renedekat@9lives-development.com>
      *
-     * @param DateTime $data 	Enddate of the subscription.
+     * @param DateTime $date 	Enddate of the subscription.
      */
     public function setSubscriptionEnddate(DateTime $date)
     {
