@@ -23,11 +23,10 @@ class UrlGenerator implements FormGenerator
 {
 
     /**
-     * @param PaymentRequest $paymentRequest
-     *
+     * @param EcommercePaymentRequest $paymentRequest
      * @return string url
      */
-    public static function render(EcommercePaymentRequest $paymentRequest)
+    public function render(EcommercePaymentRequest $paymentRequest)
     {
         $parameters = $paymentRequest->toArray();
 

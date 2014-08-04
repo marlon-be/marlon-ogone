@@ -26,7 +26,8 @@ class UrlGeneratorTest extends \TestCase {
 
         $paymentRequest = $this->provideMinimalPaymentRequest();
 
-        $url = UrlGenerator::render($paymentRequest);
+        $urlGenerator = new UrlGenerator();
+        $url = $urlGenerator->render($paymentRequest);
 
         $this->assertEquals(strtolower($expected), strtolower($url));
     }
