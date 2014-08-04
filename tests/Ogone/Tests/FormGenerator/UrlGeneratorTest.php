@@ -25,9 +25,8 @@ class UrlGeneratorTest extends \TestCase {
             PaymentRequest::SHASIGN_FIELD . '=' . FakeShaComposer::FAKESHASTRING;
 
         $paymentRequest = $this->provideMinimalPaymentRequest();
-        $urlGenerator = new UrlGenerator();
 
-        $url = $urlGenerator->render($paymentRequest);
+        $url = UrlGenerator::render($paymentRequest);
 
         $this->assertEquals(strtolower($expected), strtolower($url));
     }
