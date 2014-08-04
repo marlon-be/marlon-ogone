@@ -27,6 +27,21 @@ class EcommercePaymentResponseTest extends \TestCase
 		$this->assertTrue($paymentResponse->isValid(new FakeShaComposer));
 	}
 
+    /** @test */
+    public function CanBeConvertedToArray()
+    {
+        $aRequest = $this->provideRequest();
+
+        $paymentResponse = new EcommercePaymentResponse($aRequest);
+        $paymentResponse->isValid(new FakeShaComposer);
+        $array = $paymentResponse->toArray();
+        $this->assertArrayHasKey('ORDERID', $array);
+        $this->assertArrayHasKey('STATUS', $array);
+        $this->assertArrayHasKey('AMOUNT', $array);
+        $this->assertArrayHasKey('SHASIGN', $array);
+    }
+
+
 	/**
 	 * @test
 	 * @expectedException InvalidArgumentException
