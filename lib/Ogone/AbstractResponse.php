@@ -93,4 +93,13 @@ abstract class AbstractResponse implements Response {
 
         return $this->parameters[$key];
     }
+
+    /**
+     * Get all parameters + SHASIGN
+     * @return array
+     */
+    public function toArray()
+    {
+        return $this->parameters + array('SHASIGN' => $this->shaSign);
+    }
 }
