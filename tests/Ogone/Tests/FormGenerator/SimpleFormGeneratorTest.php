@@ -37,11 +37,8 @@ class SimpleFormGeneratorTest extends \TestCase
 			</form>';
 
 		$paymentRequest = $this->provideMinimalPaymentRequest();
-		$formGenerator = new SimpleFormGenerator;
-        $formGenerator->showSubmitButton(true);
-        $formGenerator->setFormName('ogone');
 
-		$html = $formGenerator->render($paymentRequest);
+		$html = SimpleFormGenerator::render($paymentRequest, 'ogone', true);
 
 		$this->assertXmlStringEqualsXmlString($expected, $html);
 	}
