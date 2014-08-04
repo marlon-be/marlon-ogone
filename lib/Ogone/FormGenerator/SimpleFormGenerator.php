@@ -15,43 +15,11 @@ use Ogone\Ecommerce\EcommercePaymentRequest;
 
 class SimpleFormGenerator implements FormGenerator
 {
-	private $ecommercePaymentRequest;
-
-	private $showSubmitButton = true;
-
-	private $formName = 'ogone';
-
 	/** @return string */
-	public function render(EcommercePaymentRequest $ecommercePaymentRequest)
+	public static function render(EcommercePaymentRequest $ecommercePaymentRequest, $formName = 'ogone', $showSubmitButton = true)
 	{
-		$this->ecommercePaymentRequest = $ecommercePaymentRequest;
 		ob_start();
 		include __DIR__.'/template/simpleForm.php';
 		return ob_get_clean();
-	}
-
-	protected function getParameters()
-	{
-		return $this->ecommercePaymentRequest->toArray();
-	}
-
-	protected function getOgoneUri()
-	{
-		return $this->ecommercePaymentRequest->getOgoneUri();
-	}
-
-	protected function getShaSign()
-	{
-		return $this->ecommercePaymentRequest->getShaSign();
-	}
-
-	public function showSubmitButton($bool = true)
-	{
-		$this->showSubmitButton = $bool;
-	}
-
-	public function setFormName($formName)
-	{
-		$this->formName = $formName;
 	}
 }

@@ -16,5 +16,5 @@ use Ogone\Ecommerce\EcommercePaymentRequest;
 interface FormGenerator
 {
 	/** @return string Html */
-	function render(EcommercePaymentRequest $paymentRequest);
+	public static function render(EcommercePaymentRequest $paymentRequest, $formName = 'ogone', $showSubmitButton = true);
 }
