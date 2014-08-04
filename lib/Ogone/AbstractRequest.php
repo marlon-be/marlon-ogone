@@ -87,10 +87,10 @@ abstract class AbstractRequest implements Request {
 
     protected $ogoneFields = array(
         'pspid', 'orderid', 'com', 'amount', 'currency', 'language', 'cn', 'email',
-        'ownerzip', 'owneraddress', 'ownercty', 'ownertown', 'ownertelno', 'accepturl',
-        'declineurl', 'exceptionurl', 'cancelurl', 'backurl', 'complus', 'paramplus', 'pm',
-        'brand', 'title', 'bgcolor', 'txtcolor', 'tblbgcolor', 'tbltxtcolor', 'buttonbgcolor',
-        'buttontxtcolor', 'logo', 'fonttype', 'tp', 'paramvar'
+        'cardno', 'cvc', 'ed', 'ownerzip', 'owneraddress', 'ownercty', 'ownertown',
+        'ownertelno', 'accepturl', 'declineurl', 'exceptionurl', 'cancelurl', 'backurl',
+        'complus', 'paramplus', 'pm', 'brand', 'title', 'bgcolor', 'txtcolor', 'tblbgcolor',
+        'tbltxtcolor', 'buttonbgcolor', 'buttontxtcolor', 'logo', 'fonttype', 'tp', 'paramvar'
     );
 
     /** @return string */
