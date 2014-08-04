@@ -53,11 +53,12 @@ abstract class AbstractResponse implements Response {
     /**
      * Filter http request parameters
      * @param array $requestParameters
+     * @return array
      */
-    protected function filterRequestParameters(array $httpRequest)
+    protected function filterRequestParameters(array $requestParameters)
     {
         // filter request for Ogone parameters
-        return array_intersect_key($httpRequest, array_flip($this->ogoneFields));
+        return array_intersect_key($requestParameters, array_flip($this->ogoneFields));
     }
 
     /**
@@ -75,7 +76,7 @@ abstract class AbstractResponse implements Response {
 
     /**
      * Retrieves a response parameter
-     * @param string $param
+     * @param string $key
      * @throws \InvalidArgumentException
      */
     public function getParam($key)

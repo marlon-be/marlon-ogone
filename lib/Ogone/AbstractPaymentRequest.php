@@ -11,10 +11,60 @@
 namespace Ogone;
 
 use InvalidArgumentException;
-use RuntimeException;
-use BadMethodCallException;
 
-abstract class AbstractPaymentRequest extends AbstractRequest {
+abstract class AbstractPaymentRequest extends AbstractRequest
+{
+    protected $brandsmap = array(
+        'Acceptgiro' => 'Acceptgiro',
+        'AIRPLUS' => 'CreditCard',
+        'American Express' => 'CreditCard',
+        'Aurora' => 'CreditCard',
+        'Aurore' => 'CreditCard',
+        'Bank transfer' => 'Bank transfer',
+        'BCMC' => 'CreditCard',
+        'Belfius Direct Net' => 'Belfius Direct Net',
+        'Billy' => 'CreditCard',
+        'cashU' => 'cashU',
+        'CB' => 'CreditCard',
+        'CBC Online' => 'CBC Online',
+        'CENTEA Online' => 'CENTEA Online',
+        'Cofinoga' => 'CreditCard',
+        'Dankort' => 'CreditCard',
+        'Dexia Direct Net' => 'Dexia Direct Net',
+        'Diners Club' => 'CreditCard',
+        'Direct Debits AT' => 'Direct Debits AT',
+        'Direct Debits DE' => 'Direct Debits DE',
+        'Direct Debits NL' => 'Direct Debits NL',
+        'eDankort' => 'eDankort',
+        'EPS' => 'EPS',
+        'Fortis Pay Button' => 'Fortis Pay Button',
+        'giropay' => 'giropay',
+        'iDEAL' => 'iDEAL',
+        'ING HomePay' => 'ING HomePay',
+        'InterSolve' => 'InterSolve',
+        'JCB' => 'CreditCard',
+        'KBC Online' => 'KBC Online',
+        'Maestro' => 'CreditCard',
+        'MaestroUK' => 'CreditCard',
+        'MasterCard' => 'CreditCard',
+        'MiniTix' => 'MiniTix',
+        'MPASS' => 'MPASS',
+        'NetReserve' => 'CreditCard',
+        'Payment on Delivery' => 'Payment on Delivery',
+        'PAYPAL' => 'PAYPAL',
+        'paysafecard' => 'paysafecard',
+        'PingPing' => 'PingPing',
+        'PostFinance + card' => 'PostFinance Card',
+        'PostFinance e-finance' => 'PostFinance e-finance',
+        'PRIVILEGE' => 'CreditCard',
+        'Sofort Uberweisung' => 'DirectEbanking',
+        'Solo' => 'CreditCard',
+        'TUNZ' => 'TUNZ',
+        'UATP' => 'CreditCard',
+        'UNEUROCOM' => 'UNEUROCOM',
+        'VISA' => 'CreditCard',
+        'Wallie' => 'Wallie',
+    );
 
     /** Note this is public to allow easy modification, if need be. */
     public $allowedcurrencies = array(
@@ -27,10 +77,10 @@ abstract class AbstractPaymentRequest extends AbstractRequest {
 
     public function setOrderid($orderid)
     {
-        if(strlen($orderid) > 30) {
+        if (strlen($orderid) > 30) {
             throw new InvalidArgumentException("Orderid cannot be longer than 30 characters");
         }
-        if(preg_match('/[^a-zA-Z0-9_-]/', $orderid)) {
+        if (preg_match('/[^a-zA-Z0-9_-]/', $orderid)) {
             throw new InvalidArgumentException("Order id cannot contain special characters");
         }
         $this->parameters['orderid'] = $orderid;
@@ -44,7 +94,7 @@ abstract class AbstractPaymentRequest extends AbstractRequest {
 
     public function setCom($com)
     {
-        if(strlen($com) > 100) {
+        if (strlen($com) > 100) {
             throw new InvalidArgumentException("Order description cannot be longer than 100 characters");
         }
         $this->parameters['com'] = $com;
@@ -55,13 +105,13 @@ abstract class AbstractPaymentRequest extends AbstractRequest {
      */
     public function setAmount($amount)
     {
-        if(!is_int($amount)) {
+        if (!is_int($amount)) {
             throw new InvalidArgumentException("Integer expected. Amount is always in cents");
         }
-        if($amount <= 0) {
+        if ($amount <= 0) {
             throw new InvalidArgumentException("Amount must be a positive number");
         }
-        if($amount >= 1.0E+15) {
+        if ($amount >= 1.0E+15) {
             throw new InvalidArgumentException("Amount is too high");
         }
         $this->parameters['amount'] = $amount;
@@ -70,7 +120,7 @@ abstract class AbstractPaymentRequest extends AbstractRequest {
 
     public function setCurrency($currency)
     {
-        if(!in_array(strtoupper($currency), $this->allowedcurrencies)) {
+        if (!in_array(strtoupper($currency), $this->allowedcurrencies)) {
             throw new InvalidArgumentException("Unknown currency");
         }
         $this->parameters['currency'] = $currency;
@@ -78,10 +128,10 @@ abstract class AbstractPaymentRequest extends AbstractRequest {
 
     public function setEmail($email)
     {
-        if(strlen($email) > 50) {
+        if (strlen($email) > 50) {
             throw new InvalidArgumentException("Email is too long");
         }
-        if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             throw new InvalidArgumentException("Email is invalid");
         }
         $this->parameters['email'] = $email;
@@ -89,7 +139,7 @@ abstract class AbstractPaymentRequest extends AbstractRequest {
 
     public function setOwnerAddress($owneraddress)
     {
-        if(strlen($owneraddress) > 35) {
+        if (strlen($owneraddress) > 35) {
             throw new InvalidArgumentException("Owner address is too long");
         }
         $this->parameters['owneraddress'] = $owneraddress;
@@ -97,7 +147,7 @@ abstract class AbstractPaymentRequest extends AbstractRequest {
 
     public function setOwnerZip($ownerzip)
     {
-        if(strlen($ownerzip) > 10) {
+        if (strlen($ownerzip) > 10) {
             throw new InvalidArgumentException("Owner Zip is too long");
         }
         $this->parameters['ownerzip'] = $ownerzip;
@@ -105,7 +155,7 @@ abstract class AbstractPaymentRequest extends AbstractRequest {
 
     public function setOwnerTown($ownertown)
     {
-        if(strlen($ownertown) > 25) {
+        if (strlen($ownertown) > 25) {
             throw new InvalidArgumentException("Owner town is too long");
         }
         $this->parameters['ownertown'] = $ownertown;
@@ -125,7 +175,7 @@ abstract class AbstractPaymentRequest extends AbstractRequest {
      */
     public function setOwnercty($ownercty)
     {
-        if(!preg_match('/^[A-Z]{2}$/', strtoupper($ownercty))) {
+        if (!preg_match('/^[A-Z]{2}$/', strtoupper($ownercty))) {
             throw new InvalidArgumentException("Illegal country code");
         }
         $this->parameters['ownercty'] = strtoupper($ownercty);
@@ -139,7 +189,7 @@ abstract class AbstractPaymentRequest extends AbstractRequest {
 
     public function setOwnertelno($ownertelno)
     {
-        if(strlen($ownertelno) > 30) {
+        if (strlen($ownertelno) > 30) {
             throw new InvalidArgumentException("Owner phone is too long");
         }
         $this->parameters['ownertelno'] = $ownertelno;
@@ -156,6 +206,16 @@ abstract class AbstractPaymentRequest extends AbstractRequest {
         $this->parameters['complus'] = $complus;
     }
 
+    public function setBrand($brand)
+    {
+        if(!array_key_exists($brand, $this->brandsmap)) {
+            throw new InvalidArgumentException("Unknown Brand [$brand].");
+        }
+
+        $this->setPaymentMethod($this->brandsmap[$brand]);
+        $this->parameters['brand'] = $brand;
+    }
+
     public function setPaymentMethod($paymentMethod)
     {
         $this->setPm($paymentMethod);
@@ -163,7 +223,7 @@ abstract class AbstractPaymentRequest extends AbstractRequest {
 
     public function setPm($pm)
     {
-        if(!in_array($pm, $this->brandsmap)) {
+        if (!in_array($pm, $this->brandsmap)) {
             throw new InvalidArgumentException("Unknown Payment method [$pm].");
         }
         $this->parameters['pm'] = $pm;
@@ -171,7 +231,7 @@ abstract class AbstractPaymentRequest extends AbstractRequest {
 
     public function setParamvar($paramvar)
     {
-        if(strlen($paramvar) < 2 || strlen($paramvar) > 50) {
+        if (strlen($paramvar) < 2 || strlen($paramvar) > 50) {
             throw new InvalidArgumentException("Paramvar must be between 2 and 50 characters in length");
         }
         $this->parameters['paramvar'] = $paramvar;

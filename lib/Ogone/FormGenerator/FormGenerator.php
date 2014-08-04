@@ -15,6 +15,9 @@ use Ogone\Ecommerce\EcommercePaymentRequest;
 
 interface FormGenerator
 {
-	/** @return string Html */
-	function render(EcommercePaymentRequest $paymentRequest);
+    /**
+     * @param EcommercePaymentRequest $paymentRequest
+     * @return string
+     */
+    public function render(EcommercePaymentRequest $paymentRequest);
 }

@@ -30,16 +30,21 @@ class LegacyShaComposer implements ShaComposer
      */
     private $hashAlgorithm;
 
-	/**
-	 * @param string $passphrase
-	 */
-	public function __construct(Passphrase $passphrase, HashAlgorithm $hashAlgorithm = null)
+    /**
+     * @param Passphrase $passphrase
+     * @param HashAlgorithm $hashAlgorithm
+     */
+    public function __construct(Passphrase $passphrase, HashAlgorithm $hashAlgorithm = null)
 	{
 		$this->passphrase = $passphrase;
         $this->hashAlgorithm = $hashAlgorithm ?: new HashAlgorithm($hashAlgorithm::HASH_SHA1);
 	}
 
-	public function compose(array $parameters)
+    /**
+     * @param array $parameters
+     * @return string
+     */
+    public function compose(array $parameters)
 	{
 		$parameters = array_change_key_case($parameters, CASE_LOWER);
 
