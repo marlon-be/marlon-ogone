@@ -58,6 +58,9 @@ class CreateAliasResponseTest extends \TestCase {
         $createAliasResponse = new CreateAliasResponse($aRequest);
         $alias = $createAliasResponse->getAlias();
         $this->assertEquals('customer_123', $alias->__toString());
+        $this->assertEquals($aRequest['CN'], $alias->getCardName());
+        $this->assertEquals($aRequest['CARDNO'], $alias->getCardNumber());
+        $this->assertEquals($aRequest['ED'], $alias->getExpiryDate());
     }
 
     /**
@@ -71,7 +74,9 @@ class CreateAliasResponseTest extends \TestCase {
             'status' => 0,
             'orderID' => '48495482424',
             'alias' => 'customer_123',
-            'cardno' => 'xxx-xxxxxxxxxx-xx'
+            'CN' => 'John Doe',
+            'CARDNO' => 'xxxxxxxxxxx4848',
+            'ED' => '1220'
         );
     }
 

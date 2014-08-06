@@ -35,6 +35,6 @@ class CreateAliasResponse extends AbstractResponse {
 
     public function getAlias()
     {
-        return new Alias($this->parameters['ALIAS']);
+        return new Alias($this->parameters['ALIAS'], $this->parameters['CN'], $this->parameters['CARDNO'], $this->parameters['ED']);
     }
 }
