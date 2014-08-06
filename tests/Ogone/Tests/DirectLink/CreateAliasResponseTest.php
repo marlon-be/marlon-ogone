@@ -60,7 +60,7 @@ class CreateAliasResponseTest extends \TestCase {
         $this->assertEquals('customer_123', $alias->__toString());
         $this->assertEquals($aRequest['CN'], $alias->getCardName());
         $this->assertEquals($aRequest['CARDNO'], $alias->getCardNumber());
-        $this->assertEquals($aRequest['ED'], $alias->getExpireDate());
+        $this->assertEquals($aRequest['ED'], $alias->getExpiryDate());
     }
 
     /**

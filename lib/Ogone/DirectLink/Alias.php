@@ -24,15 +24,15 @@ class Alias {
     private $cardNumber;
 
     /** @var string */
-    private $expireDate;
+    private $expiryDate;
 
     /**
      * @param $alias
      * @param string|null $cardName
      * @param string|null $cardNumber
-     * @param string|null $expireDate
+     * @param string|null $expiryDate
      */
-    public function __construct($alias, $cardName = null, $cardNumber = null, $expireDate = null)
+    public function __construct($alias, $cardName = null, $cardNumber = null, $expiryDate = null)
     {
         if(empty($alias)) {
             throw new InvalidArgumentException("Alias cannot be empty");
@@ -49,7 +49,7 @@ class Alias {
         $this->alias = $alias;
         $this->cardName = $cardName;
         $this->cardNumber = $cardNumber;
-        $this->expireDate = $expireDate;
+        $this->expiryDate = $expiryDate;
     }
 
     public function getAlias()
@@ -67,9 +67,9 @@ class Alias {
         return $this->cardNumber;
     }
 
-    public function getExpireDate()
+    public function getExpiryDate()
     {
-        return $this->expireDate;
+        return $this->expiryDate;
     }
 
     public function __toString()
