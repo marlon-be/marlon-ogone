@@ -79,7 +79,7 @@ This library currently supports both the legacy method "Main parameters only" an
 
 	// Set various params:
 	$ecommercePaymentRequest->setOrderid('123456');
-	$ecommercePaymentRequest->setAmount('150'); // in cents
+	$ecommercePaymentRequest->setAmount(150); // in cents
 	$ecommercePaymentRequest->setCurrency('EUR');
 	// ...
 
