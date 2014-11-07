@@ -25,6 +25,11 @@ abstract class AbstractPaymentRequest extends AbstractRequest {
         'USD', 'XAF', 'XOF', 'XPF', 'ZAR'
     );
 
+    private $allowedOperations = array(
+        'RES',
+        'SAL',
+    );
+
     public function setOrderid($orderid)
     {
         if(strlen($orderid) > 30) {
@@ -85,6 +90,14 @@ abstract class AbstractPaymentRequest extends AbstractRequest {
             throw new InvalidArgumentException("Email is invalid");
         }
         $this->parameters['email'] = $email;
+    }
+
+    public function setOperation($operation)
+    {
+        if (!in_array(strtoupper($operation), $this->allowedOperations)) {
+            throw new InvalidArgumentException("Unknown operation");
+        }
+        $this->parameters['operation'] = $operation;
     }
 
     public function setOwnerAddress($owneraddress)
