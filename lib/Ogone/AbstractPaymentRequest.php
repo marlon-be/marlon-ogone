@@ -155,7 +155,7 @@ abstract class AbstractPaymentRequest extends AbstractRequest
 
     public function setOwnerTown($ownertown)
     {
-        if (strlen($ownertown) > 25) {
+        if (strlen($ownertown) > 40) {
             throw new InvalidArgumentException("Owner town is too long");
         }
         $this->parameters['ownertown'] = $ownertown;
