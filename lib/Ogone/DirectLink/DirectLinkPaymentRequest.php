@@ -68,4 +68,9 @@ class DirectLinkPaymentRequest extends AbstractPaymentRequest {
     {
         $this->parameters['eci'] = (string) $eci;
     }
+
+    public function setOperation(PaymentOperation $operation)
+    {
+        $this->parameters['operation'] = (string) $operation;
+    }
 }

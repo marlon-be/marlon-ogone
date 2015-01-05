@@ -39,7 +39,8 @@ abstract class AbstractRequest implements Request
         'cardno', 'cvc', 'ed', 'ownerzip', 'owneraddress', 'ownercty', 'ownertown',
         'ownertelno', 'accepturl', 'declineurl', 'exceptionurl', 'cancelurl', 'backurl',
         'complus', 'paramplus', 'pm', 'brand', 'title', 'bgcolor', 'txtcolor', 'tblbgcolor',
-        'tbltxtcolor', 'buttonbgcolor', 'buttontxtcolor', 'logo', 'fonttype', 'tp', 'paramvar'
+        'tbltxtcolor', 'buttonbgcolor', 'buttontxtcolor', 'logo', 'fonttype', 'tp', 'paramvar',
+        'operation'
     );
 
     /** @return string */

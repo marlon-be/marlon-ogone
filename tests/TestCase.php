@@ -20,6 +20,7 @@ use Ogone\DirectLink\CreateAliasRequest;
 use Ogone\DirectLink\DirectLinkMaintenanceRequest;
 use Ogone\DirectLink\DirectLinkPaymentRequest;
 use Ogone\DirectLink\DirectLinkQueryRequest;
+use Ogone\DirectLink\MaintenanceOperation;
 
 require_once 'PHPUnit/Framework/TestCase.php';
 require_once __DIR__.'/Ogone/Tests/ShaComposer/FakeShaComposer.php';
@@ -134,7 +135,7 @@ abstract class TestCase extends PHPUnit_Framework_TestCase
         $directLinkRequest->setUserId('user_1234');
         $directLinkRequest->setPassword('abracadabra');
         $directLinkRequest->setPayId('12345678');
-        $directLinkRequest->setOperation('REN');
+        $directLinkRequest->setOperation(new MaintenanceOperation(MaintenanceOperation::OPERATION_AUTHORISATION_RENEW));
 
         return $directLinkRequest;
     }
