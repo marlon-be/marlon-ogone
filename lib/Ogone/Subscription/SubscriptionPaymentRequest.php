@@ -171,7 +171,7 @@ class SubscriptionPaymentRequest extends EcommercePaymentRequest {
         return array(
             'pspid', 'currency', 'orderid',
             'subscription_id', 'sub_amount', 'sub_com', 'sub_orderid', 'sub_period_unit',
-            'sub_period_number', 'sub_period_moment','sub_startdate', 'sub_enddate', 'sub_status'
+            'sub_period_number', 'sub_period_moment','sub_startdate', 'sub_status'
         );
     }
 }
