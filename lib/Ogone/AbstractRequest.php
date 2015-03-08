@@ -40,7 +40,7 @@ abstract class AbstractRequest implements Request
         'ownertelno', 'accepturl', 'declineurl', 'exceptionurl', 'cancelurl', 'backurl',
         'complus', 'paramplus', 'pm', 'brand', 'title', 'bgcolor', 'txtcolor', 'tblbgcolor',
         'tbltxtcolor', 'buttonbgcolor', 'buttontxtcolor', 'logo', 'fonttype', 'tp', 'paramvar',
-        'alias', 'aliasoperation', 'aliasusage'
+        'alias', 'aliasoperation', 'aliasusage', 'aliaspersistedafteruse'
     );
 
     /** @return string */

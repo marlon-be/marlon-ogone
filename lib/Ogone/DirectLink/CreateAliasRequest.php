@@ -27,7 +27,7 @@ class CreateAliasRequest extends AbstractRequest {
     public function getRequiredFields()
     {
         return array(
-            'pspid', 'accepturl', 'exceptionurl'
+            'pspid', 'accepturl', 'exceptionurl', 'aliaspersistedafteruse'
         );
     }
 
