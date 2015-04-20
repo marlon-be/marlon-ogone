@@ -35,4 +35,11 @@ class EcommercePaymentRequest extends AbstractPaymentRequest {
     {
         return array(self::TEST, self::PRODUCTION);
     }
+
+    public function setAlias(Alias $alias)
+    {
+        $this->parameters['aliasOperation'] = $alias->getAliasOperation();
+        $this->parameters['aliasusage'] = $alias->getAliasUsage();
+        $this->parameters['alias'] = $alias->getAlias();
+    }
 }
