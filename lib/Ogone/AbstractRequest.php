@@ -71,7 +71,7 @@ abstract class AbstractRequest implements Request
     }
 
     /**
-     * ISO code eg nl-BE
+     * ISO code eg nl_BE
      */
     public function setLanguage($language)
     {
