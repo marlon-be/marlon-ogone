@@ -68,4 +68,9 @@ class DirectLinkPaymentRequest extends AbstractPaymentRequest {
     {
         $this->parameters['eci'] = (string) $eci;
     }
+
+    public function setCvc($cvc)
+    {
+        $this->parameters['cvc'] = $cvc;
+    }
 }
