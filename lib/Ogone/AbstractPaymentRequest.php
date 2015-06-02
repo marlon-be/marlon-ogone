@@ -20,6 +20,10 @@ abstract class AbstractPaymentRequest extends AbstractRequest
         'American Express' => 'CreditCard',
         'Aurora' => 'CreditCard',
         'Aurore' => 'CreditCard',
+        'Bank transfer BE' => 'Bank transfer BE',
+        'Bank transfer DE' => 'Bank transfer DE',
+        'Bank transfer FR' => 'Bank transfer FR',
+        'Bank transfer NL' => 'Bank transfer NL',
         'Bank transfer' => 'Bank transfer',
         'BCMC' => 'CreditCard',
         'Belfius Direct Net' => 'Belfius Direct Net',
@@ -57,7 +61,11 @@ abstract class AbstractPaymentRequest extends AbstractRequest
         'PostFinance + card' => 'PostFinance Card',
         'PostFinance e-finance' => 'PostFinance e-finance',
         'PRIVILEGE' => 'CreditCard',
-        'Sofort Uberweisung' => 'DirectEbanking',
+        'DirectEbankingDE' => 'DirectEbankingDE',
+        'DirectEbankingAT' => 'DirectEbankingAT',
+        'DirectEbankingIT' => 'DirectEbankingIT',
+        'DirectEbankingBE' => 'DirectEbankingBE',
+        'DirectEbankingFR' => 'DirectEbankingFR',
         'Solo' => 'CreditCard',
         'TUNZ' => 'TUNZ',
         'UATP' => 'CreditCard',
@@ -249,4 +257,4 @@ abstract class AbstractPaymentRequest extends AbstractRequest
         $this->parameters['tp'] = $tp;
     }
 
-} 
+}
