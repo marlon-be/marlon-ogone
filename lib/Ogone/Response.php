@@ -10,7 +10,8 @@
 
 namespace Ogone;
 
-interface Response {
+interface Response
+{
 
     /** @var string */
     const SHASIGN_FIELD = 'SHASIGN';

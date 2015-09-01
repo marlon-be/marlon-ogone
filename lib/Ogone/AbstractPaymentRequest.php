@@ -208,7 +208,7 @@ abstract class AbstractPaymentRequest extends AbstractRequest
 
     public function setBrand($brand)
     {
-        if(!array_key_exists($brand, $this->brandsmap)) {
+        if (!array_key_exists($brand, $this->brandsmap)) {
             throw new InvalidArgumentException("Unknown Brand [$brand].");
         }
 
@@ -248,5 +248,4 @@ abstract class AbstractPaymentRequest extends AbstractRequest
         $this->validateUri($tp);
         $this->parameters['tp'] = $tp;
     }
-
-} 
+}

@@ -12,7 +12,8 @@ namespace Ogone;
 
 use InvalidArgumentException;
 
-abstract class AbstractResponse implements Response {
+abstract class AbstractResponse implements Response
+{
 
     /**
      * Available Ogone parameters
@@ -68,7 +69,7 @@ abstract class AbstractResponse implements Response {
      */
     protected function extractShaSign(array $parameters)
     {
-        if(!array_key_exists(self::SHASIGN_FIELD, $parameters) || $parameters[self::SHASIGN_FIELD] == '') {
+        if (!array_key_exists(self::SHASIGN_FIELD, $parameters) || $parameters[self::SHASIGN_FIELD] == '') {
             throw new InvalidArgumentException('SHASIGN parameter not present in parameters.');
         }
         return $parameters[self::SHASIGN_FIELD];
@@ -81,14 +82,14 @@ abstract class AbstractResponse implements Response {
      */
     public function getParam($key)
     {
-        if(method_exists($this, 'get'.$key)) {
+        if (method_exists($this, 'get'.$key)) {
             return $this->{'get'.$key}();
         }
 
         // always use uppercase
         $key = strtoupper($key);
 
-        if(!array_key_exists($key, $this->parameters)) {
+        if (!array_key_exists($key, $this->parameters)) {
             throw new InvalidArgumentException('Parameter ' . $key . ' does not exist.');
         }
 

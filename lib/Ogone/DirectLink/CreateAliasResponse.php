@@ -13,7 +13,8 @@ namespace Ogone\DirectLink;
 use Ogone\AbstractResponse;
 use Ogone\ShaComposer\ShaComposer;
 
-class CreateAliasResponse extends AbstractResponse {
+class CreateAliasResponse extends AbstractResponse
+{
 
     const STATUS_OK = 0;
     const STATUS_NOK = 1;

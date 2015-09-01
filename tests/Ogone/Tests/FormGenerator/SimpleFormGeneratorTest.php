@@ -16,9 +16,9 @@ use Ogone\PaymentRequest;
 
 class SimpleFormGeneratorTest extends \TestCase
 {
-	/** @test */
-	public function GeneratesAForm()
-	{
+    /** @test */
+    public function GeneratesAForm()
+    {
         $expected =
             '<form method="post" action="https://secure.ogone.com/ncol/test/orderstandard_utf8.asp" id="ogone" name="ogone">
                 <input type="hidden" name="PSPID" value="123456789" />
@@ -41,7 +41,7 @@ class SimpleFormGeneratorTest extends \TestCase
 
         $this->assertXmlStringEqualsXmlString($expected, $formGenerator->render($paymentRequest));
         $this->assertXmlStringEqualsXmlString($expected, $formGenerator->render($paymentRequest, 'ogone', true));
-	}
+    }
 
     /** @test */
     public function BCCheck()

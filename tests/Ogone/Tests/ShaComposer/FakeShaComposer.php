@@ -18,10 +18,10 @@ use Ogone\ShaComposer\ShaComposer;
  */
 class FakeShaComposer implements ShaComposer
 {
-	const FAKESHASTRING = 'foo';
+    const FAKESHASTRING = 'foo';
 
-	public function compose(array $responseParameters)
-	{
-		return self::FAKESHASTRING;
-	}
+    public function compose(array $responseParameters)
+    {
+        return self::FAKESHASTRING;
+    }
 }

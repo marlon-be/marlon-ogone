@@ -13,7 +13,8 @@ namespace Ogone\Ecommerce;
 use Ogone\AbstractPaymentRequest;
 use Ogone\ShaComposer\ShaComposer;
 
-class EcommercePaymentRequest extends AbstractPaymentRequest {
+class EcommercePaymentRequest extends AbstractPaymentRequest
+{
 
     const TEST = "https://secure.ogone.com/ncol/test/orderstandard_utf8.asp";
     const PRODUCTION = "https://secure.ogone.com/ncol/prod/orderstandard_utf8.asp";

@@ -7,7 +7,8 @@ namespace Ogone\DirectLink;
 
 use Ogone\AbstractResponse;
 
-class DirectLinkMaintenanceResponse extends DirectLinkPaymentResponse {
+class DirectLinkMaintenanceResponse extends DirectLinkPaymentResponse
+{
 
     public function isSuccessful()
     {

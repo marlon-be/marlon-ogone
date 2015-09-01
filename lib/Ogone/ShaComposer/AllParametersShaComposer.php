@@ -21,47 +21,47 @@ use Ogone\ParameterFilter\ParameterFilter;
  */
 class AllParametersShaComposer implements ShaComposer
 {
-	/** @var array of ParameterFilter */
-	private $parameterFilters;
+    /** @var array of ParameterFilter */
+    private $parameterFilters;
 
-	/**
-	 * @var string Passphrase
-	 */
-	private $passphrase;
+    /**
+     * @var string Passphrase
+     */
+    private $passphrase;
 
     /**
      * @var HashAlgorithm
      */
     private $hashAlgorithm;
 
-	public function __construct(Passphrase $passphrase, HashAlgorithm $hashAlgorithm = null)
-	{
-		$this->passphrase = $passphrase;
+    public function __construct(Passphrase $passphrase, HashAlgorithm $hashAlgorithm = null)
+    {
+        $this->passphrase = $passphrase;
 
-		$this->addParameterFilter(new GeneralParameterFilter);
+        $this->addParameterFilter(new GeneralParameterFilter);
 
         $this->hashAlgorithm = $hashAlgorithm ?: new HashAlgorithm(HashAlgorithm::HASH_SHA1);
-	}
+    }
 
-	public function compose(array $parameters)
-	{
-		foreach($this->parameterFilters as $parameterFilter) {
-			$parameters = $parameterFilter->filter($parameters);
-		}
+    public function compose(array $parameters)
+    {
+        foreach ($this->parameterFilters as $parameterFilter) {
+            $parameters = $parameterFilter->filter($parameters);
+        }
 
-		ksort($parameters);
+        ksort($parameters);
 
-		// compose SHA string
-		$shaString = '';
-		foreach($parameters as $key => $value) {
-			$shaString .= $key . '=' . $value . $this->passphrase;
-		}
+        // compose SHA string
+        $shaString = '';
+        foreach ($parameters as $key => $value) {
+            $shaString .= $key . '=' . $value . $this->passphrase;
+        }
 
-		return strtoupper(hash($this->hashAlgorithm, $shaString));
-	}
+        return strtoupper(hash($this->hashAlgorithm, $shaString));
+    }
 
-	public function addParameterFilter(ParameterFilter $parameterFilter)
-	{
-		$this->parameterFilters[] = $parameterFilter;
-	}
+    public function addParameterFilter(ParameterFilter $parameterFilter)
+    {
+        $this->parameterFilters[] = $parameterFilter;
+    }
 }
