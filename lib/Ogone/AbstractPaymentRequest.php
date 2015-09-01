@@ -14,6 +14,11 @@ use InvalidArgumentException;
 
 abstract class AbstractPaymentRequest extends AbstractRequest
 {
+    const OPERATION_REQUEST_AUTHORIZATION = 'RES';
+    const OPERATION_REQUEST_DIRECT_SALE = 'SAL';
+    const OPERATION_REFUND = 'RFD';
+    const OPERATION_REQUEST_PRE_AUTHORIZATION = 'PAU';
+
     protected $brandsmap = array(
         'Acceptgiro' => 'Acceptgiro',
         'AIRPLUS' => 'CreditCard',
@@ -249,4 +254,14 @@ abstract class AbstractPaymentRequest extends AbstractRequest
         $this->parameters['tp'] = $tp;
     }
 
+    public function setOperation($operation)
+    {
+        if (!in_array($operation, $this->getValidOperations())) {
+            throw new InvalidArgumentException("Invalid operation [$operation].");
+        }
+
+        $this->parameters['operation'] = $operation;
+    }
+
+    abstract protected function getValidOperations();
 } 

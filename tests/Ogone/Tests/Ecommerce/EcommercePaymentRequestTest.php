@@ -105,7 +105,8 @@ class EcommercePaymentRequestTest extends \TestCase
 			array('setParamvar', $longString),
 			array('setPaymentMethod', 'Digital'),
 			array('setPspid', $longString),
+            array('setOperation', 'UNKNOWN_OPERATION'),
+            array('setOperation', EcommercePaymentRequest::OPERATION_REFUND),
 		);
 	}
-
 }

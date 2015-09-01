@@ -42,4 +42,13 @@ class EcommercePaymentRequest extends AbstractPaymentRequest {
         $this->parameters['aliasusage'] = $alias->getAliasUsage();
         $this->parameters['alias'] = $alias->getAlias();
     }
+
+    protected function getValidOperations()
+    {
+        return array(
+            self::OPERATION_REQUEST_AUTHORIZATION,
+            self::OPERATION_REQUEST_DIRECT_SALE,
+            self::OPERATION_REQUEST_PRE_AUTHORIZATION,
+        );
+    }
 }

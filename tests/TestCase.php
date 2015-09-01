@@ -52,7 +52,6 @@ abstract class TestCase extends PHPUnit_Framework_TestCase
 	/** @return EcommercePaymentRequest*/
 	protected function provideCompletePaymentRequest()
 	{
-
 		$paymentRequest = $this->provideMinimalPaymentRequest();
 
 		$paymentRequest->setAccepturl('http://example.com/accept');
@@ -73,6 +72,8 @@ abstract class TestCase extends PHPUnit_Framework_TestCase
 		$paymentRequest->setOrderDescription("Four horses and a carriage");
 
 		$paymentRequest->setOwnerPhone('123456789');
+
+        $paymentRequest->setOperation(EcommercePaymentRequest::OPERATION_REQUEST_DIRECT_SALE);
 
 		return $paymentRequest;
 	}
