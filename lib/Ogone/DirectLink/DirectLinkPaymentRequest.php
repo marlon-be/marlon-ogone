@@ -74,4 +74,14 @@ class DirectLinkPaymentRequest extends AbstractPaymentRequest
     {
         $this->parameters['cvc'] = $cvc;
     }
+
+    protected function getValidOperations()
+    {
+        return array(
+            self::OPERATION_REQUEST_AUTHORIZATION,
+            self::OPERATION_REQUEST_DIRECT_SALE,
+            self::OPERATION_REFUND,
+            self::OPERATION_REQUEST_PRE_AUTHORIZATION,
+        );
+    }
 }
