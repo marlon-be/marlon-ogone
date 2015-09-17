@@ -20,6 +20,11 @@ class DirectLinkPaymentRequest extends AbstractPaymentRequest
     const TEST = "https://secure.ogone.com/ncol/test/orderdirect.asp";
     const PRODUCTION = "https://secure.ogone.com/ncol/prod/orderdirect.asp";
 
+    const OPERATION_REQUEST_AUTHORISATION = 'RES';
+    const OPERATION_REQUEST_DIRECT_SALE = 'SAL';
+    const OPERATION_REFUND = 'RFD';
+    const OPERATION_REQUEST_PRE_AUTHORISATION = 'PAU';
+
     public function __construct(ShaComposer $shaComposer)
     {
         $this->shaComposer = $shaComposer;
@@ -73,5 +78,23 @@ class DirectLinkPaymentRequest extends AbstractPaymentRequest
     public function setCvc($cvc)
     {
         $this->parameters['cvc'] = $cvc;
+    }
+
+    public function setOperation($operation)
+    {
+        if (!in_array($operation, $this->getValidOperations())) {
+            throw new InvalidArgumentException("Invalid operation");
+        }
+        $this->parameters['operation'] = $operation;
+    }
+
+    private function getValidOperations()
+    {
+        return array(
+            self::OPERATION_REQUEST_AUTHORISATION,
+            self::OPERATION_REQUEST_DIRECT_SALE,
+            self::OPERATION_REFUND,
+            self::OPERATION_REQUEST_PRE_AUTHORISATION,
+        );
     }
 }
