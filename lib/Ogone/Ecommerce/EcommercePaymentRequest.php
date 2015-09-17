@@ -13,7 +13,8 @@ namespace Ogone\Ecommerce;
 use Ogone\AbstractPaymentRequest;
 use Ogone\ShaComposer\ShaComposer;
 
-class EcommercePaymentRequest extends AbstractPaymentRequest {
+class EcommercePaymentRequest extends AbstractPaymentRequest
+{
 
     const TEST = "https://secure.ogone.com/ncol/test/orderstandard_utf8.asp";
     const PRODUCTION = "https://secure.ogone.com/ncol/prod/orderstandard_utf8.asp";
@@ -41,5 +42,14 @@ class EcommercePaymentRequest extends AbstractPaymentRequest {
         $this->parameters['aliasOperation'] = $alias->getAliasOperation();
         $this->parameters['aliasusage'] = $alias->getAliasUsage();
         $this->parameters['alias'] = $alias->getAlias();
+    }
+
+    protected function getValidOperations()
+    {
+        return array(
+            self::OPERATION_REQUEST_AUTHORIZATION,
+            self::OPERATION_REQUEST_DIRECT_SALE,
+            self::OPERATION_REQUEST_PRE_AUTHORIZATION,
+        );
     }
 }

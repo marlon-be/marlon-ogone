@@ -6,10 +6,12 @@ use Ogone\Subscription\SubscriptionPaymentRequest;
 use Ogone\Subscription\SubscriptionPeriod;
 use Ogone\Tests\ShaComposer\FakeShaComposer;
 
-class SubscriptionPaymentRequestTest extends \TestCase {
+class SubscriptionPaymentRequestTest extends \TestCase
+{
 
     /** @test */
-    public function AmountCanBeZero() {
+    public function AmountCanBeZero()
+    {
         $paymentRequest = $this->createSubscriptionRequest();
         $paymentRequest->setAmount(0);
         $this->assertEquals(0, $paymentRequest->getAmount());
@@ -20,7 +22,8 @@ class SubscriptionPaymentRequestTest extends \TestCase {
      * @dataProvider provideBadParameters
      * @expectedException \InvalidArgumentException
      */
-    public function BadParametersCauseExceptions($method, $value) {
+    public function BadParametersCauseExceptions($method, $value)
+    {
         $paymentRequest = $this->createSubscriptionRequest();
         $paymentRequest->$method($value);
     }
@@ -29,7 +32,8 @@ class SubscriptionPaymentRequestTest extends \TestCase {
      * @test
      * @expectedException \RuntimeException
      */
-    public function IsInvalidIfSubscriptionParametersAreMissing() {
+    public function IsInvalidIfSubscriptionParametersAreMissing()
+    {
         $paymentRequest = $this->createSubscriptionRequest();
         $paymentRequest->setPspid('12');
         $paymentRequest->setCurrency('EUR');
@@ -39,7 +43,8 @@ class SubscriptionPaymentRequestTest extends \TestCase {
     }
 
     /** @test */
-    public function RequestCanBeValid() {
+    public function RequestCanBeValid()
+    {
         $paymentRequest = $this->createSubscriptionRequest();
         $paymentRequest->setPspid('12');
         $paymentRequest->setCurrency('EUR');
@@ -58,7 +63,8 @@ class SubscriptionPaymentRequestTest extends \TestCase {
         $this->assertTrue(true);
     }
 
-    public function provideBadParameters() {
+    public function provideBadParameters()
+    {
 
         return array(
             array('setAmount', 10.50),
@@ -80,11 +86,13 @@ class SubscriptionPaymentRequestTest extends \TestCase {
         );
     }
 
-    protected function createSubscriptionRequest() {
+    protected function createSubscriptionRequest()
+    {
         return new SubscriptionPaymentRequest(new FakeShaComposer());
     }
 
-    protected function createSubscriptionPeriod() {
+    protected function createSubscriptionPeriod()
+    {
         return new SubscriptionPeriod(SubscriptionPeriod::UNIT_DAILY, 12, 7);
     }
 }

@@ -8,7 +8,8 @@ namespace Ogone\DirectLink;
 use Ogone\AbstractDirectLinkRequest;
 use Ogone\ShaComposer\ShaComposer;
 
-class DirectLinkQueryRequest extends AbstractDirectLinkRequest {
+class DirectLinkQueryRequest extends AbstractDirectLinkRequest
+{
 
     const TEST = "https://secure.ogone.com/ncol/test/querydirect.asp";
     const PRODUCTION = "https://secure.ogone.com/ncol/prod/querydirect.asp";

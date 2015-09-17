@@ -64,7 +64,7 @@ abstract class AbstractRequest implements Request
 
     public function setPspid($pspid)
     {
-        if(strlen($pspid) > 30) {
+        if (strlen($pspid) > 30) {
             throw new InvalidArgumentException("PSPId is too long");
         }
         $this->parameters['pspid'] = $pspid;
@@ -75,7 +75,7 @@ abstract class AbstractRequest implements Request
      */
     public function setLanguage($language)
     {
-        if(!array_key_exists($language, $this->allowedlanguages)) {
+        if (!array_key_exists($language, $this->allowedlanguages)) {
             throw new InvalidArgumentException("Invalid language ISO code");
         }
         $this->parameters['language'] = $language;
@@ -135,9 +135,8 @@ abstract class AbstractRequest implements Request
 
     public function validate()
     {
-        foreach($this->getRequiredFields() as $field)
-        {
-            if(empty($this->parameters[$field])) {
+        foreach ($this->getRequiredFields() as $field) {
+            if (empty($this->parameters[$field])) {
                 throw new RuntimeException("$field can not be empty");
             }
         }
@@ -145,10 +144,10 @@ abstract class AbstractRequest implements Request
 
     protected function validateUri($uri)
     {
-        if(!filter_var($uri, FILTER_VALIDATE_URL)) {
+        if (!filter_var($uri, FILTER_VALIDATE_URL)) {
             throw new InvalidArgumentException("Uri is not valid");
         }
-        if(strlen($uri) > 200) {
+        if (strlen($uri) > 200) {
             throw new InvalidArgumentException("Uri is too long");
         }
     }
@@ -157,7 +156,7 @@ abstract class AbstractRequest implements Request
     {
         $this->validateUri($uri);
 
-        if(!in_array($uri, $this->getValidOgoneUris())) {
+        if (!in_array($uri, $this->getValidOgoneUris())) {
             throw new InvalidArgumentException('No valid Ogone url');
         }
     }
@@ -171,17 +170,17 @@ abstract class AbstractRequest implements Request
      */
     public function __call($method, $args)
     {
-        if(substr($method, 0, 3) == 'set') {
+        if (substr($method, 0, 3) == 'set') {
             $field = strtolower(substr($method, 3));
-            if(in_array($field, $this->ogoneFields)) {
+            if (in_array($field, $this->ogoneFields)) {
                 $this->parameters[$field] = $args[0];
                 return;
             }
         }
 
-        if(substr($method, 0, 3) == 'get') {
+        if (substr($method, 0, 3) == 'get') {
             $field = strtolower(substr($method, 3));
-            if(array_key_exists($field, $this->parameters)) {
+            if (array_key_exists($field, $this->parameters)) {
                 return $this->parameters[$field];
             }
         }
@@ -194,5 +193,4 @@ abstract class AbstractRequest implements Request
         $this->validate();
         return array_change_key_case($this->parameters, CASE_UPPER);
     }
-
-} 
+}

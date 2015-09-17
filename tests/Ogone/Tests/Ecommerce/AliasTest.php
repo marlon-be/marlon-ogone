@@ -4,7 +4,8 @@ namespace Ogone\Tests\Ecommerce;
 use Ogone\Ecommerce\Alias;
 use TestCase;
 
-class AliasTest extends TestCase {
+class AliasTest extends TestCase
+{
 
     /** @test */
     public function AliasCanHaveUsage()
@@ -41,5 +42,4 @@ class AliasTest extends TestCase {
     {
         $this->assertEquals('test123', (string) new Alias('test123'));
     }
-
 }
