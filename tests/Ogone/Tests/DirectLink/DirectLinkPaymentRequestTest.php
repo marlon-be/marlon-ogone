@@ -15,7 +15,8 @@ use Ogone\Tests\ShaComposer\FakeShaComposer;
 use Ogone\DirectLink\DirectLinkPaymentRequest;
 use Ogone\DirectLink\Alias;
 
-class DirectLinkPaymentRequestTest extends \TestCase {
+class DirectLinkPaymentRequestTest extends \TestCase
+{
 
     /** @test */
     public function IsValidWhenRequiredFieldsAreFilledIn()

@@ -13,7 +13,8 @@ namespace Ogone\Tests\DirectLink;
 use Ogone\DirectLink\CreateAliasResponse;
 use Ogone\Tests\ShaComposer\FakeShaComposer;
 
-class CreateAliasResponseTest extends \TestCase {
+class CreateAliasResponseTest extends \TestCase
+{
 
     /** @test */
     public function CanBeVerified()
@@ -79,5 +80,4 @@ class CreateAliasResponseTest extends \TestCase {
             'ED' => '1220'
         );
     }
-
 }

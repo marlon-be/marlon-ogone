@@ -56,6 +56,4 @@ interface PaymentResponse extends Response
      * @var int
      */
     const STATUS_PAYMENT_REFUSED = 93;
-
-
 }

@@ -9,14 +9,14 @@ use Ogone\AbstractPaymentResponse;
 use SimpleXMLElement;
 use InvalidArgumentException;
 
-class DirectLinkQueryResponse extends AbstractPaymentResponse {
+class DirectLinkQueryResponse extends AbstractPaymentResponse
+{
 
     public function __construct($xml_string)
     {
         libxml_use_internal_errors(true);
 
         if (simplexml_load_string($xml_string)) {
-
             $xmlResponse = new SimpleXMLElement($xml_string);
 
             $attributesArray = $this->xmlAttributesToArray($xmlResponse->attributes());
@@ -28,7 +28,6 @@ class DirectLinkQueryResponse extends AbstractPaymentResponse {
             $this->parameters = $this->filterRequestParameters($attributesArray);
 
         } else {
-
             throw new InvalidArgumentException("No valid XML-string given");
         }
     }

@@ -14,7 +14,8 @@ use Ogone\Tests\ShaComposer\FakeShaComposer;
 use Ogone\DirectLink\CreateAliasRequest;
 use Ogone\DirectLink\Alias;
 
-class CreateAliasRequestTest extends \TestCase {
+class CreateAliasRequestTest extends \TestCase
+{
 
     /**
      * @test
