@@ -110,7 +110,7 @@ This library currently supports both the legacy method "Main parameters only" an
 	// $createAliasRequest->setOgoneUri(CreateAliasRequest::PRODUCTION);
 
 	// set required params
-	$createAliasRequest->setPspid('123456');
+	$createAliasRequest->setPspid('123456');
 	$createAliasRequest->setAccepturl('http://example.com/accept');
 	$createAliasRequest->setExceptionurl('http://example.com/exception');
 
