@@ -24,6 +24,17 @@ class LegacyShaComposerTest extends \TestCase
     const SHA512STRING = '8552200DD108CB5633A27D6D0A1FAB54378CB2385BFCEB27487992D16F5A7565E5DD4D38C0F2DB294213CD02E434F311021749E6DAB187357F786E3F199781CA';
 
     /** @test */
+    public function defaultParameters()
+    {
+        $aRequest = $this->provideRequest();
+
+        $composer = new LegacyShaComposer(new Passphrase(self::PASSPHRASE));
+        $shaString = $composer->compose($aRequest);
+
+        $this->assertEquals(self::SHA1STRING, $shaString);
+    }
+
+    /** @test */
     public function Sha1StringCanBeComposed()
     {
         $aRequest = $this->provideRequest();
