@@ -17,6 +17,7 @@ class EcommercePaymentRequest extends AbstractPaymentRequest {
 
     const TEST = "https://secure.ogone.com/ncol/test/orderstandard_utf8.asp";
     const PRODUCTION = "https://secure.ogone.com/ncol/prod/orderstandard_utf8.asp";
+    const PAYPAGE_TEST = 'https://secure.paypage.be/ncol/test/orderstandard.asp';
 
     public function __construct(ShaComposer $shaComposer)
     {
@@ -33,7 +34,7 @@ class EcommercePaymentRequest extends AbstractPaymentRequest {
 
     public function getValidOgoneUris()
     {
-        return array(self::TEST, self::PRODUCTION);
+        return array(self::TEST, self::PRODUCTION, self::PAYPAGE_TEST);
     }
 
     public function setAlias(Alias $alias)
