@@ -48,18 +48,36 @@ class LegacyShaComposer implements ShaComposer
     {
         $parameters = array_change_key_case($parameters, CASE_LOWER);
 
-        return strtoupper(hash($this->hashAlgorithm, implode('', array(
-            $parameters['orderid'],
-            $parameters['currency'],
-            $parameters['amount'],
-            $parameters['pm'],
-            $parameters['acceptance'],
-            $parameters['status'],
-            $parameters['cardno'],
-            $parameters['payid'],
-            $parameters['ncerror'],
-            $parameters['brand'],
-            $this->passphrase
-        ))));
+        $defaultParameters = [
+            'orderid' => '',
+            'amount' => '',
+            'currency' => '',
+            'pspid' => '',
+            'pm' => '',
+            'acceptance' => '',
+            'status' => '',
+            'cardno' => '',
+            'payid' => '',
+            'ncerror' => '',
+            'brand' => '',
+            'passphrase' => $this->passphrase,
+        ];
+
+        $finalParameters = array_merge($defaultParameters, $parameters);
+
+        return strtoupper(hash($this->hashAlgorithm, implode('', [
+            !empty($finalParameters['orderid']) ? $finalParameters['orderid'] : null,
+            !empty($finalParameters['amount']) ? $finalParameters['amount'] : null,
+            !empty($finalParameters['currency']) ? $finalParameters['currency'] : null,
+            !empty($finalParameters['pspid']) ? $finalParameters['pspid'] : null,
+            !empty($finalParameters['pm']) ? $finalParameters['pm'] : null,
+            !empty($finalParameters['acceptance']) ? $finalParameters['acceptance'] : null,
+            !empty($finalParameters['status']) ? $finalParameters['status'] : null,
+            !empty($finalParameters['cardno']) ? $finalParameters['cardno'] : null,
+            !empty($finalParameters['payid']) ? $finalParameters['payid'] : null,
+            !empty($finalParameters['ncerror']) ? $finalParameters['ncerror'] : null,
+            !empty($finalParameters['brand']) ? $finalParameters['brand'] : null,
+            !empty($finalParameters['passphrase']) ? $finalParameters['passphrase'] : null,
+        ])));
     }
 }
