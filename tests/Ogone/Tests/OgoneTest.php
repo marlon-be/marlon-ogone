@@ -12,6 +12,7 @@ namespace Ogone\Tests;
 
 use Guzzle\Http\Client;
 use Ogone\DirectLink\Eci;
+use Ogone\DirectLink\PaymentOperation;
 use Ogone\Passphrase;
 use Ogone\DirectLink\Alias;
 use Ogone\DirectLink\CreateAliasRequest;
@@ -65,6 +66,7 @@ class OgoneTest extends \TestCase
         $directLinkRequest->setAmount(100);
         $directLinkRequest->setCurrency('EUR');
         $directLinkRequest->setEci(new Eci(Eci::ECOMMERCE_RECURRING));
+        $directLinkRequest->setOperation(new PaymentOperation(PaymentOperation::REQUEST_FOR_DIRECT_SALE));
         $directLinkRequest->validate();
 
         $body = array();

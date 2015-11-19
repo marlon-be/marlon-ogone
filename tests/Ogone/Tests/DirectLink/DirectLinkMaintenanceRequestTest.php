@@ -5,6 +5,7 @@
 
 namespace Ogone\Tests\DirectLink;
 
+use Ogone\DirectLink\MaintenanceOperation;
 use Ogone\Tests;
 use Ogone\Tests\ShaComposer\FakeShaComposer;
 use Ogone\DirectLink\DirectLinkMaintenanceRequest;
@@ -77,7 +78,6 @@ class DirectLinkMaintenanceRequestTest extends \TestCase
         return array(
             array('setPassword', '12'),
             array('setUserid', '12'),
-            array('setOperation', 'ABC'),
             array('setAmount', '232'),
             array('setAmount', 2.32),
         );
