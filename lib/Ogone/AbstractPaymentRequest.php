@@ -123,8 +123,8 @@ abstract class AbstractPaymentRequest extends AbstractRequest
 
     public function setOrderid($orderid)
     {
-        if (strlen($orderid) > 30) {
-            throw new InvalidArgumentException("Orderid cannot be longer than 30 characters");
+        if (strlen($orderid) > 40) {
+            throw new InvalidArgumentException("Orderid cannot be longer than 40 characters");
         }
         if (preg_match('/[^a-zA-Z0-9_-]/', $orderid)) {
             throw new InvalidArgumentException("Order id cannot contain special characters");
