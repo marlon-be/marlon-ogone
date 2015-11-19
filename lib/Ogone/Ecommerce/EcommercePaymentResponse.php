@@ -13,7 +13,8 @@ namespace Ogone\Ecommerce;
 use Ogone\AbstractPaymentResponse;
 use Ogone\ShaComposer\ShaComposer;
 
-class EcommercePaymentResponse extends AbstractPaymentResponse {
+class EcommercePaymentResponse extends AbstractPaymentResponse
+{
 
     /**
      * Checks if the response is valid

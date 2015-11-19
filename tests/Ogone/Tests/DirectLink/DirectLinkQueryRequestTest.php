@@ -10,7 +10,8 @@ use Ogone\Tests\ShaComposer\FakeShaComposer;
 use Ogone\DirectLink\DirectLinkQueryRequest;
 use Ogone\DirectLink\Alias;
 
-class DirectLinkQueryRequestTest extends \TestCase {
+class DirectLinkQueryRequestTest extends \TestCase
+{
 
     /** @test */
     public function IsValidWhenRequiredFieldsAreFilledIn()

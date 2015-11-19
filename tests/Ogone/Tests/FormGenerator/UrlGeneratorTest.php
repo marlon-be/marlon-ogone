@@ -7,10 +7,12 @@ use Ogone\FormGenerator\UrlGenerator;
 use Ogone\PaymentRequest;
 use Ogone\Tests\ShaComposer\FakeShaComposer;
 
-class UrlGeneratorTest extends \TestCase {
+class UrlGeneratorTest extends \TestCase
+{
 
     /** @test */
-    public function GeneratesAnUrl() {
+    public function GeneratesAnUrl()
+    {
         $expected = EcommercePaymentRequest::TEST . '?'.
             'pspid=123456789' . '&'.
             'orderid=987654321' . '&'.

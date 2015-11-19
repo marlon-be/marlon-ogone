@@ -13,7 +13,8 @@ namespace Ogone\Tests\DirectLink;
 use Ogone\Tests;
 use Ogone\DirectLink\DirectLinkPaymentResponse;
 
-class DirectLinkPaymentResponseTest extends \TestCase {
+class DirectLinkPaymentResponseTest extends \TestCase
+{
 
     /**
      * @test
@@ -65,8 +66,8 @@ class DirectLinkPaymentResponseTest extends \TestCase {
         $this->assertTrue($paymentResponse->isSuccessful());
     }
 
-	/** @test */
-	public function AmountIsConvertedToCent()
+    /** @test */
+    public function AmountIsConvertedToCent()
     {
         $xml = $this->provideXML();
 
@@ -74,7 +75,7 @@ class DirectLinkPaymentResponseTest extends \TestCase {
         $this->assertEquals(100, $paymentResponse->getParam('amount'));
     }
 
-	public function provideFloats()
+    public function provideFloats()
     {
         return array(
             array('17.89', 1789),
@@ -83,11 +84,11 @@ class DirectLinkPaymentResponseTest extends \TestCase {
         );
     }
 
-	/**
+    /**
      * @test
      * @dataProvider provideFloats
      */
-	public function CorrectlyConvertsFloatAmountsToInteger($string, $integer)
+    public function CorrectlyConvertsFloatAmountsToInteger($string, $integer)
     {
         $xml = $this->provideXML($string);
 
@@ -95,10 +96,10 @@ class DirectLinkPaymentResponseTest extends \TestCase {
         $this->assertEquals($integer, $paymentResponse->getParam('amount'));
     }
 
-	/**
+    /**
      * Helper method to setup an xml-string
      */
-	private function provideXML($amount = null)
+    private function provideXML($amount = null)
     {
 
         $xml = '<?xml version="1.0"?>

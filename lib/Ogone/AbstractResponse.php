@@ -12,7 +12,8 @@ namespace Ogone;
 
 use InvalidArgumentException;
 
-abstract class AbstractResponse implements Response {
+abstract class AbstractResponse implements Response
+{
 
     /**
      * Available Ogone parameters
@@ -21,7 +22,7 @@ abstract class AbstractResponse implements Response {
     protected $ogoneFields = array('AAVADDRESS', 'AAVCHECK', 'AAVZIP', 'ACCEPTANCE', 'ALIAS', 'AMOUNT', 'BIN', 'BRAND', 'CARDNO', 'CCCTY', 'CN',
         'COMPLUS', 'CREATION_STATUS', 'CURRENCY', 'CVC', 'CVCCHECK', 'DCC_COMMPERCENTAGE', 'DCC_CONVAMOUNT', 'DCC_CONVCCY', 'DCC_EXCHRATE', 'DCC_EXCHRATESOURCE',
         'DCC_EXCHRATETS', 'DCC_INDICATOR', 'DCC_MARGINPERCENTAGE', 'DCC_VALIDHOURS', 'DIGESTCARDNO', 'ECI', 'ED', 'ENCCARDNO', 'IP', 'IPCTY',
-        'NBREMAILUSAGE','NBRIPUSAGE', 'NBRIPUSAGE_ALLTX', 'NBRUSAGE', 'NCERROR', 'NCERRORPLUS', 'NCERRORCN', 'NCERRORCARDNO', 'NCERRORCVC', 'NCERRORED', 'ORDERID',
+        'NBREMAILUSAGE','NBRIPUSAGE', 'NBRIPUSAGE_ALLTX', 'NBRUSAGE', 'NCERROR', 'NCERRORPLUS', 'NCERRORCN', 'NCERRORCARDNO', 'NCERRORCVC', 'NCERRORED', 'NCSTATUS', 'ORDERID',
         'PAYID', 'PM', 'SCO_CATEGORY', 'SCORING', 'STATUS', 'SUBSCRIPTION_ID', 'TRXDATE','VC');
 
     /**
@@ -68,7 +69,7 @@ abstract class AbstractResponse implements Response {
      */
     protected function extractShaSign(array $parameters)
     {
-        if(!array_key_exists(self::SHASIGN_FIELD, $parameters) || $parameters[self::SHASIGN_FIELD] == '') {
+        if (!array_key_exists(self::SHASIGN_FIELD, $parameters) || $parameters[self::SHASIGN_FIELD] == '') {
             throw new InvalidArgumentException('SHASIGN parameter not present in parameters.');
         }
         return $parameters[self::SHASIGN_FIELD];
@@ -81,14 +82,14 @@ abstract class AbstractResponse implements Response {
      */
     public function getParam($key)
     {
-        if(method_exists($this, 'get'.$key)) {
+        if (method_exists($this, 'get'.$key)) {
             return $this->{'get'.$key}();
         }
 
         // always use uppercase
         $key = strtoupper($key);
 
-        if(!array_key_exists($key, $this->parameters)) {
+        if (!array_key_exists($key, $this->parameters)) {
             throw new InvalidArgumentException('Parameter ' . $key . ' does not exist.');
         }
 

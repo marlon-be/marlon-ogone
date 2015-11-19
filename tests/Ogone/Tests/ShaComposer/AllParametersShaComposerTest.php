@@ -19,16 +19,16 @@ use Ogone\ShaComposer\AllParametersShaComposer;
 
 class AllParametersShaComposerTest extends \TestCase
 {
-	/**
-	 * @test
-	 * @dataProvider provideSha1Request
-	 */
-	public function Sha1StringIsComposedCorrectly(PassPhrase $passphrase, array $request, $expectedSha)
-	{
-		$composer = new AllParametersShaComposer($passphrase, new HashAlgorithm(HashAlgorithm::HASH_SHA1));
-		$composer->addParameterFilter(new ShaOutParameterFilter);
-		$this->assertEquals($expectedSha, $composer->compose($request));
-	}
+    /**
+     * @test
+     * @dataProvider provideSha1Request
+     */
+    public function Sha1StringIsComposedCorrectly(PassPhrase $passphrase, array $request, $expectedSha)
+    {
+        $composer = new AllParametersShaComposer($passphrase, new HashAlgorithm(HashAlgorithm::HASH_SHA1));
+        $composer->addParameterFilter(new ShaOutParameterFilter);
+        $this->assertEquals($expectedSha, $composer->compose($request));
+    }
 
     /**
      * @test
@@ -52,23 +52,23 @@ class AllParametersShaComposerTest extends \TestCase
         $this->assertEquals($expectedSha, $composer->compose($request));
     }
 
-	public function provideSha1Request()
-	{
-		$passphrase = new PassPhrase('Mysecretsig1875!?');
+    public function provideSha1Request()
+    {
+        $passphrase = new PassPhrase('Mysecretsig1875!?');
 
-		$expectedSha1 = 'B209960D5703DD1047F95A0F97655FFE5AC8BD52';
-		$request1 = $this->createMinimalParameterSet();
+        $expectedSha1 = 'B209960D5703DD1047F95A0F97655FFE5AC8BD52';
+        $request1 = $this->createMinimalParameterSet();
 
-		$expectedSha2 = 'D58400479DCEDD6B6C7E67D61FDC0CC9E6ED65CB';
-		$request2 = $this->createExtensiveParameterSet();
+        $expectedSha2 = 'D58400479DCEDD6B6C7E67D61FDC0CC9E6ED65CB';
+        $request2 = $this->createExtensiveParameterSet();
 
 
 
-		return array(
-			array($passphrase, $request1, $expectedSha1),
-			array($passphrase, $request2, $expectedSha2),
-		);
-	}
+        return array(
+            array($passphrase, $request1, $expectedSha1),
+            array($passphrase, $request2, $expectedSha2),
+        );
+    }
 
     public function provideSha256Request()
     {
@@ -140,5 +140,4 @@ class AllParametersShaComposerTest extends \TestCase
             'foo' => 'bar',
         );
     }
-
 }

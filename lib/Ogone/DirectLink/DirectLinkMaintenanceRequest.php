@@ -9,7 +9,8 @@ use Ogone\AbstractDirectLinkRequest;
 use Ogone\ShaComposer\ShaComposer;
 use InvalidArgumentException;
 
-class DirectLinkMaintenanceRequest extends AbstractDirectLinkRequest {
+class DirectLinkMaintenanceRequest extends AbstractDirectLinkRequest
+{
 
     const TEST = "https://secure.ogone.com/ncol/test/maintenancedirect.asp";
     const PRODUCTION = "https://secure.ogone.com/ncol/prod/maintenancedirect.asp";

@@ -11,7 +11,8 @@ use Ogone\Tests\ShaComposer\FakeShaComposer;
 use Ogone\DirectLink\DirectLinkMaintenanceRequest;
 use Ogone\DirectLink\Alias;
 
-class DirectLinkMaintenanceRequestTest extends \TestCase {
+class DirectLinkMaintenanceRequestTest extends \TestCase
+{
 
     /** @test */
     public function IsValidWhenRequiredFieldsAreFilledIn()

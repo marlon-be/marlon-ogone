@@ -11,68 +11,110 @@
 namespace Ogone;
 
 use InvalidArgumentException;
+use Ogone\DirectLink\PaymentOperation;
 
 abstract class AbstractPaymentRequest extends AbstractRequest
 {
     protected $brandsmap = array(
-        'Acceptgiro' => 'Acceptgiro',
-        'AIRPLUS' => 'CreditCard',
-        'American Express' => 'CreditCard',
-        'Aurora' => 'CreditCard',
-        'Aurore' => 'CreditCard',
-        'Bank transfer' => 'Bank transfer',
-        'BCMC' => 'CreditCard',
-        'Belfius Direct Net' => 'Belfius Direct Net',
-        'Billy' => 'CreditCard',
-        'cashU' => 'cashU',
-        'CB' => 'CreditCard',
-        'CBC Online' => 'CBC Online',
-        'CENTEA Online' => 'CENTEA Online',
-        'Cofinoga' => 'CreditCard',
-        'Dankort' => 'CreditCard',
-        'Dexia Direct Net' => 'Dexia Direct Net',
-        'Diners Club' => 'CreditCard',
-        'Direct Debits AT' => 'Direct Debits AT',
-        'Direct Debits DE' => 'Direct Debits DE',
-        'Direct Debits NL' => 'Direct Debits NL',
-        'eDankort' => 'eDankort',
-        'EPS' => 'EPS',
-        'Fortis Pay Button' => 'Fortis Pay Button',
-        'giropay' => 'giropay',
-        'iDEAL' => 'iDEAL',
-        'ING HomePay' => 'ING HomePay',
-        'InterSolve' => 'InterSolve',
-        'JCB' => 'CreditCard',
-        'KBC Online' => 'KBC Online',
-        'Maestro' => 'CreditCard',
-        'MaestroUK' => 'CreditCard',
-        'MasterCard' => 'CreditCard',
-        'MiniTix' => 'MiniTix',
-        'MPASS' => 'MPASS',
-        'NetReserve' => 'CreditCard',
-        'Payment on Delivery' => 'Payment on Delivery',
-        'PAYPAL' => 'PAYPAL',
-        'paysafecard' => 'paysafecard',
-        'PingPing' => 'PingPing',
-        'PostFinance + card' => 'PostFinance Card',
+        'Acceptgiro'            => 'Acceptgiro',
+        'AIRPLUS'               => 'CreditCard',
+        'American Express'      => 'CreditCard',
+        'Aurora'                => 'CreditCard',
+        'Aurore'                => 'CreditCard',
+        'Bank transfer'         => 'Bank transfer',
+        'BCMC'                  => 'CreditCard',
+        'Belfius Direct Net'    => 'Belfius Direct Net',
+        'Billy'                 => 'CreditCard',
+        'cashU'                 => 'cashU',
+        'CB'                    => 'CreditCard',
+        'CBC Online'            => 'CBC Online',
+        'CENTEA Online'         => 'CENTEA Online',
+        'Cofinoga'              => 'CreditCard',
+        'Dankort'               => 'CreditCard',
+        'Dexia Direct Net'      => 'Dexia Direct Net',
+        'Diners Club'           => 'CreditCard',
+        'Direct Debits AT'      => 'Direct Debits AT',
+        'Direct Debits DE'      => 'Direct Debits DE',
+        'Direct Debits NL'      => 'Direct Debits NL',
+        'eDankort'              => 'eDankort',
+        'EPS'                   => 'EPS',
+        'Fortis Pay Button'     => 'Fortis Pay Button',
+        'giropay'               => 'giropay',
+        'iDEAL'                 => 'iDEAL',
+        'ING HomePay'           => 'ING HomePay',
+        'InterSolve'            => 'InterSolve',
+        'JCB'                   => 'CreditCard',
+        'KBC Online'            => 'KBC Online',
+        'Maestro'               => 'CreditCard',
+        'MaestroUK'             => 'CreditCard',
+        'MasterCard'            => 'CreditCard',
+        'MiniTix'               => 'MiniTix',
+        'MPASS'                 => 'MPASS',
+        'NetReserve'            => 'CreditCard',
+        'Payment on Delivery'   => 'Payment on Delivery',
+        'PAYPAL'                => 'PAYPAL',
+        'paysafecard'           => 'paysafecard',
+        'PingPing'              => 'PingPing',
+        'PostFinance + card'    => 'PostFinance Card',
         'PostFinance e-finance' => 'PostFinance e-finance',
-        'PRIVILEGE' => 'CreditCard',
-        'Sofort Uberweisung' => 'DirectEbanking',
-        'Solo' => 'CreditCard',
-        'TUNZ' => 'TUNZ',
-        'UATP' => 'CreditCard',
-        'UNEUROCOM' => 'UNEUROCOM',
-        'VISA' => 'CreditCard',
-        'Wallie' => 'Wallie',
+        'PRIVILEGE'             => 'CreditCard',
+        'Sofort Uberweisung'    => 'DirectEbanking',
+        'Solo'                  => 'CreditCard',
+        'TUNZ'                  => 'TUNZ',
+        'UATP'                  => 'CreditCard',
+        'UNEUROCOM'             => 'UNEUROCOM',
+        'VISA'                  => 'CreditCard',
+        'Wallie'                => 'Wallie',
     );
 
     /** Note this is public to allow easy modification, if need be. */
     public $allowedcurrencies = array(
-        'AED', 'ANG', 'ARS', 'AUD', 'AWG', 'BGN', 'BRL', 'BYR', 'CAD', 'CHF',
-        'CNY', 'CZK', 'DKK', 'EEK', 'EGP', 'EUR', 'GBP', 'GEL', 'HKD', 'HRK',
-        'HUF', 'ILS', 'ISK', 'JPY', 'KRW', 'LTL', 'LVL', 'MAD', 'MXN', 'NOK',
-        'NZD', 'PLN', 'RON', 'RUB', 'SEK', 'SGD', 'SKK', 'THB', 'TRY', 'UAH',
-        'USD', 'XAF', 'XOF', 'XPF', 'ZAR'
+        'AED',
+        'ANG',
+        'ARS',
+        'AUD',
+        'AWG',
+        'BGN',
+        'BRL',
+        'BYR',
+        'CAD',
+        'CHF',
+        'CNY',
+        'CZK',
+        'DKK',
+        'EEK',
+        'EGP',
+        'EUR',
+        'GBP',
+        'GEL',
+        'HKD',
+        'HRK',
+        'HUF',
+        'ILS',
+        'ISK',
+        'JPY',
+        'KRW',
+        'LTL',
+        'LVL',
+        'MAD',
+        'MXN',
+        'MYR',
+        'NOK',
+        'NZD',
+        'PLN',
+        'RON',
+        'RUB',
+        'SEK',
+        'SGD',
+        'SKK',
+        'THB',
+        'TRY',
+        'UAH',
+        'USD',
+        'XAF',
+        'XOF',
+        'XPF',
+        'ZAR'
     );
 
     public function setOrderid($orderid)
@@ -115,7 +157,6 @@ abstract class AbstractPaymentRequest extends AbstractRequest
             throw new InvalidArgumentException("Amount is too high");
         }
         $this->parameters['amount'] = $amount;
-
     }
 
     public function setCurrency($currency)
@@ -155,7 +196,7 @@ abstract class AbstractPaymentRequest extends AbstractRequest
 
     public function setOwnerTown($ownertown)
     {
-        if (strlen($ownertown) > 25) {
+        if (strlen($ownertown) > 40) {
             throw new InvalidArgumentException("Owner town is too long");
         }
         $this->parameters['ownertown'] = $ownertown;
@@ -163,6 +204,7 @@ abstract class AbstractPaymentRequest extends AbstractRequest
 
     /**
      * Alias for setOwnercty
+     *
      * @see http://www.iso.org/iso/country_codes/iso_3166_code_lists/english_country_names_and_code_elements.htm
      */
     public function setOwnerCountry($ownercountry)
@@ -208,7 +250,7 @@ abstract class AbstractPaymentRequest extends AbstractRequest
 
     public function setBrand($brand)
     {
-        if(!array_key_exists($brand, $this->brandsmap)) {
+        if (!array_key_exists($brand, $this->brandsmap)) {
             throw new InvalidArgumentException("Unknown Brand [$brand].");
         }
 
@@ -248,4 +290,11 @@ abstract class AbstractPaymentRequest extends AbstractRequest
         $this->validateUri($tp);
         $this->parameters['tp'] = $tp;
     }
-} 
+
+    public function setOperation(PaymentOperation $operation)
+    {
+        $this->parameters['operation'] = (string) $operation;
+    }
+
+    abstract protected function getValidOperations();
+}

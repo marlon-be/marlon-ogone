@@ -10,8 +10,8 @@
 
 namespace Ogone;
 
-
-interface Request {
+interface Request
+{
 
     public function toArray();
 
@@ -22,4 +22,4 @@ interface Request {
     public function getRequiredFields();
 
     public function getValidOgoneUris();
-} 
+}
