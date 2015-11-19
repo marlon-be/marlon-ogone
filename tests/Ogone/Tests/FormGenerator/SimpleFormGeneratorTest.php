@@ -11,6 +11,7 @@
 
 namespace Ogone\Tests\FormGenerator;
 
+use Ogone\DirectLink\PaymentOperation;
 use Ogone\FormGenerator\SimpleFormGenerator;
 use Ogone\PaymentRequest;
 
@@ -91,7 +92,7 @@ class SimpleFormGeneratorTest extends \TestCase
             </form>';
 
         $paymentRequest = $this->provideMinimalPaymentRequest();
-        $paymentRequest->setOperation('SAL');
+        $paymentRequest->setOperation(new PaymentOperation(PaymentOperation::REQUEST_FOR_DIRECT_SALE));
 
         $formGenerator = new SimpleFormGenerator();
 

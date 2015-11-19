@@ -78,10 +78,10 @@ class DirectLinkPaymentRequest extends AbstractPaymentRequest
     protected function getValidOperations()
     {
         return array(
-            self::OPERATION_REQUEST_AUTHORIZATION,
-            self::OPERATION_REQUEST_DIRECT_SALE,
-            self::OPERATION_REFUND,
-            self::OPERATION_REQUEST_PRE_AUTHORIZATION,
+            PaymentOperation::REQUEST_FOR_AUTHORISATION,
+            PaymentOperation::REQUEST_FOR_DIRECT_SALE,
+            PaymentOperation::REFUND,
+            PaymentOperation::REQUEST_FOR_PRE_AUTHORISATION,
         );
     }
 }

@@ -11,6 +11,7 @@
 
 namespace Ogone\Tests\Ecommerce;
 
+use Ogone\DirectLink\PaymentOperation;
 use Ogone\Tests\ShaComposer\FakeShaComposer;
 use Ogone\Ecommerce\EcommercePaymentRequest;
 
@@ -105,8 +106,6 @@ class EcommercePaymentRequestTest extends \TestCase
             array('setParamvar', $longString),
             array('setPaymentMethod', 'Digital'),
             array('setPspid', $longString),
-            array('setOperation', 'UNKNOWN_OPERATION'),
-            array('setOperation', EcommercePaymentRequest::OPERATION_REFUND),
         );
     }
 }
