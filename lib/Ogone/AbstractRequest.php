@@ -40,7 +40,7 @@ abstract class AbstractRequest implements Request
         'ownertelno', 'accepturl', 'declineurl', 'exceptionurl', 'cancelurl', 'backurl',
         'complus', 'paramplus', 'pm', 'brand', 'title', 'bgcolor', 'txtcolor', 'tblbgcolor',
         'tbltxtcolor', 'buttonbgcolor', 'buttontxtcolor', 'logo', 'fonttype', 'tp', 'paramvar',
-        'alias', 'aliasoperation', 'aliasusage', 'aliaspersistedafteruse'
+        'alias', 'aliasoperation', 'aliasusage', 'aliaspersistedafteruse', 'device'
     );
 
     /** @return string */
@@ -71,7 +71,7 @@ abstract class AbstractRequest implements Request
     }
 
     /**
-     * ISO code eg nl-BE
+     * ISO code eg nl_BE
      */
     public function setLanguage($language)
     {
