@@ -65,7 +65,7 @@ This library currently supports both the legacy method "Main parameters only" an
 	<?php
 	use Ogone\Passphrase;
 	use Ogone\Ecommerce\EcommercePaymentRequest;
-        use Ogone\ShaComposer\AllParametersShaComposer;
+	use Ogone\ShaComposer\AllParametersShaComposer;
 	use Ogone\FormGenerator\SimpleFormGenerator;
 
 	$passphrase = new Passphrase('my-sha-in-passphrase-defined-in-ogone-interface');
@@ -110,7 +110,7 @@ This library currently supports both the legacy method "Main parameters only" an
 	// $createAliasRequest->setOgoneUri(CreateAliasRequest::PRODUCTION);
 
 	// set required params
-	$createAliasRequest->setPspid('123456');
+	$createAliasRequest->setPspid('123456');
 	$createAliasRequest->setAccepturl('http://example.com/accept');
 	$createAliasRequest->setExceptionurl('http://example.com/exception');
 
