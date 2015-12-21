@@ -11,7 +11,7 @@ Requirements:
 - PHP 5.3
 - network connection between your webserver and the Ogone platform
 
-As always, this is work in progress. Please feel free to fork this project and let them pull requests coming!
+As always, this is work in progress. Please feel free to fork this project and get those pull requests coming!
 
 ## Overview ##
 
