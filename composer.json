@@ -1,7 +1,10 @@
 {
     "name": "marlon-be/marlon-ogone",
     "autoload": {
-        "psr-0": { "Ogone": "lib/" }
+        "psr-4": {
+            "Ogone\\": "lib/Ogone/",
+            "Ogone\\Tests\\": "tests/Ogone/Tests/"
+        }
     },
     "require": {
         "php": ">=5.3"
