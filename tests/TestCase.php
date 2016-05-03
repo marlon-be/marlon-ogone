@@ -21,6 +21,7 @@ use Ogone\DirectLink\DirectLinkMaintenanceRequest;
 use Ogone\DirectLink\DirectLinkPaymentRequest;
 use Ogone\DirectLink\DirectLinkQueryRequest;
 
+require_once 'PHPUnit/Framework/TestCase.php';
 require_once __DIR__.'/Ogone/Tests/ShaComposer/FakeShaComposer.php';
 
 abstract class TestCase extends PHPUnit_Framework_TestCase
