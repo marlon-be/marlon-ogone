@@ -32,6 +32,15 @@ class AliasTest extends TestCase
      * @test
      * @expectedException \InvalidArgumentException
      */
+    public function AliasIsMax50Characters()
+    {
+        new Alias(str_repeat('X', 51));
+    }
+
+    /**
+     * @test
+     * @expectedException \InvalidArgumentException
+     */
     public function AliasIsAlphaNumeric()
     {
         new Alias('some alias with spaces, dots (.), etc');
