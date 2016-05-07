@@ -13,8 +13,9 @@ namespace Ogone\Tests\Ecommerce;
 
 use Ogone\Tests\ShaComposer\FakeShaComposer;
 use Ogone\Ecommerce\EcommercePaymentRequest;
+use Ogone\Tests\TestCase;
 
-class EcommercePaymentRequestTest extends \TestCase
+class EcommercePaymentRequestTest extends TestCase
 {
     /** @test */
     public function IsValidWhenRequiredFieldsAreFilledIn()
@@ -108,5 +109,34 @@ class EcommercePaymentRequestTest extends \TestCase
             array('setOperation', 'UNKNOWN_OPERATION'),
             array('setOperation', EcommercePaymentRequest::OPERATION_REFUND),
         );
+    }
+
+    /** @return EcommercePaymentRequest */
+    private function provideCompletePaymentRequest()
+    {
+        $paymentRequest = $this->provideMinimalPaymentRequest();
+
+        $paymentRequest->setAccepturl('http://example.com/accept');
+        $paymentRequest->setDeclineurl('http://example.com/decline');
+        $paymentRequest->setExceptionurl('http://example.com/exception');
+        $paymentRequest->setCancelurl('http://example.com/cancel');
+        $paymentRequest->setBackurl('http://example.com/back');
+        $paymentRequest->setDynamicTemplateUri('http://example.com/template');
+
+        $paymentRequest->setCurrency('EUR');
+        $paymentRequest->setLanguage('nl_BE');
+        $paymentRequest->setPaymentMethod('CreditCard');
+        $paymentRequest->setBrand('VISA');
+
+        $paymentRequest->setFeedbackMessage("Thanks for ordering");
+        $paymentRequest->setFeedbackParams(array('amountOfProducts' => '5', 'usedCoupon' => 1));
+        $paymentRequest->setParamvar('aParamVar');
+        $paymentRequest->setOrderDescription("Four horses and a carriage");
+
+        $paymentRequest->setOwnerPhone('123456789');
+
+        $paymentRequest->setOperation(EcommercePaymentRequest::OPERATION_REQUEST_DIRECT_SALE);
+
+        return $paymentRequest;
     }
 }

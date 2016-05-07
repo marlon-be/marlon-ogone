@@ -5,10 +5,9 @@
 
 namespace Ogone\Tests\DirectLink;
 
-use Ogone\Tests;
 use Ogone\DirectLink\DirectLinkQueryResponse;
 
-class DirectLinkQueryResponseTest extends \TestCase
+class DirectLinkQueryResponseTest extends \PHPUnit_Framework_TestCase
 {
 
     /**

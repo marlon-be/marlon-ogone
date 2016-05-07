@@ -24,9 +24,8 @@ use Ogone\DirectLink\DirectLinkPaymentResponse;
 /**
  * @group integration
  */
-class OgoneTest extends \TestCase
+class OgoneTest extends \PHPUnit_Framework_TestCase
 {
-
     /**
      * @test
      */
