@@ -16,7 +16,7 @@ use Ogone\Passphrase;
 use Ogone\PaymentResponse;
 use Ogone\ShaComposer\LegacyShaComposer;
 
-class LegacyShaComposerTest extends \TestCase
+class LegacyShaComposerTest extends \PHPUnit_Framework_TestCase
 {
     const PASSPHRASE = 'passphrase-set-in-ogone-interface';
     const SHA1STRING = '66BF34D8B3EF2136E0C267BDBC1F708B8D75A8AA';

@@ -1,7 +1,4 @@
-.settings
-.buildpath
-.project
-build
+/build/
 phpunit.xml
-vendor/
+/vendor/
 composer.lock

@@ -4,7 +4,7 @@ namespace Ogone\Tests\Subscription;
 
 use Ogone\Subscription\SubscriptionPeriod;
 
-class SubscriptionPeriodTest extends \TestCase
+class SubscriptionPeriodTest extends \PHPUnit_Framework_TestCase
 {
 
     /** @test */

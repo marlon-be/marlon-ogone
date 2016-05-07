@@ -15,7 +15,7 @@ use Ogone\Tests\ShaComposer\FakeShaComposer;
 use Ogone\DirectLink\DirectLinkPaymentRequest;
 use Ogone\DirectLink\Alias;
 
-class DirectLinkPaymentRequestTest extends \TestCase
+class DirectLinkPaymentRequestTest extends \PHPUnit_Framework_TestCase
 {
 
     /** @test */
@@ -109,5 +109,19 @@ class DirectLinkPaymentRequestTest extends \TestCase
             array('setUserid', '12'),
             array('setOperation', 'UNKNOWN_OPERATION'),
         );
+    }
+
+    /** @return DirectLinkPaymentRequest */
+    private function provideMinimalDirectLinkPaymentRequest()
+    {
+        $directLinkRequest = new DirectLinkPaymentRequest(new FakeShaComposer());
+        $directLinkRequest->setPspid('123456');
+        $directLinkRequest->setUserId('user_1234');
+        $directLinkRequest->setPassword('abracadabra');
+        $directLinkRequest->setAmount(100);
+        $directLinkRequest->setCurrency('EUR');
+        $directLinkRequest->setOrderid('999');
+
+        return $directLinkRequest;
     }
 }

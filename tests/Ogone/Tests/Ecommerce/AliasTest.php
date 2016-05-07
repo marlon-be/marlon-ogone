@@ -2,9 +2,8 @@
 namespace Ogone\Tests\Ecommerce;
 
 use Ogone\Ecommerce\Alias;
-use TestCase;
 
-class AliasTest extends TestCase
+class AliasTest extends \PHPUnit_Framework_TestCase
 {
 
     /** @test */

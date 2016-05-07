@@ -12,7 +12,7 @@ namespace Ogone\Tests\DirectLink;
 
 use Ogone\DirectLink\Alias;
 
-class AliasTest extends \TestCase
+class AliasTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @test

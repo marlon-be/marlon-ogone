@@ -14,9 +14,8 @@ use Ogone\Tests\ShaComposer\FakeShaComposer;
 use Ogone\DirectLink\CreateAliasRequest;
 use Ogone\DirectLink\Alias;
 
-class CreateAliasRequestTest extends \TestCase
+class CreateAliasRequestTest extends \PHPUnit_Framework_TestCase
 {
-
     /**
      * @test
      */
@@ -93,5 +92,16 @@ class CreateAliasRequestTest extends \TestCase
         $aliasRequest = $this->provideMinimalAliasRequest();
         $aliasRequest->setAlias($alias);
         $aliasRequest->validate();
+    }
+
+    /** @return CreateAliasRequest*/
+    private function provideMinimalAliasRequest()
+    {
+        $aliasRequest = new CreateAliasRequest(new FakeShaComposer);
+        $aliasRequest->setPspid('18457454');
+        $aliasRequest->setAccepturl('http://example.com/accept');
+        $aliasRequest->setExceptionurl('http://example.com/exception');
+
+        return $aliasRequest;
     }
 }

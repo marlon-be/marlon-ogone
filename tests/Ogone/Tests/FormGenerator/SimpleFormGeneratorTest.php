@@ -13,8 +13,9 @@ namespace Ogone\Tests\FormGenerator;
 
 use Ogone\FormGenerator\SimpleFormGenerator;
 use Ogone\PaymentRequest;
+use Ogone\Tests\TestCase;
 
-class SimpleFormGeneratorTest extends \TestCase
+class SimpleFormGeneratorTest extends TestCase
 {
     /** @test */
     public function GeneratesAForm()

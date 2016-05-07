@@ -16,7 +16,7 @@ use Ogone\Tests\ShaComposer\FakeShaComposer;
 use Ogone\Ecommerce\EcommercePaymentResponse;
 use InvalidArgumentException;
 
-class EcommercePaymentResponseTest extends \TestCase
+class EcommercePaymentResponseTest extends \PHPUnit_Framework_TestCase
 {
     /** @test */
     public function CanBeVerified()

@@ -13,7 +13,7 @@ namespace Ogone\Tests\DirectLink;
 use Ogone\DirectLink\CreateAliasResponse;
 use Ogone\Tests\ShaComposer\FakeShaComposer;
 
-class CreateAliasResponseTest extends \TestCase
+class CreateAliasResponseTest extends \PHPUnit_Framework_TestCase
 {
 
     /** @test */
