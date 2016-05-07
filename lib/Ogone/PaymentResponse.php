@@ -56,4 +56,10 @@ interface PaymentResponse extends Response
      * @var int
      */
     const STATUS_PAYMENT_REFUSED = 93;
+
+    /**
+     * When the payment is set to paid manually
+     * @var int
+     */
+    const STATUS_PAYMENT_BY_MERCHANT = 95;
 }
