@@ -300,7 +300,6 @@ abstract class AbstractPaymentRequest extends AbstractRequest
 
     public function setTp($tp)
     {
-        $this->validateUri($tp);
         $this->parameters['tp'] = $tp;
     }
 
