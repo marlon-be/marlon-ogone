@@ -37,7 +37,7 @@ class LegacyShaComposer implements ShaComposer
     public function __construct(Passphrase $passphrase, HashAlgorithm $hashAlgorithm = null)
     {
         $this->passphrase = $passphrase;
-        $this->hashAlgorithm = $hashAlgorithm ?: new HashAlgorithm($hashAlgorithm::HASH_SHA1);
+        $this->hashAlgorithm = $hashAlgorithm ?: new HashAlgorithm(HashAlgorithm::HASH_SHA1);
     }
 
     /**
