@@ -31,9 +31,10 @@ class SimpleFormGenerator implements FormGenerator
      * @param EcommercePaymentRequest $ecommercePaymentRequest
      * @param string $formName
      * @param bool $showSubmitButton
+     * @param string $textSubmitButton The text displayed on the submit button of the form. Defaults to "Submit"
      * @return string HTML
      */
-    public function render(EcommercePaymentRequest $ecommercePaymentRequest, $formName = 'ogone', $showSubmitButton = true)
+    public function render(EcommercePaymentRequest $ecommercePaymentRequest, $formName = 'ogone', $showSubmitButton = true, $textSubmitButton = 'Submit')
     {
         $formName = null !== $this->formName?$this->formName:$formName;
         $showSubmitButton = null !== $this->showSubmitButton?$this->showSubmitButton:$showSubmitButton;
