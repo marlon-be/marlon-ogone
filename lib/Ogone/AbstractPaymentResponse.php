@@ -10,6 +10,8 @@
 
 namespace Ogone;
 
+use InvalidArgumentException;
+
 abstract class AbstractPaymentResponse extends AbstractResponse implements PaymentResponse
 {
     /**
@@ -17,6 +19,10 @@ abstract class AbstractPaymentResponse extends AbstractResponse implements Payme
      */
     public function getAmount()
     {
+        if (!isset($this->parameters['AMOUNT'])) {
+            throw new InvalidArgumentException('Parameter AMOUNT does not exist');
+        }
+
         $value = trim($this->parameters['AMOUNT']);
 
         $withoutDecimals = '#^\d*$#';
