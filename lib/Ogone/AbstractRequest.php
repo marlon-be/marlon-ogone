@@ -40,7 +40,8 @@ abstract class AbstractRequest implements Request
         'ownertelno', 'accepturl', 'declineurl', 'exceptionurl', 'cancelurl', 'backurl',
         'complus', 'paramplus', 'pm', 'brand', 'title', 'bgcolor', 'txtcolor', 'tblbgcolor',
         'tbltxtcolor', 'buttonbgcolor', 'buttontxtcolor', 'logo', 'fonttype', 'tp', 'paramvar',
-        'alias', 'aliasoperation', 'aliasusage', 'aliaspersistedafteruse', 'device', 'pmlisttype'
+        'alias', 'aliasoperation', 'aliasusage', 'aliaspersistedafteruse', 'device', 'pmlisttype',
+        'ecom_payment_card_verification', 'operation', 'withroot', 'remote_addr', 'rtimeout'
     );
 
     /** @return string */
