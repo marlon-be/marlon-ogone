@@ -97,12 +97,13 @@ This library currently supports both the legacy method "Main parameters only" an
 
 	use Ogone\Passphrase;
 	use Ogone\DirectLink\CreateAliasRequest;
+	use Ogone\ParameterFilter\AliasShaInParameterFilter;
     use Ogone\ShaComposer\AllParametersShaComposer;
 	use Ogone\DirectLink\Alias;
 
 	$passphrase = new Passphrase('my-sha-in-passphrase-defined-in-ogone-interface');
 	$shaComposer = new AllParametersShaComposer($passphrase);
-	$shaComposer->addParameterFilter(new ShaInParameterFilter); //optional
+	$shaComposer->addParameterFilter(new AliasShaInParameterFilter);
 
 	$createAliasRequest = new CreateAliasRequest($shaComposer);
 
