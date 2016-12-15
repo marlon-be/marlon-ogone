@@ -32,6 +32,7 @@ class SimpleFormGeneratorTest extends TestCase
                 <input type="hidden" name="OWNERZIP" value="2300" />
                 <input type="hidden" name="OWNERCTY" value="FR" />
                 <input type="hidden" name="EMAIL" value="louis.xiv@versailles.fr" />
+                <input name="WIN3DS" type="hidden" value="MAINW"/>
                 <input type="hidden" name="'.PaymentRequest::SHASIGN_FIELD.'" value="foo" />
                 <input type="submit" value="Submit" id="ogonesubmit" name="ogonesubmit" />
             </form>';
@@ -59,6 +60,7 @@ class SimpleFormGeneratorTest extends TestCase
                 <input type="hidden" name="OWNERZIP" value="2300" />
                 <input type="hidden" name="OWNERCTY" value="FR" />
                 <input type="hidden" name="EMAIL" value="louis.xiv@versailles.fr" />
+                <input name="WIN3DS" type="hidden" value="MAINW"/>
                 <input type="hidden" name="'.PaymentRequest::SHASIGN_FIELD.'" value="foo" />
             </form>';
 
@@ -86,6 +88,7 @@ class SimpleFormGeneratorTest extends TestCase
                 <input type="hidden" name="OWNERZIP" value="2300" />
                 <input type="hidden" name="OWNERCTY" value="FR" />
                 <input type="hidden" name="EMAIL" value="louis.xiv@versailles.fr" />
+                <input name="WIN3DS" type="hidden" value="MAINW"/>
                 <input type="hidden" name="OPERATION" value="SAL" />
                 <input type="hidden" name="'.PaymentRequest::SHASIGN_FIELD.'" value="foo" />
                 <input type="submit" value="Submit" id="ogonesubmit" name="ogonesubmit" />

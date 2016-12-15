@@ -34,7 +34,7 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
         $paymentRequest->setOwnerZip('2300');
         $paymentRequest->setOwnerCountry("FR");
         $paymentRequest->setEmail("louis.xiv@versailles.fr");
-        
+
         // this field is mandatory in some european countries
         $paymentRequest->setSecure();
 
