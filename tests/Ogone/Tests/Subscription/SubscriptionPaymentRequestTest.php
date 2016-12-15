@@ -6,7 +6,7 @@ use Ogone\Subscription\SubscriptionPaymentRequest;
 use Ogone\Subscription\SubscriptionPeriod;
 use Ogone\Tests\ShaComposer\FakeShaComposer;
 
-class SubscriptionPaymentRequestTest extends \TestCase
+class SubscriptionPaymentRequestTest extends \PHPUnit_Framework_TestCase
 {
 
     /** @test */

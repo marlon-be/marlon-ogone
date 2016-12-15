@@ -11,7 +11,7 @@ Requirements:
 - PHP 5.3
 - network connection between your webserver and the Ogone platform
 
-As always, this is work in progress. Please feel free to fork this project and let them pull requests coming!
+As always, this is work in progress. Please feel free to fork this project and get those pull requests coming!
 
 ## Overview ##
 
@@ -65,7 +65,7 @@ This library currently supports both the legacy method "Main parameters only" an
 	<?php
 	use Ogone\Passphrase;
 	use Ogone\Ecommerce\EcommercePaymentRequest;
-        use Ogone\ShaComposer\AllParametersShaComposer;
+	use Ogone\ShaComposer\AllParametersShaComposer;
 	use Ogone\FormGenerator\SimpleFormGenerator;
 
 	$passphrase = new Passphrase('my-sha-in-passphrase-defined-in-ogone-interface');
@@ -97,12 +97,13 @@ This library currently supports both the legacy method "Main parameters only" an
 
 	use Ogone\Passphrase;
 	use Ogone\DirectLink\CreateAliasRequest;
+	use Ogone\ParameterFilter\AliasShaInParameterFilter;
     use Ogone\ShaComposer\AllParametersShaComposer;
 	use Ogone\DirectLink\Alias;
 
 	$passphrase = new Passphrase('my-sha-in-passphrase-defined-in-ogone-interface');
 	$shaComposer = new AllParametersShaComposer($passphrase);
-	$shaComposer->addParameterFilter(new ShaInParameterFilter); //optional
+	$shaComposer->addParameterFilter(new AliasShaInParameterFilter);
 
 	$createAliasRequest = new CreateAliasRequest($shaComposer);
 
@@ -110,7 +111,7 @@ This library currently supports both the legacy method "Main parameters only" an
 	// $createAliasRequest->setOgoneUri(CreateAliasRequest::PRODUCTION);
 
 	// set required params
-	$createAliasRequest->setPspid('123456');
+	$createAliasRequest->setPspid('123456');
 	$createAliasRequest->setAccepturl('http://example.com/accept');
 	$createAliasRequest->setExceptionurl('http://example.com/exception');
 

@@ -10,10 +10,9 @@
 
 namespace Ogone\Tests\DirectLink;
 
-use Ogone\Tests;
 use Ogone\DirectLink\DirectLinkPaymentResponse;
 
-class DirectLinkPaymentResponseTest extends \TestCase
+class DirectLinkPaymentResponseTest extends \PHPUnit_Framework_TestCase
 {
 
     /**

@@ -13,7 +13,7 @@ namespace Ogone\Tests\ShaComposer;
 
 use Ogone\ParameterFilter\ShaInParameterFilter;
 
-class ShaInParameterFilterTest extends \TestCase
+class ShaInParameterFilterTest extends \PHPUnit_Framework_TestCase
 {
     /** @test */
     public function RemovesUnwantedParameters()

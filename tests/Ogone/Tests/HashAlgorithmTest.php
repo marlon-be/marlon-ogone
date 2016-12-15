@@ -4,7 +4,7 @@ namespace Ogone\Tests;
 
 use Ogone\HashAlgorithm;
 
-class HashAlgorithmTest extends \TestCase
+class HashAlgorithmTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @test

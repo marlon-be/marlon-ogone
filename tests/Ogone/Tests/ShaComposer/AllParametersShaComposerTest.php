@@ -14,16 +14,15 @@ namespace Ogone\Tests\ShaComposer;
 use Ogone\HashAlgorithm;
 use Ogone\ParameterFilter\ShaOutParameterFilter;
 use Ogone\Passphrase;
-use Ogone\PaymentResponse;
 use Ogone\ShaComposer\AllParametersShaComposer;
 
-class AllParametersShaComposerTest extends \TestCase
+class AllParametersShaComposerTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @test
      * @dataProvider provideSha1Request
      */
-    public function Sha1StringIsComposedCorrectly(PassPhrase $passphrase, array $request, $expectedSha)
+    public function Sha1StringIsComposedCorrectly(Passphrase $passphrase, array $request, $expectedSha)
     {
         $composer = new AllParametersShaComposer($passphrase, new HashAlgorithm(HashAlgorithm::HASH_SHA1));
         $composer->addParameterFilter(new ShaOutParameterFilter);
@@ -34,7 +33,7 @@ class AllParametersShaComposerTest extends \TestCase
      * @test
      * @dataProvider provideSha256Request
      */
-    public function Sha256StringIsComposedCorrectly(PassPhrase $passphrase, array $request, $expectedSha)
+    public function Sha256StringIsComposedCorrectly(Passphrase $passphrase, array $request, $expectedSha)
     {
         $composer = new AllParametersShaComposer($passphrase, new HashAlgorithm(HashAlgorithm::HASH_SHA256));
         $composer->addParameterFilter(new ShaOutParameterFilter);
@@ -45,7 +44,7 @@ class AllParametersShaComposerTest extends \TestCase
      * @test
      * @dataProvider provideSha512Request
      */
-    public function Sha512StringIsComposedCorrectly(PassPhrase $passphrase, array $request, $expectedSha)
+    public function Sha512StringIsComposedCorrectly(Passphrase $passphrase, array $request, $expectedSha)
     {
         $composer = new AllParametersShaComposer($passphrase, new HashAlgorithm(HashAlgorithm::HASH_SHA512));
         $composer->addParameterFilter(new ShaOutParameterFilter);
@@ -54,7 +53,7 @@ class AllParametersShaComposerTest extends \TestCase
 
     public function provideSha1Request()
     {
-        $passphrase = new PassPhrase('Mysecretsig1875!?');
+        $passphrase = new Passphrase('Mysecretsig1875!?');
 
         $expectedSha1 = 'B209960D5703DD1047F95A0F97655FFE5AC8BD52';
         $request1 = $this->createMinimalParameterSet();
@@ -72,7 +71,7 @@ class AllParametersShaComposerTest extends \TestCase
 
     public function provideSha256Request()
     {
-        $passphrase = new PassPhrase('Mysecretsig1875!?');
+        $passphrase = new Passphrase('Mysecretsig1875!?');
 
         $expectedSha1 = 'FD15F9371F2B42E3CAEC53BF2576AC89AAEBF53FD8FBA8F0B2EA13EAA823189D';
         $request1 = $this->createMinimalParameterSet();
@@ -88,7 +87,7 @@ class AllParametersShaComposerTest extends \TestCase
 
     public function provideSha512Request()
     {
-        $passphrase = new PassPhrase('Mysecretsig1875!?');
+        $passphrase = new Passphrase('Mysecretsig1875!?');
 
         $expectedSha1 = '5377F95D498947BECC23E02C2C7DDE182EE1221F1A6629B091110DF653FE0C32FCACF5F9B87B4C5168FC12B7183095623750004355DE938A2B8DECC6DB6D9F62';
         $request1 = $this->createMinimalParameterSet();

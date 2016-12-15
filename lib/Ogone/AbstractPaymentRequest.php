@@ -22,6 +22,10 @@ abstract class AbstractPaymentRequest extends AbstractRequest
         'Aurora'                => 'CreditCard',
         'Aurore'                => 'CreditCard',
         'Bank transfer'         => 'Bank transfer',
+        'Bank transfer BE'      => 'Bank transfer BE',
+        'Bank transfer DE'      => 'Bank transfer DE',
+        'Bank transfer FR'      => 'Bank transfer FR',
+        'Bank transfer NL'      => 'Bank transfer NL',
         'BCMC'                  => 'CreditCard',
         'Belfius Direct Net'    => 'Belfius Direct Net',
         'Billy'                 => 'CreditCard',
@@ -36,6 +40,11 @@ abstract class AbstractPaymentRequest extends AbstractRequest
         'Direct Debits AT'      => 'Direct Debits AT',
         'Direct Debits DE'      => 'Direct Debits DE',
         'Direct Debits NL'      => 'Direct Debits NL',
+        'DirectEbankingDE'      => 'DirectEbankingDE',
+        'DirectEbankingAT'      => 'DirectEbankingAT',
+        'DirectEbankingIT'      => 'DirectEbankingIT',
+        'DirectEbankingBE'      => 'DirectEbankingBE',
+        'DirectEbankingFR'      => 'DirectEbankingFR',
         'eDankort'              => 'eDankort',
         'EPS'                   => 'EPS',
         'Fortis Pay Button'     => 'Fortis Pay Button',
@@ -282,12 +291,18 @@ abstract class AbstractPaymentRequest extends AbstractRequest
     /** Alias for setTp */
     public function setDynamicTemplateUri($uri)
     {
+        $this->validateUri($uri);
         $this->setTp($uri);
+    }
+    
+    /** Alias for setTp */
+    public function setStaticTemplate($tp)
+    {
+        $this->setTp($tp);
     }
 
     public function setTp($tp)
     {
-        $this->validateUri($tp);
         $this->parameters['tp'] = $tp;
     }
 

@@ -2,9 +2,8 @@
 namespace Ogone\Tests\Ecommerce;
 
 use Ogone\Ecommerce\Alias;
-use TestCase;
 
-class AliasTest extends TestCase
+class AliasTest extends \PHPUnit_Framework_TestCase
 {
 
     /** @test */
@@ -26,6 +25,15 @@ class AliasTest extends TestCase
     {
         $alias = new Alias('alias123', Alias::OPERATION_BY_PSP);
         $this->assertEquals(Alias::OPERATION_BY_PSP, $alias->getAliasOperation());
+    }
+
+    /**
+     * @test
+     * @expectedException \InvalidArgumentException
+     */
+    public function AliasIsMax50Characters()
+    {
+        new Alias(str_repeat('X', 51));
     }
 
     /**

@@ -3,8 +3,9 @@ namespace Ogone\Tests\DirectLink;
 
 
 use Ogone\DirectLink\MaintenanceOperation;
+use Ogone\Tests\TestCase;
 
-class MaintenanceOperationTest extends \TestCase
+class MaintenanceOperationTest extends TestCase
 {
     /**
      * @test

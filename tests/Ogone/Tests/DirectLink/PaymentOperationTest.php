@@ -3,8 +3,9 @@ namespace Ogone\Tests\DirectLink;
 
 
 use Ogone\DirectLink\PaymentOperation;
+use Ogone\Tests\TestCase;
 
-class PaymentOperationTest extends \TestCase
+class PaymentOperationTest extends TestCase
 {
     /**
      * @test
