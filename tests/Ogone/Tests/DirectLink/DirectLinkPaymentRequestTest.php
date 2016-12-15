@@ -10,6 +10,7 @@
 
 namespace Ogone\Tests\DirectLink;
 
+use Ogone\DirectLink\PaymentOperation;
 use Ogone\Tests;
 use Ogone\Tests\ShaComposer\FakeShaComposer;
 use Ogone\DirectLink\DirectLinkPaymentRequest;
@@ -87,7 +88,7 @@ class DirectLinkPaymentRequestTest extends \PHPUnit_Framework_TestCase
     public function isValidWhenOperationIsSet()
     {
         $directLinkPaymentRequest = $this->provideMinimalDirectLinkPaymentRequest();
-        $directLinkPaymentRequest->setOperation(DirectLinkPaymentRequest::OPERATION_REQUEST_DIRECT_SALE);
+        $directLinkPaymentRequest->setOperation(new PaymentOperation(PaymentOperation::REQUEST_FOR_DIRECT_SALE));
         $directLinkPaymentRequest->validate();
     }
 
@@ -107,7 +108,6 @@ class DirectLinkPaymentRequestTest extends \PHPUnit_Framework_TestCase
         return array(
             array('setPswd', '12'),
             array('setUserid', '12'),
-            array('setOperation', 'UNKNOWN_OPERATION'),
         );
     }
 
