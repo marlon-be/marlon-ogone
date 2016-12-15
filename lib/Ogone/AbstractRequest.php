@@ -36,7 +36,7 @@ abstract class AbstractRequest implements Request
 
     protected $ogoneFields = array(
         'pspid', 'orderid', 'com', 'amount', 'currency', 'language', 'cn', 'email',
-        'cardno', 'cvc', 'ed', 'ownerzip', 'owneraddress', 'ownercty', 'ownertown',
+        'cardno', 'cvc', 'ed', 'ownerzip', 'owneraddress', 'ownercty', 'ownertown', 'win3ds',
         'ownertelno', 'accepturl', 'declineurl', 'exceptionurl', 'cancelurl', 'backurl',
         'complus', 'paramplus', 'pm', 'brand', 'title', 'bgcolor', 'txtcolor', 'tblbgcolor',
         'tbltxtcolor', 'buttonbgcolor', 'buttontxtcolor', 'logo', 'fonttype', 'tp', 'paramvar',
@@ -68,6 +68,11 @@ abstract class AbstractRequest implements Request
             throw new InvalidArgumentException("PSPId is too long");
         }
         $this->parameters['pspid'] = $pspid;
+    }
+
+    public function setSecure()
+    {
+      $this->parameters['win3ds'] = 'MAINW';
     }
 
     /**
