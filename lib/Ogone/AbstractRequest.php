@@ -41,7 +41,8 @@ abstract class AbstractRequest implements Request
         'complus', 'paramplus', 'pm', 'brand', 'title', 'bgcolor', 'txtcolor', 'tblbgcolor',
         'tbltxtcolor', 'buttonbgcolor', 'buttontxtcolor', 'logo', 'fonttype', 'tp', 'paramvar',
         'alias', 'aliasoperation', 'aliasusage', 'aliaspersistedafteruse', 'device', 'pmlisttype',
-        'operation',
+        'ecom_payment_card_verification', 'operation', 'withroot', 'remote_addr', 'rtimeout',
+        'flag3d', 'http_accept', 'http_user_agent', 'win3ds',
     );
 
     /** @return string */
