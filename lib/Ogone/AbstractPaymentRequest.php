@@ -11,14 +11,10 @@
 namespace Ogone;
 
 use InvalidArgumentException;
+use Ogone\DirectLink\PaymentOperation;
 
 abstract class AbstractPaymentRequest extends AbstractRequest
 {
-    const OPERATION_REQUEST_AUTHORIZATION = 'RES';
-    const OPERATION_REQUEST_DIRECT_SALE = 'SAL';
-    const OPERATION_REFUND = 'RFD';
-    const OPERATION_REQUEST_PRE_AUTHORIZATION = 'PAU';
-
     protected $brandsmap = array(
         'Acceptgiro'            => 'Acceptgiro',
         'AIRPLUS'               => 'CreditCard',
@@ -132,8 +128,8 @@ abstract class AbstractPaymentRequest extends AbstractRequest
 
     public function setOrderid($orderid)
     {
-        if (strlen($orderid) > 30) {
-            throw new InvalidArgumentException("Orderid cannot be longer than 30 characters");
+        if (strlen($orderid) > 40) {
+            throw new InvalidArgumentException("Orderid cannot be longer than 40 characters");
         }
         if (preg_match('/[^a-zA-Z0-9_-]/', $orderid)) {
             throw new InvalidArgumentException("Order id cannot contain special characters");
@@ -295,22 +291,24 @@ abstract class AbstractPaymentRequest extends AbstractRequest
     /** Alias for setTp */
     public function setDynamicTemplateUri($uri)
     {
+        $this->validateUri($uri);
         $this->setTp($uri);
+    }
+    
+    /** Alias for setTp */
+    public function setStaticTemplate($tp)
+    {
+        $this->setTp($tp);
     }
 
     public function setTp($tp)
     {
-        $this->validateUri($tp);
         $this->parameters['tp'] = $tp;
     }
 
-    public function setOperation($operation)
+    public function setOperation(PaymentOperation $operation)
     {
-        if (!in_array($operation, $this->getValidOperations())) {
-            throw new InvalidArgumentException("Invalid operation [$operation].");
-        }
-
-        $this->parameters['operation'] = $operation;
+        $this->parameters['operation'] = (string) $operation;
     }
 
     abstract protected function getValidOperations();

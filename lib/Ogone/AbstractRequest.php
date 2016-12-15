@@ -36,11 +36,13 @@ abstract class AbstractRequest implements Request
 
     protected $ogoneFields = array(
         'pspid', 'orderid', 'com', 'amount', 'currency', 'language', 'cn', 'email',
-        'cardno', 'cvc', 'ed', 'ownerzip', 'owneraddress', 'ownercty', 'ownertown', 'win3ds',
-        'ownertelno', 'accepturl', 'declineurl', 'exceptionurl', 'cancelurl', 'backurl',
+        'cardno', 'cvc', 'ed', 'ownerzip', 'owneraddress', 'ownercty', 'ownertown',
+        'ownertelno', 'homeurl', 'accepturl', 'declineurl', 'exceptionurl', 'cancelurl', 'backurl',
         'complus', 'paramplus', 'pm', 'brand', 'title', 'bgcolor', 'txtcolor', 'tblbgcolor',
         'tbltxtcolor', 'buttonbgcolor', 'buttontxtcolor', 'logo', 'fonttype', 'tp', 'paramvar',
-        'alias', 'aliasoperation', 'aliasusage', 'aliaspersistedafteruse', 'device', 'pmlisttype'
+        'alias', 'aliasoperation', 'aliasusage', 'aliaspersistedafteruse', 'device', 'pmlisttype',
+        'ecom_payment_card_verification', 'operation', 'withroot', 'remote_addr', 'rtimeout',
+        'flag3d', 'http_accept', 'http_user_agent', 'win3ds',
     );
 
     /** @return string */
@@ -95,6 +97,14 @@ abstract class AbstractRequest implements Request
     public function setCn($cn)
     {
         $this->parameters['cn'] = str_replace(array("'", '"'), '', $cn); // replace quotes
+    }
+
+    public function setHomeurl($homeurl)
+    {
+        if (!empty($homeurl)) {
+            $this->validateUri($homeurl);
+        }
+        $this->parameters['homeurl'] = $homeurl;
     }
 
     public function setAccepturl($accepturl)

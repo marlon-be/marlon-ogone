@@ -7,6 +7,6 @@
 <input type="hidden" name="<?php echo Ogone\PaymentRequest::SHASIGN_FIELD ?>" value="<?php echo $ecommercePaymentRequest->getShaSign()?>" />
 
 <?php if ($showSubmitButton) : ?>
-    <input name="ogonesubmit" type="submit" value="Submit" id="ogonesubmit" />
+    <input name="ogonesubmit" type="submit" value="<?php echo $textSubmitButton ?>" id="ogonesubmit" />
 <?php endif ?>
 </form>
