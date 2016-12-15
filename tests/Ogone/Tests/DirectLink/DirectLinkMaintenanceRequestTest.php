@@ -5,6 +5,7 @@
 
 namespace Ogone\Tests\DirectLink;
 
+use Ogone\DirectLink\MaintenanceOperation;
 use Ogone\Tests\ShaComposer\FakeShaComposer;
 use Ogone\DirectLink\DirectLinkMaintenanceRequest;
 
@@ -75,7 +76,6 @@ class DirectLinkMaintenanceRequestTest extends \PHPUnit_Framework_TestCase
         return array(
             array('setPassword', '12'),
             array('setUserid', '12'),
-            array('setOperation', 'ABC'),
             array('setAmount', '232'),
             array('setAmount', 2.32),
         );
@@ -89,7 +89,7 @@ class DirectLinkMaintenanceRequestTest extends \PHPUnit_Framework_TestCase
         $directLinkRequest->setUserId('user_1234');
         $directLinkRequest->setPassword('abracadabra');
         $directLinkRequest->setPayId('12345678');
-        $directLinkRequest->setOperation('REN');
+        $directLinkRequest->setOperation(new MaintenanceOperation(MaintenanceOperation::OPERATION_AUTHORISATION_RENEW));
 
         return $directLinkRequest;
     }
