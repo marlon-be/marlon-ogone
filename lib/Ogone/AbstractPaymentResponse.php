@@ -40,6 +40,10 @@ abstract class AbstractPaymentResponse extends AbstractResponse implements Payme
 
     public function isSuccessful()
     {
-        return in_array($this->getParam('STATUS'), array(PaymentResponse::STATUS_AUTHORISED, PaymentResponse::STATUS_PAYMENT_REQUESTED));
+        return in_array($this->getParam('STATUS'), array(
+            PaymentResponse::STATUS_AUTHORISED,
+            PaymentResponse::STATUS_PAYMENT_REQUESTED,
+            PaymentResponse::STATUS_PAYMENT_BY_MERCHANT
+        ));
     }
 }
