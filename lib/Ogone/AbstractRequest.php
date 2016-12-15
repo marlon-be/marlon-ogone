@@ -72,6 +72,11 @@ abstract class AbstractRequest implements Request
         $this->parameters['pspid'] = $pspid;
     }
 
+    public function setSecure()
+    {
+      $this->parameters['win3ds'] = 'MAINW';
+    }
+
     /**
      * ISO code eg nl_BE
      */

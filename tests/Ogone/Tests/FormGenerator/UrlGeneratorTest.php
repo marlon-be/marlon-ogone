@@ -25,6 +25,7 @@ class UrlGeneratorTest extends TestCase
             'ownerzip=2300' . '&'.
             'ownercty=FR' . '&'.
             'email=louis.xiv%40versailles.fr' . '&'.
+            'win3ds=mainw' . '&'.
             PaymentRequest::SHASIGN_FIELD . '=' . FakeShaComposer::FAKESHASTRING;
 
         $paymentRequest = $this->provideMinimalPaymentRequest();
