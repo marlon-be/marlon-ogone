@@ -42,6 +42,7 @@ abstract class AbstractRequest implements Request
         'tbltxtcolor', 'buttonbgcolor', 'buttontxtcolor', 'logo', 'fonttype', 'tp', 'paramvar',
         'alias', 'aliasoperation', 'aliasusage', 'aliaspersistedafteruse', 'device', 'pmlisttype',
         'ecom_payment_card_verification', 'operation', 'withroot', 'remote_addr', 'rtimeout',
+        'pmlist', 'exclpmlist', 'creditdebit', 'userid',
         // DirectLink with 3-D Secure: Extra request parameters.
         // https://payment-services.ingenico.com/int/en/ogone/support/guides/integration%20guides/directlink-3-d/3-d-transaction-flow-via-directlink#extrarequestparameters
         'flag3d', 'http_accept', 'http_user_agent', 'win3ds',
