@@ -42,7 +42,34 @@ abstract class AbstractRequest implements Request
         'tbltxtcolor', 'buttonbgcolor', 'buttontxtcolor', 'logo', 'fonttype', 'tp', 'paramvar',
         'alias', 'aliasoperation', 'aliasusage', 'aliaspersistedafteruse', 'device', 'pmlisttype',
         'ecom_payment_card_verification', 'operation', 'withroot', 'remote_addr', 'rtimeout',
+        // DirectLink with 3-D Secure: Extra request parameters.
+        // https://payment-services.ingenico.com/int/en/ogone/support/guides/integration%20guides/directlink-3-d/3-d-transaction-flow-via-directlink#extrarequestparameters
         'flag3d', 'http_accept', 'http_user_agent', 'win3ds',
+        // Optional integration data: Delivery and Invoicing data.
+        // https://payment-services.ingenico.com/int/en/ogone/support/guides/integration%20guides/additional-data/delivery-and-invoicing-data
+        'civility', 'cuid', 'ecom_billto_postal_city', 'ecom_billto_postal_countrycode',
+        'ecom_billto_postal_name_first', 'ecom_billto_postal_name_last', 'ecom_billto_postal_postalcode',
+        'ecom_billto_postal_street_line1', 'ecom_billto_postal_street_number', 'ecom_shipto_dob',
+        'ecom_shipto_online_email', 'ecom_shipto_postal_city', 'ecom_shipto_postal_countrycode',
+        'ecom_shipto_postal_name_first', 'ecom_shipto_postal_name_last', 'ecom_shipto_postal_name_prefix',
+        'ecom_shipto_postal_postalcode', 'ecom_shipto_postal_state', 'ecom_shipto_postal_street_line1',
+        'ecom_shipto_postal_street_number', 'ordershipcost', 'ordershipmeth', 'ordershiptaxcode',
+        // Optional integration data: Order data ("ITEM" parameters).
+        // https://payment-services.ingenico.com/int/en/ogone/support/guides/integration%20guides/additional-data/order-data
+        'itemattributes*', 'itemcategory*', 'itemcomments*', 'itemdesc*', 'itemdiscount*',
+        'itemid*', 'itemname*', 'itemprice*', 'itemquant*', 'itemquantorig*',
+        'itemunitofmeasure*', 'itemvat*', 'itemvatcode*', 'itemweight*',
+        // Optional integration data: Travel data.
+        // https://payment-services.ingenico.com/int/en/ogone/support/guides/integration%20guides/additional-data/travel-data
+        'datatype', 'aiairname', 'aitinum', 'aitidate', 'aiconjti', 'aipasname',
+        'aiextrapasname*', 'aichdet', 'aiairtax', 'aivatamnt', 'aivatappl', 'aitypch',
+        'aieycd', 'aiirst', 'aiorcity*', 'aiorcityl*', 'aidestcity*', 'aidestcityl*',
+        'aistopov*', 'aicarrier*', 'aibookind*', 'aiflnum*', 'aifldate*', 'aiclass*',
+        // Subscription Manager.
+        // https://payment-services.ingenico.com/int/en/ogone/support/guides/integration%20guides/subscription-manager/via-e-commerce-and-directlink#input
+        'subscription_id', 'sub_amount', 'sub_com', 'sub_orderid', 'sub_period_unit',
+        'sub_period_number', 'sub_period_moment', 'sub_startdate', 'sub_enddate',
+        'sub_status', 'sub_comment',
     );
 
     /** @return string */
@@ -187,7 +214,9 @@ abstract class AbstractRequest implements Request
     {
         if (substr($method, 0, 3) == 'set') {
             $field = strtolower(substr($method, 3));
-            if (in_array($field, $this->ogoneFields)) {
+            // Also search for numbered fields, like ITEMID1, ITEMID2 etc.
+            $numbered_field = preg_replace('/\d+$/', '*', $field);
+            if (in_array($field, $this->ogoneFields) || in_array($numbered_field, $this->ogoneFields)) {
                 $this->parameters[$field] = $args[0];
                 return;
             }
