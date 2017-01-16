@@ -188,6 +188,7 @@ This library currently supports both the legacy method "Main parameters only" an
 	<?php
 
 	use Ogone\DirectLink\DirectLinkMaintenanceRequest;
+	use Ogone\DirectLink\MaintenanceOperation;
 	use Ogone\Passphrase;
 	use Ogone\ShaComposer\AllParametersShaComposer;
 	use Ogone\DirectLink\Alias;
@@ -201,7 +202,8 @@ This library currently supports both the legacy method "Main parameters only" an
 	$directLinkRequest->setUserId('ogone-api-user');
 	$directLinkRequest->setPassword('ogone-api-password');
 	$directLinkRequest->setPayId('order_1234');
-	$directLinkRequest->setOperation(DirectLinkMaintenanceRequest::OPERATION_AUTHORISATION_RENEW);
+	$directLinkRequest->setOperation(new MaintenanceOperation(MaintenanceOperation::OPERATION_AUTHORISATION_RENEW));
+
 	$directLinkRequest->validate();
 
 	// now create a url to be posted to Ogone
