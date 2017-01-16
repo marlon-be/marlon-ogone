@@ -301,6 +301,12 @@ abstract class AbstractPaymentRequest extends AbstractRequest
         $this->setTp($tp);
     }
 
+    /** Alias for setTp */
+    public function setStaticTemplate($tp)
+    {
+        $this->setTp($tp);
+    }
+
     public function setTp($tp)
     {
         $this->parameters['tp'] = $tp;
