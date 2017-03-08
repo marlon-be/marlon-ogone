@@ -40,7 +40,7 @@ class DirectLinkPaymentRequest extends AbstractPaymentRequest
 
     public function setUserId($userid)
     {
-        if (strlen($userid) < 8) {
+        if (strlen($userid) < 2) {
             throw new InvalidArgumentException("User ID is too short");
         }
         $this->parameters['userid'] = $userid;
