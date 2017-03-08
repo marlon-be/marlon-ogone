@@ -107,7 +107,7 @@ class DirectLinkPaymentRequestTest extends \PHPUnit_Framework_TestCase
     {
         return array(
             array('setPswd', '12'),
-            array('setUserid', '12'),
+            array('setUserid', '1'),
         );
     }
 
