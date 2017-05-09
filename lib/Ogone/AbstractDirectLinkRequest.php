@@ -12,7 +12,7 @@ abstract class AbstractDirectLinkRequest extends AbstractRequest
 
     public function setUserId($userid)
     {
-        if (strlen($userid) < 8) {
+        if (strlen($userid) < 5) {
             throw new InvalidArgumentException("User ID is too short");
         }
         $this->parameters['userid'] = $userid;
