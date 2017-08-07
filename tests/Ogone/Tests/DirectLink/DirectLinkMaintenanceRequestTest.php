@@ -75,7 +75,7 @@ class DirectLinkMaintenanceRequestTest extends \PHPUnit_Framework_TestCase
     {
         return array(
             array('setPassword', '12'),
-            array('setUserid', '12'),
+            array('setUserid', '1'),
             array('setAmount', '232'),
             array('setAmount', 2.32),
         );
