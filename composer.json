@@ -10,7 +10,7 @@
         "php": ">=5.3"
     },
     "require-dev" : {
-        "phpunit/phpunit": "@stable",
+        "phpunit/phpunit": ">=4.8 <5.0",
         "guzzle/guzzle": "@stable",
         "symfony/class-loader": "@stable"
     }

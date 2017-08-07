@@ -64,7 +64,7 @@ class DirectLinkQueryRequestTest extends \PHPUnit_Framework_TestCase
     {
         return array(
             array('setPassword', '12'),
-            array('setUserid', '12'),
+            array('setUserid', '1'),
         );
     }
 
