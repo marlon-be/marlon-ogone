@@ -189,7 +189,7 @@ abstract class AbstractPaymentRequest extends AbstractRequest
 
     public function setOwnerAddress($owneraddress)
     {
-        if (strlen($owneraddress) > 35) {
+        if (strlen($owneraddress) > 50) {
             throw new InvalidArgumentException("Owner address is too long");
         }
         $this->parameters['owneraddress'] = $owneraddress;
@@ -226,6 +226,9 @@ abstract class AbstractPaymentRequest extends AbstractRequest
      */
     public function setOwnercty($ownercty)
     {
+        if (strlen($ownercty) > 2) {
+            throw new InvalidArgumentException("Owner country code is too long");
+        }
         if (!preg_match('/^[A-Z]{2}$/', strtoupper($ownercty))) {
             throw new InvalidArgumentException("Illegal country code");
         }
