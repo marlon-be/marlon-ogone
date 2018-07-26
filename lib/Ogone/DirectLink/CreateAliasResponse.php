@@ -26,7 +26,7 @@ class CreateAliasResponse extends AbstractResponse
      */
     public function isValid(ShaComposer $shaComposer)
     {
-        return $shaComposer->compose($this->parameters) == $this->shaSign;
+        return hash_equals($shaComposer->compose($this->parameters), $this->shaSign);
     }
 
     public function isSuccessful()
