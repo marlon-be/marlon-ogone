@@ -26,7 +26,7 @@ class EcommercePaymentResponse extends AbstractPaymentResponse
         if (function_exists('hash_equals')) {
             return hash_equals($shaComposer->compose($this->parameters), $this->shaSign);
         } else {
-            $shaComposer->compose($this->parameters) == $this->shaSign;
+            return $shaComposer->compose($this->parameters) == $this->shaSign;
         }        
     }
 }
