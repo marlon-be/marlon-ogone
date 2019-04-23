@@ -6,6 +6,7 @@
             "Ogone\\Tests\\": "tests/Ogone/Tests/"
         }
     },
+    "license": "MIT",
     "require": {
         "php": ">=5.3"
     },
