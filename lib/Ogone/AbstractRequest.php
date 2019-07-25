@@ -46,6 +46,11 @@ abstract class AbstractRequest implements Request
         // DirectLink with 3-D Secure: Extra request parameters.
         // https://payment-services.ingenico.com/int/en/ogone/support/guides/integration%20guides/directlink-3-d/3-d-transaction-flow-via-directlink#extrarequestparameters
         'flag3d', 'http_accept', 'http_user_agent', 'win3ds',
+
+        // DirectLink with 3-D Secure, v2.1: Extra request parameters.
+        // https://payment-services.ingenico.com/fr/fr/ogone/support/guides/integration%20guides/directlink-3-d/3-d%20secure%20v2
+        'browseracceptheader', 'browsercolordepth', 'browserjavaenabled', 'browserlanguage', 'browserscreenheight',
+        'browserscreenwidth', 'browsertimezone', 'browseruseragent',
         // Optional integration data: Delivery and Invoicing data.
         // https://payment-services.ingenico.com/int/en/ogone/support/guides/integration%20guides/additional-data/delivery-and-invoicing-data
         'civility', 'cuid', 'ecom_billto_postal_city', 'ecom_billto_postal_countrycode',
