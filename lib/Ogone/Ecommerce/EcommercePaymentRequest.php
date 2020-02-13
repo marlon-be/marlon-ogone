@@ -40,7 +40,7 @@ class EcommercePaymentRequest extends AbstractPaymentRequest
 
     public function setAlias(Alias $alias)
     {
-        $this->parameters['aliasOperation'] = $alias->getAliasOperation();
+        $this->parameters['aliasoperation'] = $alias->getAliasOperation();
         $this->parameters['aliasusage'] = $alias->getAliasUsage();
         $this->parameters['alias'] = $alias->getAlias();
     }
