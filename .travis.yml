@@ -1,8 +1,9 @@
-dist: trusty
 language: php
 php:
   - 5.3
+    dist: precise
   - 5.4
+    dist: trusty
   - 5.5
   - 5.6
   - 7.0
@@ -12,4 +13,4 @@ notifications:
     - dieter@marlon.be
 
 before_script:
-   - composer install --dev
+  - composer install --dev
