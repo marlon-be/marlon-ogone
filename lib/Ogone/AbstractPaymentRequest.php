@@ -73,6 +73,7 @@ abstract class AbstractPaymentRequest extends AbstractRequest
         'UATP'                  => 'CreditCard',
         'UNEUROCOM'             => 'UNEUROCOM',
         'VISA'                  => 'CreditCard',
+        'VISA Debit'            => 'VISA Debit',
         'Wallie'                => 'Wallie',
     );
 
