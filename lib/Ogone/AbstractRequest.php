@@ -46,12 +46,12 @@ abstract class AbstractRequest implements Request
         // DirectLink with 3-D Secure: Extra request parameters.
         // https://payment-services.ingenico.com/int/en/ogone/support/guides/integration%20guides/directlink-3-d/3-d-transaction-flow-via-directlink#extrarequestparameters
         'flag3d', 'http_accept', 'http_user_agent', 'win3ds',
-        // New 3-D parameters DirectLink
-        // https://support-paypage.ecom-psp.com/en/integration-solutions/integrations/3dsv2-parameters#3DSv2parameters-ordered-mandatoryParameters
+        // New browser 3-D parameters DirectLink
+        // https://epayments-support.ingenico.com/en/integration-solutions/integrations/3dsv2-parameters
         'browseracceptheader', 'browsercolordepth', 'browserjavaenabled', 'browserlanguage', 'browserscreenheight',
         'browserscreenwidth', 'browsertimezone', 'browseruseragent',
         // Alias 3-D params
-        // https://support-paypage.ecom-psp.com/en/integration-solutions/recurring-payments/alias-manager/
+        // https://epayments-support.ingenico.com/en/integration-solutions/recurring-payments/alias-manager/#aliasmanagernew_integration_guides_understand_cof_use_cases
         'cofinitiator', 'cofschedule', 'coftransaction',
         'cofrecurringexpiry', 'cofrecurringfrequency',
         // Optional integration data: Delivery and Invoicing data.
